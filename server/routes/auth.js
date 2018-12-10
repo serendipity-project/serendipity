@@ -1,39 +1,54 @@
-const express = require("express");
+const express = require('express');
 const passport = require('passport');
+
 const router = express.Router();
-const User = require("../models/User");
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
 
 // Bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+// Custom Callback de passport
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Error authenticating user',
+      });
+    }
+    if (!user) {
+      return res.status(500).json({
+        message: 'Error authenticating user',
+      });
+    }
+    req.logIn(user, (error) => {
+      if (err) { return res.status(500).json({ message: 'Error login' }); }
+      return res.status(200).json(user);
+    });
+  })(req, res, next);
 });
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
 
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
+router.post('/signup', (req, res, next) => {
+  const {
+    username, password, email, hoster, musician,
+  }  = req.body;
 
-router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+  if (username === '' || password === '') {
+    res.status(500).json({
+      message: 'Provide username and password',
+    });
     return;
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({
+    username,
+  }, 'username', (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.status(500).json({
+        message: 'The username already exists. Choose another one.',
+      });
       return;
     }
 
@@ -42,22 +57,56 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      email,
+      hoster,
+      musician,
     });
 
     newUser.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+      .then(() => {
+        res.status(200).json(newUser);
+      })
+      .catch(() => {
+        res.status(500).json({
+          message: 'Saving user to database went wrong.',
+        });
+      });
   });
 });
 
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.status(200).json({
+    message: 'Log out success!',
+  });
+});
+
+router.get('/loggedin', (req, res, next) => {
+  // req.isAuthenticated() is defined by passport
+  if (req.isAuthenticated()) {
+    res.status(200).json(req.user);
+    return;
+  }
+  res.status(403).json({
+    message: 'Unauthorized',
+  });
+});
+
+
+router.post('/edit', (req, res, next) => {
+  const {
+    username, email, hoster, musician,
+  } = req.body;
+  User.findByIdAndUpdate(req.user._id, {
+    username, email, hoster, musician,
+  }, { new:true })
+    .then((userUpdated) => {
+      res.status(200).json({ userUpdated });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 });
 
 module.exports = router;

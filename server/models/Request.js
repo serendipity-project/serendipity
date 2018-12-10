@@ -1,20 +1,17 @@
-const mongoose = require('mongoose');
+/* const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const requestSchema = new Schema({
   username: String,
   password: String,
   email: String,
   hoster: {
     type: Boolean,
-    default:false,
   },
   musician: {
     type: Boolean,
-    default:false,
   },
-
 }, {
   timestamps: {
     createdAt: 'created_at',
@@ -22,5 +19,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+const Request = mongoose.model('Request', requestSchema);
+module.exports = Request;
+ */
