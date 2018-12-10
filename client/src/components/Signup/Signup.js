@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import AuthService from '../../auth/auth-service';
 import {Link, Redirect} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+
 
 export default class Signup extends Component {
   constructor(props){
@@ -31,15 +35,21 @@ export default class Signup extends Component {
       if(this.state && this.state.redirect){return <Redirect to ="/"/>}
     return (
      <form onSubmit={this.handleFormSubmit}>
-         <label>Username:</label>
-         <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
-         <label>Password:</label>
-         <input type="text" name="password" value={this.state.password} onChange={this.handleChange}/>
+     <Grid direction='column' spacing={16} container alignItems='center'>
+     <Grid item>
+     <TextField placeholder='Name' type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
+     </Grid> 
+    <Grid item>
+    <TextField placeholder='password' type="text" name="password" value={this.state.password} onChange={this.handleChange}/>
+     </Grid>
+     <Grid item>
+     <Button variant="contained" color="primary" type="submit" value="Submit">Sing up</Button>
+     </Grid>
+     </Grid>
        {/*   <label>email:</label>
          <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
          <label>host:</label>
          <select type="text" name="host" value={this.state.host} onChange={this.handleChange}/> */}
-     <input type="submit" value="Submit" />
      </form>
     )
   }

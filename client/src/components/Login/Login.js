@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import AuthService from '../../auth/auth-service';
 import { Link, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Button = styled.button`
+    background-color: papayawhip;
+    min-height: 32px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: ${({isDisabled}) => isDisabled ? 'not-allowed' : 'pointer'};
+    ${({color}) => color && `background-color: ${color};`}
+`;
+
 
 export default class Login extends Component {
   constructor(props){
@@ -34,7 +45,7 @@ export default class Login extends Component {
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           <label>Password:</label>
           <input name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-          <input type="submit" value="Login" />
+          <Button isDisabled={!this.state.username} type="submit" value="Login">Login</Button>
         </form>
         <p>Don't have account? 
             <Link to={"/signup"}> Signup</Link>
