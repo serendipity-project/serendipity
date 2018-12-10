@@ -10,8 +10,8 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" render={() => <Home/>}/>
           <Route exact path="/register" render={() => <Register />}/>
+          <Route path="/" render={() => <Home/>}/>
         </Switch>
       </div>
 
