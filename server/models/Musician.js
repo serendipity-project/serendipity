@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 const musicianShema = new Schema({
   artistData: String,
   originCity:String,
+  musicStyle:String,
+  instruments:String,
 }, {
   timestamps: {
     createdAt: 'created_at',

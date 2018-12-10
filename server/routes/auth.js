@@ -32,7 +32,7 @@ router.post('/login', (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
   const {
-    username, password, email, hoster, musician,
+    username, password, email, host, musician,
   }  = req.body;
 
   if (username === '' || password === '') {
@@ -59,7 +59,7 @@ router.post('/signup', (req, res, next) => {
       username,
       password: hashPass,
       email,
-      hoster,
+      host,
       musician,
     });
 
@@ -96,10 +96,10 @@ router.get('/loggedin', (req, res, next) => {
 
 router.post('/edit', (req, res, next) => {
   const {
-    username, email, hoster, musician,
+    username, email, host, musician,
   } = req.body;
   User.findByIdAndUpdate(req.user._id, {
-    username, email, hoster, musician,
+    username, email, host, musician,
   }, { new:true })
     .then((userUpdated) => {
       res.status(200).json({ userUpdated });

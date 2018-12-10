@@ -6,7 +6,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  hoster: {
+  host: {
     type: Boolean,
     default:false,
   },

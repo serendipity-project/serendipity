@@ -7,6 +7,7 @@ const hostPlaceSchema = new Schema({
   date:String,
   time:String,
   price:String,
+  capacity:Number,
   location: {
     longitude: String,
     latitude: String,
