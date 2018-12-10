@@ -1,19 +1,44 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
+import AuthService from '../auth/auth-service';
 
 export default class IsLoggedIn extends Component {
-    constructor(){
-        this.state({
-            loading: false,
-        });
+    constructor(props){
+        super(props);
+        this.auth = new AuthService();
+        this.state = {
+            loading: true,
+            toLogin: false,
+            toHome: false,
+            user: {},
+        };
     }
 
-    componentDidMount(){
-        this.auth.IsLoggedIn()
-        .then()
-        .catch()
+    componentDidMount() {
+        this.auth.loggedin()
+        .then((res) =>{
+            this.setState({
+                loading: false,
+                user: res,
+            });
+            console.log({res});
+        })
+        .catch((err)=>{
+            this.setState({
+                loading: false,
+                toLogin: true,
+            });
+            console.log({err})
+        })
     }
 
     render() {
-        return this.props.children(data);
+        const { user, loading, toLogin, toHome } = this.state;
+
+        if(loading) return <div>Loading...</div>;
+        if(toLogin) return <Redirect to='/register' />;
+        if(toHome) return <Redirect to='/' />;
+
+        return this.props.children(this.state.user);
     }
     }

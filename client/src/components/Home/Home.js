@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
+import IsLoggedIn from '../../containers/IsLoggedIn';
 
 export default class Home extends Component {
   render() {
     return (
-      <div>
-        <h1>Login React App</h1>
-        <Link to={"/signup"}><button>Sign Up</button></Link>
-        <Link to={"/login"}><button>Login</button></Link>
-      </div>
+        <IsLoggedIn>
+            {(user) => {
+                console.log({user});
+                const name = user && user.username;
+                return (
+                <>
+                <h1>Home bitchies 🤘</h1>
+                <span>{name}</span>
+                </>
+                );
+            }}
+        </IsLoggedIn>
     )
   }
 }

@@ -15,7 +15,6 @@ export default class Login extends Component {
 
     this.service.login(username, password)
     .then( response => {
-        this.props.getUser(response);
         this.setState({ username: "", password: "" ,redirect:true});
     })
     .catch( error => console.log(error) )
@@ -27,7 +26,7 @@ export default class Login extends Component {
   }
     
   render(){
-    if(this.state && this.state.redirect){return <Redirect to ="/profile"/>}
+    if(this.state && this.state.redirect){return <Redirect to ="/"/>}
     return(
       <div>
         <form onSubmit={this.handleFormSubmit}>
