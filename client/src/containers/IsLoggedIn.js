@@ -19,7 +19,7 @@ export default class IsLoggedIn extends Component {
             .then((res) => {
                 this.setState({
                     loading: false,
-                    user: res,
+                    user: res
                 });
                 console.log({ res });
             })
@@ -37,7 +37,7 @@ export default class IsLoggedIn extends Component {
 
         if (loading) return <div>Loading...</div>;
         if (toLogin) return <Redirect to='/register' />;
-        if (toHome) return <Redirect to='/' />;
+       // if (toHome) return <Redirect to='/' />;
         if (user) return this.props.children(this.state.user);
     }
 }
