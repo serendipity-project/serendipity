@@ -28,7 +28,10 @@ export default class Home extends Component {
                 </Link>
                 }
                 <Link to='/about'>
-                <Button>ABOUT</Button>
+                <Button>About</Button>
+                </Link>
+                <Link to='/profile'>
+                <Button>Profile</Button>
                 </Link>
                 </Toolbar>
                 </AppBar>
