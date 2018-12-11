@@ -33,6 +33,7 @@ export default class Signup extends Component {
 
   render() {
       if(this.state && this.state.redirect){return <Redirect to ="/"/>}
+      
     return (
      <form onSubmit={this.handleFormSubmit}>
      <Grid direction='column' spacing={16} container alignItems='center'>
