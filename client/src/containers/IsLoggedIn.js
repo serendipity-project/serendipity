@@ -36,8 +36,8 @@ export default class IsLoggedIn extends Component {
         const { user, loading, toLogin, toHome } = this.state;
 
         if(loading) return <div>Loading...</div>;
-        if(toLogin) return <Redirect to='/register' />;
-        if(toHome) return <Redirect to='/' />;
+        if(toLogin) return <Redirect to='/register'/>;
+        if(toHome) return <Redirect to='/'/>;
 
         return this.props.children(this.state.user);
     }

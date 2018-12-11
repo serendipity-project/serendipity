@@ -3,24 +3,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
+  username: { type: String, unique: true },
   password: String,
   email: String,
   host: {
     type: Boolean,
-    default:false,
+    default: false,
   },
   musician: {
     type: Boolean,
-    default:false,
+    default: false,
   },
-
 }, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-  },
-});
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
