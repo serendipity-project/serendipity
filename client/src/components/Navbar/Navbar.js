@@ -23,18 +23,26 @@ class Navbar extends Component {
             .then(() => this.setState({ user: null }));
     }
     render() {
+        console.log(this.props.user);
         return (
             <>
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6" color="inherit">
                             Serendipity
-            </Typography>
-                        {this.props.user.isMusician || this.props.user.isHost &&
+                        </Typography>
+                        {(this.props.user.musician || this.props.user.host)?
+                            <>
                             <Link to='/musicians'>
                                 <Button>Musicians</Button>
                             </Link>
+                            <Link to="/host-places">
+                                <Button>Hosts</Button>
+                            </Link>
+                            </>
+                            : null
                         }
+                           
                         <Link to='/concerts'>
                             <Button>Concerts</Button>
                         </Link>

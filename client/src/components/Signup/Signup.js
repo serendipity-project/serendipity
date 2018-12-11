@@ -24,8 +24,8 @@ export default class Signup extends Component {
     handleFormSubmit = (event) => {
         console.log(event);
         event.preventDefault();
-        const {username,password,email,host} = this.state;
-        this.service.signup(username,password,email,host)
+        const {username,password,email,host,musician} = this.state;
+        this.service.signup(username,password,email,host,musician)
         .then( response => {
             console.log(response);
             this.setState({username: "", password: "",email: "",host:false,musician:false,redirect:true});
