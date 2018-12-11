@@ -40,7 +40,7 @@ export default class Signup extends Component {
      <TextField placeholder='Name' type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
      </Grid> 
     <Grid item>
-    <TextField placeholder='password' type="text" name="password" value={this.state.password} onChange={this.handleChange}/>
+    <TextField placeholder='password' type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
      </Grid>
      <Grid item>
      <Button variant="contained" color="primary" type="submit" value="Submit">Sing up</Button>

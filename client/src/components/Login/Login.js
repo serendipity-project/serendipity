@@ -44,7 +44,7 @@ export default class Login extends Component {
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           <label>Password:</label>
-          <input name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <input name="password" type="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           <Button isDisabled={!this.state.username} type="submit" value="Login">Login</Button>
         </form>
         <p>Don't have account? 
