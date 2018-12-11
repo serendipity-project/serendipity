@@ -21,7 +21,7 @@ export default class IsLoggedIn extends Component {
                     loading: false,
                     user: res,
                 });
-                
+                console.log({ res });
             })
             .catch((err) => {
                 this.setState({
