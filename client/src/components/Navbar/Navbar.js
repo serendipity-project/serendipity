@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Route, Switch } from 'react-router-dom';
 import Profile from '../Profile/Profile';
-import AuthService from '../../auth/auth-service';
+import AuthService from '../../services/auth-service';
 
 class Navbar extends Component {
     constructor() {
@@ -30,7 +30,7 @@ class Navbar extends Component {
                         <Typography variant="h6" color="inherit">
                             Serendipity
             </Typography>
-                        {this.props.user.isMusician || this.props.user.isHost &&
+                        {this.props.user.musician || this.props.user.host &&
                             <Link to='/musicians'>
                                 <Button>Musicians</Button>
                             </Link>

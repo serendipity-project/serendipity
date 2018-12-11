@@ -7,8 +7,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Route, Switch } from 'react-router-dom';
 import Profile from '../Profile/Profile';
-import AuthService from '../../auth/auth-service';
+import AuthService from '../../services/auth-service';
 import Navbar from '../Navbar/Navbar';
+import HostPlace from '../HostPlace/HostPlace';
 
 export default class Home extends Component {
   constructor() {
@@ -32,6 +33,9 @@ export default class Home extends Component {
           return (
             <>
               <Navbar user={user}></Navbar>
+              {user.host &&
+                <HostPlace></HostPlace>
+              }
             </>
           );
         }}

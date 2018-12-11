@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
-import AuthService from '../auth/auth-service';
+import AuthService from '../services/auth-service';
 
 export default class IsLoggedIn extends Component {
     constructor(props) {
