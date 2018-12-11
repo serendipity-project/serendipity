@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthService from '../../auth/auth-service';
+import AuthService from '../../services/auth-service';
 import Typography from '@material-ui/core/Typography';
 
 
