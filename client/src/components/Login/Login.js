@@ -48,7 +48,7 @@ export default class Login extends Component {
           <Button isDisabled={!this.state.username} type="submit" value="Login">Login</Button>
         </form>
         <p>Don't have account? 
-            <Link> S to={"/signup"}ignup</Link>
+            <Link to={"/signup"}> Signup</Link>
         </p>
       </div>
     )

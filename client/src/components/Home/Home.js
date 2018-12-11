@@ -14,7 +14,7 @@ export default class Home extends Component {
         <IsLoggedIn>
             {(user) => {
                 console.log({user});
-                const name = user && user.username;
+                const username = user && user.username;
                 return (
                 <>
                 <AppBar position="static">

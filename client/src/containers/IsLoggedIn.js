@@ -10,7 +10,7 @@ export default class IsLoggedIn extends Component {
             loading: true,
             toLogin: false,
             toHome: false,
-            user: {},
+            user: {}
         };
     }
 
