@@ -13,17 +13,24 @@ class HostPlace extends Component {
             price: '',
             capacity: '',
             placeName: '',
+            initialTime: '',
+            finishingTime: '',
             redirect: false
         }
+        this.service = new GeneralService();
     }
     handleFormSubmit = (event) => {
         console.log(event);
         event.preventDefault();
         const { address, date, price, capacity, placeName } = this.state;
-        this.service.signup(address, date, price, capacity, placeName)
+        this.service.newPlace(address, date, price, capacity, initialTime,
+            finishingTime, placeName)
             .then(response => {
                 console.log(response);
-                this.setState({ address: "", date: "", price: "", capacity: "", placeName: "", redirect: true });
+                this.setState({
+                    address: "", date: "", price: "", capacity: "", initialTime: '',
+                    finishingTime: '', placeName: "", redirect: true
+                });
             })
             .catch(error => console.log(error))
     }
@@ -44,6 +51,12 @@ class HostPlace extends Component {
                         </Grid>
                         <Grid item>
                             <TextField type="date" name="date" value={this.state.date} onChange={this.handleChange} />
+                        </Grid>
+                        <Grid item>
+                            <TextField placeholder='Concert starts at' type="text" name="initialTime" value={this.state.initialTime} onChange={this.handleChange} />
+                        </Grid>
+                        <Grid item>
+                            <TextField placeholder='Concert finishes at' type="text" name="finishingTime" value={this.state.finishingTime} onChange={this.handleChange} />
                         </Grid>
                         <Grid item>
                             <TextField placeholder='Price €/per person' type="text" name="price" value={this.state.price} onChange={this.handleChange} />
