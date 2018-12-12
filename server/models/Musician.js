@@ -1,10 +1,9 @@
-/* const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-
 const musicianShema = new Schema({
   artistData: String,
-  email: { type: Schema.Types.email, ref: "User" },
+  email: String,
   originCity: String,
   musicStyle: [],
   artistDescription: String,
@@ -15,12 +14,11 @@ const musicianShema = new Schema({
   youtubeAccount: String,
   image: String,
 }, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  });
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+});
 
-const HostPlace = mongoose.model('HostPlace', musicianShema);
-module.exports = HostPlace;
- */
+const Musician = mongoose.model('Musician', musicianShema);
+module.exports = Musician;
