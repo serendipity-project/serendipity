@@ -1,13 +1,13 @@
-// const express = require('express');
+const express = require('express');
 
-// const concertRouter = express.Router();
-// const Concert = require('../models/Concert');
-// const Musician = require("../models/Musician")
-// const HostPlace = require("../models/HostPlace")
+const concertRouter = express.Router();
+const Concert = require('../models/Concert');
+const Musician = require("../models/Musician")
+const HostPlace = require("../models/HostPlace")
 
 
-// concertRouter.post("/new", (req, res, next) => {
+concertRouter.post("/new", (req, res, next) => {
+    
+})
 
-// })
-
-// module.exports = concertRouter;
+module.exports = concertRouter;
