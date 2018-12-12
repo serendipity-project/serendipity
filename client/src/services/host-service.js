@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export default class HostPlaceService {
   constructor(props) {
     this.service = axios.create({
