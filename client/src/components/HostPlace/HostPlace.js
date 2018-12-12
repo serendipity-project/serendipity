@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import GeneralService from '../../services/general-services';
+import hostPlaceService from '../../services/host-service';
 import TextField from '@material-ui/core/TextField';
 
 class HostPlace extends Component {
@@ -17,12 +17,12 @@ class HostPlace extends Component {
             finishingTime: '',
             redirect: false
         }
-        this.service = new GeneralService();
+        this.service = new hostPlaceService();
     }
     handleFormSubmit = (event) => {
         console.log(event);
         event.preventDefault();
-        const { address, date, price, capacity, placeName } = this.state;
+        const { address, date, price, capacity,initialTime ,finishingTime,placeName} = this.state;
         this.service.newPlace(address, date, price, capacity, initialTime,
             finishingTime, placeName)
             .then(response => {

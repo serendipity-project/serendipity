@@ -1,11 +1,11 @@
-const express = require('express');
+/* const express = require('express');
 const hostPlaceRouter = express.Router();
 const HostPlace = require('../models/HostPlace');
 
 hostPlaceRouter.post("/new-place", (req, res, next) => {
     const { address, date, price, capacity, initialTime, finishingTime, placeName } = req.body
-    
-    
+
+
 })
 router.post(‘/books/add’, (req, res, next) => {
     const { title, author, description, rating } = req.body;
@@ -17,4 +17,4 @@ router.post(‘/books/add’, (req, res, next) => {
     .catch((error) => {
       console.log(error);
     })
-   });
+   }); */
