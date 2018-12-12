@@ -8,7 +8,7 @@ export default class Register extends Component {
     return (
       <>
         <div>
-            <h1>Singin</h1>
+            <h1>Singup</h1>
             <Signup />
         </div>
         <div>
