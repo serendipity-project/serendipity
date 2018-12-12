@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import hostPlaceService from '../../services/host-service';
+import HostPlaceService from '../../services/host-service';
 import TextField from '@material-ui/core/TextField';
 
 class HostPlace extends Component {
@@ -17,7 +17,7 @@ class HostPlace extends Component {
             finishingTime: '',
             redirect: false
         }
-        this.service = new hostPlaceService();
+        this.service = new HostPlaceService();
     }
     handleFormSubmit = (event) => {
         console.log(event);
