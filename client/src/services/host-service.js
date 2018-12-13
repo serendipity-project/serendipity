@@ -1,23 +1,49 @@
 import axios from 'axios';
 
-export default class HostPlaceService  {
+export default class HostPlaceService {
     constructor(props) {
-
-
         this.service = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/host`,
+            baseURL: `${process.env.REACT_APP_API_URL}/host-place`,
             withCredentials: true
         });
- 
+
     }
-    new = (address, date, price, capacity, placeName) => {
-        return this.service.post('/new-place', {
-            address,
-            date,
-            price,
-            capacity,
-            placeName,
-        })
+    new = (address, date, initialTime, finishingTime, price, capacity, location, placeName) => {
+        return this.service.post('/new', {
+                address,
+                date,
+                initialTime,
+                finishingTime,
+                price,
+                capacity,
+                location,
+                placeName,
+            })
             .then(response => response.data)
     }
+
+    edit = (hostServiceID, address, date, initialTime, finishingTime, price, capacity, location, placeName) => {
+        return this.service.post(`/${hostServiceID}/edit`, {
+                address,
+                date,
+                initialTime,
+                finishingTime,
+                price,
+                capacity,
+                location,
+                placeName
+            })
+            .then(response => response.data)
+    }
+
+    getOne = (hostServiceID, ) => {
+        return this.service.get(`/${hostServiceID}`, {})
+            .then(response => response.data)
+    }
+    getAll = () => {
+        return this.service.get('/all', {})
+            .then(response => response.data)
+    }
+
+
 }

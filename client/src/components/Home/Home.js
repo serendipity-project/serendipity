@@ -11,6 +11,7 @@ import AuthService from '../../services/auth-service';
 import Navbar from '../Navbar/Navbar';
 import HostPlace from '../HostPlace/HostPlace';
 
+
 export default class Home extends Component {
   constructor() {
     super()
@@ -24,6 +25,7 @@ export default class Home extends Component {
       .logout()
       .then(() => this.setState({ user: null }));
   }
+  
   render() {
 
     return (
@@ -34,7 +36,9 @@ export default class Home extends Component {
             <>
               <Navbar user={user}></Navbar>
               {user.host &&
-                <HostPlace></HostPlace>
+              <>
+               <HostPlace/>
+               </>
               }
             </>
           );
