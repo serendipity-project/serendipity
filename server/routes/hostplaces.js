@@ -19,7 +19,7 @@ hostPlaceRouter.post("/new", (req, res, next) => {
             res.status(500).json({
                 messsage: 'Error while creating new location'
             })
-            // console.log(err)
+            console.log(err)
         })
 })
 

@@ -3,14 +3,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const concertSchema = new Schema({
-  musiciainID: { type: Schema.Types.ObjectId, ref: 'Musician' },
+  musicianID: { type: Schema.Types.ObjectId, ref: 'Musician' },
   hostID: { type: Schema.Types.ObjectId, ref: 'HostPlace' },
+  capacity: { type: Number, default: 0, min: 0 },
+  availability: { type: Boolean, default: true }
 }, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-  },
-});
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  });
 
 const Concert = mongoose.model('Concert', concertSchema);
 module.exports = Concert;
