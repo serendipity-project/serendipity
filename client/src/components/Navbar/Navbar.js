@@ -9,6 +9,7 @@ import Profile from '../Profile/Profile';
 import AuthService from '../../services/auth-service';
 import HostPlace from '../HostPlace/HostPlace';
 import Mapbox from '../Mapbox/Mapbox';
+import Musician from '../Musician/Musician';
 
 class Navbar extends Component {
     constructor() {
@@ -32,14 +33,14 @@ class Navbar extends Component {
                         <Typography variant="h6" color="inherit">
                             Serendipity
                         </Typography>
-                        {(this.props.user.musician || this.props.user.host)?
+                        {(this.props.user.musician || this.props.user.host) ?
                             <>
-                            <Link to='/musicians'>
-                                <Button>Musicians</Button>
-                            </Link>
-                            <Link to="/host-places">
-                                <Button>Hosts</Button>
-                            </Link>
+                                <Link to='/musicians'>
+                                    <Button>Musicians</Button>
+                                </Link>
+                                <Link to="/host-places">
+                                    <Button>Hosts</Button>
+                                </Link>
                             </>
                             : null
                         }    
@@ -64,7 +65,8 @@ class Navbar extends Component {
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
                 <Route exact path="/host-places" render={() => <HostPlace />} />
                 <Route exact path="/concerts" render={() => <Mapbox/>} />
-            </>
+                <Route exact path='/musicians' render={() => <Musician routename='musician' />} />
+        </>
         )
     }
 }

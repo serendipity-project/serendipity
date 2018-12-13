@@ -5,7 +5,6 @@ const Request = require('../models/Request');
 const HostPlace = require("../models/HostPlace")
 
 requestRouter.post("/new/:IDmusician", (req, res, next) => {
-    const { musicianID } = req.params;
     const newRequest = new Request({ musicianID: req.params.IDmusician })
     newRequest.save()
         .then(() => {
@@ -51,24 +50,13 @@ requestRouter.get("/:id", (req, res, next) => {
         })
 })
 
-requestRouter.get("/:id/rejects", (req, res, next) => {
+requestRouter.get("/:id/delete", (req, res, next) => {
     Request.findByIdAndRemove(req.params.id)
         .then(() => {
-            res.status(200).json({ message: "Request rejected deleted" })
+            res.status(200).json({ message: "Request rejected/accepted deleted" })
         })
         .catch((err) => {
-            res.status(500).json({ message: "Problem rejecting request" })
-            //console.log(err)
-        })
-})
-
-requestRouter.get("/:id/accept", (req, res, next) => {
-    Request.findByIdAndRemove(req.params.id)
-        .then(() => {
-            res.status(200).json({ message: "Request accepeted deleted" })
-        })
-        .catch((err) => {
-            res.status(500).json({ message: "Problem accepting request" })
+            res.status(500).json({ message: "Problem rejecting/accepting request" })
             //console.log(err)
         })
 })

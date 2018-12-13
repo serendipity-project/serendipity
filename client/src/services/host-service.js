@@ -10,40 +10,45 @@ export default class HostPlaceService {
     }
     new = (address, date, initialTime, finishingTime, price, capacity, location, placeName) => {
         return this.service.post('/new', {
-                address,
-                date,
-                initialTime,
-                finishingTime,
-                price,
-                capacity,
-                location,
-                placeName,
-            })
+            address,
+            date,
+            initialTime,
+            finishingTime,
+            price,
+            capacity,
+            location,
+            placeName,
+        })
             .then(response => response.data)
     }
 
     edit = (hostServiceID, address, date, initialTime, finishingTime, price, capacity, location, placeName) => {
-        return this.service.post(`/${hostServiceID}/edit`, {
-                address,
-                date,
-                initialTime,
-                finishingTime,
-                price,
-                capacity,
-                location,
-                placeName
-            })
+        return this.service.post(`/${hostServiceID}/edit`, {
+            address,
+            date,
+            initialTime,
+            finishingTime,
+            price,
+            capacity,
+            location,
+            placeName
+        })
             .then(response => response.data)
     }
-
-    getOne = (hostServiceID, ) => {
-        return this.service.get(`/${hostServiceID}`, {})
+    availability = (hostServiceID, availability) => {
+        return this.service.post(`/${hostServiceID}/availability`, { availability })
+            .then(response => response.data)
+    }
+    delete = (hostServiceID) => {
+        return this.service.get(`/${hostServiceID}/delete`, {})
+            .then(response => response.data)
+    }
+    getOne = (hostServiceID) => {
+        return this.service.get(`/${hostServiceID}`, {})
             .then(response => response.data)
     }
     getAll = () => {
         return this.service.get('/all', {})
             .then(response => response.data)
     }
-
-
 }

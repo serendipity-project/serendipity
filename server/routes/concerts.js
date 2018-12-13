@@ -30,6 +30,19 @@ concertRouter.post("/set-capacity", (req, res, next) => {
             console.log(err);
         })
 })
+concertRouter.get("/all", (req, res, next) => {
+    Concert.find()
+        .populate("musicianID")
+        .populate("hostID")
+        .then((concert) => {
+            res.status(200).json(concert)
+            res.status(200).json({ message: "All concerts" })
+            // console.log(concert);
+        })
+        .catch((err) => {
+            res.status(500).json({ message: "Error finding all concerts" })
+        })
+})
 concertRouter.get("/:id", (req, res, next) => {
     Concert.findById({ _id: req.params.id })
         .populate("musicianID")

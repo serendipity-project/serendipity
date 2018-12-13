@@ -30,12 +30,9 @@ class Profile extends Component {
         </Typography>
         <div>
           <h1> Profile Details </h1>
-          <ul>
-            <li><span>Username: </span>{this.state.user.username}</li>
-            <li><span>email: </span>{this.state.user.email}</li>
-          </ul>
-
-
+          <p><span>Username: </span>{this.state.user.username}</p>
+          <p><span>Email: </span>{this.state.user.email}</p>
+          <p><span></span></p>
         </div>
       </>
     ) : (
