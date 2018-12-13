@@ -10,8 +10,8 @@ const hostPlaceSchema = new Schema({
   price: Number,
   capacity: Number,
   location: {
-    longitude: String,
-    latitude: String,
+    longitude: Number,
+    latitude: Number,
   },
   placeName: String,
   availability: { type: Boolean, default: true },
