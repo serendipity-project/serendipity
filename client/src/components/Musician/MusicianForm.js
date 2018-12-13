@@ -61,7 +61,7 @@ export default class MusicianForm extends Component {
                             <TextField placeholder='Artist Name' text='text' name='artistData' value={this.state.artistData} onChange={this.handleChange} />
                         </Grid>
                         <Grid item>
-                            <TextField placeholder='' text='text' name='originCity' value={this.state.originCity} onChange={this.handleChange} />
+                            <TextField placeholder='Home City' text='text' name='originCity' value={this.state.originCity} onChange={this.handleChange} />
                         </Grid>
                         <Grid item>
                             <TextField placeholder='Music Style' text='text' name='musicStyle' value={this.state.musicStyle} onChange={this.handleChange} />
