@@ -30,7 +30,7 @@ class HostPlace extends Component {
         // const location ={};
         // location.longitude = -3.703790;
         // location.latitude = 40.416775;
-        console.log(location);
+        // console.log(location);
         const { address, date,initialTime ,finishingTime,price, capacity,location,placeName,availability,concertRequest} = this.state;
      
         this.service.new( address,date,initialTime ,finishingTime,price, capacity,location,placeName,availability,concertRequest)
