@@ -23,7 +23,7 @@ class Navbar extends Component {
             .then(() => this.setState({ user: null }));
     }
     render() {
-        console.log(this.props.user);
+        // console.log(this.props.user);
         return (
             <>
                 <AppBar position="static">

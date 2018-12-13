@@ -21,14 +21,14 @@ export default class IsLoggedIn extends Component {
                     loading: false,
                     user: res
                 });
-                console.log({ res });
+                // console.log({ res });
             })
             .catch((err) => {
                 this.setState({
                     loading: false,
                     toLogin: true,
                 });
-                console.log({ err })
+                // console.log({ err })
             })
     }
 
@@ -37,7 +37,7 @@ export default class IsLoggedIn extends Component {
 
         if (loading) return <div>Loading...</div>;
         if (toLogin) return <Redirect to='/register' />;
-       // if (toHome) return <Redirect to='/' />;
+        // if (toHome) return <Redirect to='/' />;
         if (user) return this.props.children(this.state.user);
     }
 }

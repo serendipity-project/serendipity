@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AuthService from '../../services/auth-service';
 import Typography from '@material-ui/core/Typography';
 
-
+import { Link } from 'react-router-dom';
 class Profile extends Component {
 
   constructor(props) {
@@ -32,7 +32,7 @@ class Profile extends Component {
           <h1> Profile Details </h1>
           <p><span>Username: </span>{this.state.user.username}</p>
           <p><span>Email: </span>{this.state.user.email}</p>
-          <p><span></span></p>
+          <Link to="/edit-profile"><button>Edit Profile</button></Link>
         </div>
       </>
     ) : (
