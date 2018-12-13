@@ -10,10 +10,33 @@ export default class MusicianCards extends Component {
         }
         this.service = new MusicianService();
     }
+    getAll = () => {
+        console.log("entra en getAll");
+
+        this.service.getAll()
+            .then((response) => {
+                console.log(response.data)
+                this.setState({
+                    listOfMusicians: response.data
+                })
+            })
+            .catch((e) => console.log(e))
+
+
+    }
+    componentDidMount() {
+        this.getAll();
+    }
     render() {
         return (
             <div>
-                <h1>Artist's name:{}</h1>
+                {/* {this.state.listOfMusicians.map((musician) => {
+                    return (
+                        <div>
+                            <h1>Musician's name:{musician.artistData}</h1>
+                        </div>
+                    )
+                })} */}
             </div>
         );
     }

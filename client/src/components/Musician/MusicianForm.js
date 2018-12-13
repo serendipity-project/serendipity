@@ -55,6 +55,7 @@ export default class MusicianForm extends Component {
     render() {
         return (
             <div>
+                <h1>Musician's Information</h1>
                 <form onSubmit={this.handleFormSubmit}>
                     <Grid>
                         <Grid item>

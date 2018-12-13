@@ -60,9 +60,11 @@ class Navbar extends Component {
                         </Link>
                     </Toolbar>
                 </AppBar>
-                <Route exact path='/musicians' render={() => <Musician routename='musician' />} />
-                <Route exact path="/about" render={() => <Profile routename='about' />} />
-                <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
+                <Switch>
+                    <Route exact path='/musicians' render={() => <Musician routename='musician' />} />
+                    <Route exact path="/about" render={() => <Profile routename='about' />} />
+                    <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
+                </Switch>
             </>
         )
     }
