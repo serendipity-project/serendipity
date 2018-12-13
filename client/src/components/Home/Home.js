@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import IsLoggedIn from '../../containers/IsLoggedIn';
 import AuthService from '../../services/auth-service';
 import Navbar from '../Navbar/Navbar';
-import HostPlace from '../HostPlace/HostPlace';
 
 
 export default class Home extends Component {
@@ -28,11 +27,11 @@ export default class Home extends Component {
           return (
             <>
               <Navbar user={user}></Navbar>
-              {user.host &&
+            {/*   {user.host &&
               <>
-               <HostPlace/>
+               renderiza algun componente
                </>
-              }
+              } */}
             </>
           );
         }}
