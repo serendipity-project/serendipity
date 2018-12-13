@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
-import IsLoggedIn from '../../containers/IsLoggedIn';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Route, Switch } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import AuthService from '../../services/auth-service';
+import HostPlace from '../HostPlace/HostPlace';
+import Mapbox from '../Mapbox/Mapbox';
 
 class Navbar extends Component {
     constructor() {
@@ -41,8 +42,7 @@ class Navbar extends Component {
                             </Link>
                             </>
                             : null
-                        }
-                           
+                        }    
                         <Link to='/concerts'>
                             <Button>Concerts</Button>
                         </Link>
@@ -62,6 +62,8 @@ class Navbar extends Component {
                 </AppBar>
                 <Route exact path="/about" render={() => <Profile routename='about' />} />
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
+                <Route exact path="/host-places" render={() => <HostPlace />} />
+                <Route exact path="/concerts" render={() => <Mapbox/>} />
             </>
         )
     }

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import HostPlaceService from '../../services/host-service';
 import TextField from '@material-ui/core/TextField';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
+import './HostPlace.css';
 
 class HostPlace extends Component {
     constructor() {
@@ -66,12 +67,12 @@ class HostPlace extends Component {
     render() {
         return (
             <div>
-                <h1>Add a Location</h1>
+                <h1>Add your nice Place</h1>
                 <form onSubmit={this.handleFormSubmit}>
                     <Grid direction='column' spacing={16} container alignItems='center'>
                         <Grid item>
                             <MapboxAutocomplete publicKey='pk.eyJ1IjoiZGRpZXpyIiwiYSI6ImNqb3ZuMGZ3cjFqa2YzcWxrYjBtNjJzaG4ifQ.cCFZkl39Hov3D-Ujeq74Cg'
-                                inputClass='form-control search'
+                                inputClass='search-input'
                                 onSuggestionSelect={this._suggestionSelect}
                                 country='es'
                                 resetSearch={false}/>
