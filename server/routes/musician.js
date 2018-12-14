@@ -2,8 +2,9 @@ const express = require('express');
 
 const musicianRouter = express.Router();
 const Musician = require('../models/Musician');
+const parser = require("../configs/cloudinary");
 
-musicianRouter.post('/new', (req, res, next) => {
+musicianRouter.post('/new', parser.single('image'), (req, res, next) => {
   const {
     artistData,
     originCity,
@@ -14,8 +15,10 @@ musicianRouter.post('/new', (req, res, next) => {
     musicTrack,
     spotifyAccount,
     youtubeAccount,
-    image,
   } = req.body;
+  if (req.file) {
+    image = req.file.url
+  }
 
   const newMusician = new Musician({
     artistData,
@@ -60,7 +63,7 @@ musicianRouter.get('/:id', (req, res, next) => {
       res.status(500).json({ message: 'Error finding musician' });
     });
 });
-musicianRouter.post('/:id/edit', (req, res, next) => {
+musicianRouter.post('/:id/edit', parser.single("image"), (req, res, next) => {
   const update = {
     artistData,
     originCity,
@@ -71,8 +74,11 @@ musicianRouter.post('/:id/edit', (req, res, next) => {
     musicTrack,
     spotifyAccount,
     youtubeAccount,
-    image,
   } = req.body;
+  if (req.file) {
+    update.image = req.file.url
+  }
+
 
   for (key in update) {
     if (update[key] == '') {
@@ -112,13 +118,5 @@ musicianRouter.get("/:id/delete", (req, res, next) => {
       //console.log(err)
     })
 })
-
-// musicianRouter.post("/:id/request", (req, res, next) => {
-//   Musician.findByIdAndUpdate({ _id: req.params.id }, {
-//     $push: {
-      
-//     }
-//   })
-// })
 
 module.exports = musicianRouter;
