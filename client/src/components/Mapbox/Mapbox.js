@@ -12,21 +12,6 @@ const mapStyle = { height: "100vh", width: "100vw", display: "flex" };
 const styles = { dark: "mapbox://styles/mapbox/dark-v9" };
 const center = [-3.70379, 40.416775];
 
-const symbolLayout: MapboxGL.SymbolLayout = {
-  "text-field": "{title}",
-  "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-  "text-offset": [0, 0.6],
-  "text-anchor": "top"
-};
-
-const circleLayout: MapboxGL.CircleLayout = { visibility: "visible" };
-const circlePaint: MapboxGL.CirclePaint = {
-  "circle-color": "white"
-};
-const symbolPaint: MapboxGL.SymbolPaint = {
-  "text-color": "white"
-};
-
 const StyledPopup = styled.div`
   background: white;
   color: #3f618c;
@@ -40,13 +25,11 @@ export default class Mapbox extends Component {
     super(props);
     this.state = {
       allConcerts: null,
-      concert:null
+      concert:null,
     };
     this.service = new ConcertService();
   }
-  onClickCircle = (evt: any, i) => {
-    console.log(evt.target, i);
-  };
+
 
   componentDidMount() {
     this.service
@@ -56,10 +39,8 @@ export default class Mapbox extends Component {
         this.setState(
           {
             allConcerts: [...response]
-          },
-          () => console.log(this.state)
+          }
         );
-        // console.log(this.state, 'dentro de getall')
       })
       .catch(e => console.log(e));
   }
@@ -73,7 +54,34 @@ export default class Mapbox extends Component {
     concert
   });
 };
-
+onClickGoingConcert = (e)=>{
+    this.service
+    .going(this.state.concert._id)
+    .then(response => {
+      console.log(response.concert);
+      this.setState(
+        {
+          concert: response.concert
+        }
+      );
+    })
+    .catch(e => console.log(e));
+    
+}
+onClickNotGoingConcert = (e)=>{
+    this.service
+    .notGoing(this.state.concert._id)
+    .then(response => {
+      console.log(response.concert);
+      this.setState(
+        {
+          concert: response.concert
+        }
+      );
+    })
+    .catch(e => console.log(e));
+    
+}
 
   render() {
     const { concert } = this.state;
@@ -109,6 +117,7 @@ export default class Mapbox extends Component {
             <Popup key={concert.availability} coordinates={[
               concert.hostID.location.longitude,
               concert.hostID.location.latitude
+              
             ]}>
               <StyledPopup>
                 <div>
@@ -126,6 +135,10 @@ export default class Mapbox extends Component {
                 <img src={concert.musicianID.image}/>
                 <p>{concert.musicianID.artistData}</p>
                 <p>{concert.musicianID.instruments[0]}</p>
+                </div>
+                <div>
+                    <button className="btn-go-concert" onClick={this.onClickGoingConcert} >+</button>
+                    <button className="btn-go-concert" onClick={this.onClickNotGoingConcert} >-</button>
                 </div>
               </StyledPopup>
             </Popup>

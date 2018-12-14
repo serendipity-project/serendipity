@@ -17,12 +17,12 @@ export default class ConcertsService {
     }
 
     going = (concertID, capacity) => {
-        return this.service.post(`/${concertID}/going`, { capacity })
+        return this.service.post(`/${concertID}/going`)
             .then(response => response.data)
     }
 
     notGoing = (concertID, capacity) => {
-        return this.service.post(`/${concertID}/not-going`, { capacity })
+        return this.service.post(`/${concertID}/not-going`)
             .then(response => response.data)
     }
     getOne = (concertID) => {
