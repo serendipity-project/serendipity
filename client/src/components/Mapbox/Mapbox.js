@@ -1,6 +1,7 @@
 import ReactMapboxGl, { Layer, Feature, Popup } from "react-mapbox-gl";
 import React, { Component } from "react";
 import ConcertService from "../../services/concerts-service";
+import styled from 'styled-components';
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -26,7 +27,128 @@ const symbolPaint: MapboxGL.SymbolPaint = {
   "text-color": "white"
 };
 
-let geojson = {
+const StyledPopup = styled.div`
+  background: white;
+  color: #3f618c;
+  font-weight: 400;
+  padding: 5px;
+  border-radius: 2px;
+`;
+
+export default class Mapbox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allConcerts: null,
+      concert:null
+    };
+    this.service = new ConcertService();
+  }
+  onClickCircle = (evt: any, i) => {
+    console.log(evt.target, i);
+  };
+
+  componentDidMount() {
+    this.service
+      .getAll()
+      .then(response => {
+        console.log(response);
+        this.setState(
+          {
+            allConcerts: [...response]
+          },
+          () => console.log(this.state)
+        );
+        // console.log(this.state, 'dentro de getall')
+      })
+      .catch(e => console.log(e));
+  }
+
+ 
+ markerClick = (concert, feature) => {
+     console.log(concert,"DENTRO DE MARKER CLICK")
+  this.setState({
+    // center: feature.geometry.coordinates,
+    // zoom: [14],
+    concert
+  });
+};
+
+
+  render() {
+    const { concert } = this.state;
+    console.log(concert); 
+    if (this.state.allConcerts) {
+      return (
+        <Map
+          style={styles.dark}
+          zoom={Zoom}
+          containerStyle={mapStyle}
+          center={center}
+        >
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ "icon-image": "marker-15" }}
+          >
+            {this.state.allConcerts.map(concert => {
+              return (
+                <Feature
+                  key={concert}
+                  coordinates={[
+                    concert.hostID.location.longitude,
+                    concert.hostID.location.latitude
+                  ]}
+                //   onClick={e => this.onClickCircle(e, concert)}
+                onClick={this.markerClick.bind(this, concert)}
+                />
+              );
+            })}
+          </Layer>
+          {concert!==null && (
+            <Popup key={concert.availability} coordinates={[
+              concert.hostID.location.longitude,
+              concert.hostID.location.latitude
+            ]}>
+              <StyledPopup>
+                <div>
+                <h1>Concert Place in {concert.hostID.placeName}</h1>
+                <p>Capacidad:{concert.capacity}</p>
+                <p>{concert.hostID.price}</p>
+                <p>{concert.hostID.address}</p>
+                <p>{concert.hostID.date}</p>
+                <p>{concert.hostID.finishingTime}</p>
+                <p>{concert.hostID.initialTime}</p>
+                </div>
+                <div>
+                <h1>{concert.musicianID.artistData}</h1>
+                <a href={concert.musicianID.musicTrack}>Music Track</a>
+                <img src={concert.musicianID.image}/>
+                <p>{concert.musicianID.artistData}</p>
+                <p>{concert.musicianID.instruments[0]}</p>
+                </div>
+              </StyledPopup>
+            </Popup>
+          )}
+
+          {/* <GeoJSONLayer
+        data={geojson}
+        circleLayout={circleLayout}
+        circlePaint={circlePaint}
+        symbolPaint={symbolPaint}
+        symbolLayout={symbolLayout}
+        circleOnClick={(e)=>this.onClickCircle(e,this)}
+        /> */}
+        </Map>
+      );
+    } else {
+      return <p>Loading map...</p>;
+    }
+  }
+}
+
+
+/* let geojson = {
   type: "FeatureCollection",
   features: [
     {
@@ -52,87 +174,4 @@ let geojson = {
       }
     }
   ]
-};
-
-export default class Mapbox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allConcerts: null
-    };
-    this.service = new ConcertService();
-  }
-  onClickCircle = (evt: any, i) => {
-    console.log(evt.target, i);
-  };
-
-  componentDidMount() {
-    this.service
-      .getAll()
-      .then(response => {
-        console.log(response);
-        this.setState(
-          {
-            allConcerts: [...response]
-          },
-          () => console.log(this.state)
-        );
-        // console.log(this.state, 'dentro de getall')
-      })
-      .catch(e => console.log(e));
-  }
-
-
-
-  render() {
-    const { station } = this.state;
-    if (this.state.allConcerts) {
-      return (
-        <Map
-          style={styles.dark}
-          zoom={Zoom}
-          containerStyle={mapStyle}
-          center={center}
-        >
-          <Layer
-            type="symbol"
-            id="marker"
-            layout={{ "icon-image": "marker-15" }}
-          >
-            {this.state.allConcerts.map(concert => {
-              return (
-                <Feature
-                  key={concert}
-                  coordinates={[
-                    concert.hostID.location.longitude,
-                    concert.hostID.location.latitude
-                  ]}
-                  onClick={e => this.onClickCircle(e, concert)}
-                />
-              );
-            })}
-          </Layer>
-          {/* <Popup key={concert.availability} coordinates={station.position}>
-            <StyledPopup>
-              <div>{station.name}</div>
-              <div>
-                {station.bikes} bikes / {station.slots} slots
-              </div>
-            </StyledPopup>
-          </Popup> */}
-
-          {/* <GeoJSONLayer
-        data={geojson}
-        circleLayout={circleLayout}
-        circlePaint={circlePaint}
-        symbolPaint={symbolPaint}
-        symbolLayout={symbolLayout}
-        circleOnClick={(e)=>this.onClickCircle(e,this)}
-        /> */}
-        </Map>
-      );
-    } else {
-      return <p>Loading map...</p>;
-    }
-  }
-}
+}; */
