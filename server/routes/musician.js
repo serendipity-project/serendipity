@@ -4,7 +4,7 @@ const musicianRouter = express.Router();
 const Musician = require('../models/Musician');
 const parser = require("../configs/cloudinary");
 
-musicianRouter.post('/new', parser.single('image'), (req, res, next) => {
+musicianRouter.post('/new', parser.single('file'), (req, res, next) => {
   const {
     artistData,
     originCity,

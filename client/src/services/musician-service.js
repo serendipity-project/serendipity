@@ -6,19 +6,13 @@ export default class MusicianService {
       withCredentials: true
     });
   }
-  new = (artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image) => {
-    return this.service.post("/new", {
-      artistData,
-      email,
-      originCity,
-      musicStyle,
-      artistDescription,
-      instruments,
-      favouritePlayCity,
-      musicTrack,
-      spotifyAccount,
-      youtubeAccount,
-      image,
+  new = (NEW) => {
+    const formData = new FormData();
+    Object.keys(NEW).forEach(key => formData.append(key, NEW[key]))
+    return this.service.post("/new", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
       .then(response => response.data);
   }
@@ -58,7 +52,7 @@ export default class MusicianService {
       .then(response => response.data)
   }
   getAll = () => {
-    return this.service.get('/all', {})
+    return this.service.get('/all')
       .then(response => response.data)
   }
 }

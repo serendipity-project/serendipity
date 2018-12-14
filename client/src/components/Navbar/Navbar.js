@@ -45,6 +45,12 @@ class Navbar extends Component {
                             </>
                             : null
                         }
+                        {(this.props.user.host) ?
+                            <>
+                                <Link to='/requests'>
+                                    <Button>Requests</Button>
+                                </Link>
+                            </> : null}
                         <Link to='/concerts'>
                             <Button>Concerts</Button>
                         </Link>

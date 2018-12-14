@@ -20,7 +20,6 @@ export default class EditProfile extends Component {
         } else {
             this.setState({ [name]: value });
         }
-        // console.log(this.state)
     }
     handleFormSubmit = (e) => {
         e.preventDefault()
@@ -28,7 +27,7 @@ export default class EditProfile extends Component {
         this.service.edit(username, password, email, host, musician)
             .then(response => {
                 console.log(response);
-                this.setState({ username: "", password: "", email: "", host: "", musician: "", redirect: true });
+                // this.setState({ username: "", password: "", email: "", host: "", musician: "", redirect: true });
             })
             .catch(error => console.log(error))
     }

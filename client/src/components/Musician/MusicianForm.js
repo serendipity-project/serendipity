@@ -16,6 +16,7 @@ export default class MusicianForm extends Component {
             musicTrack: "",
             spotifyAccount: "",
             youtubeAccount: "",
+            image: "",
             file: null,
             redirect: false
         }
@@ -23,30 +24,32 @@ export default class MusicianForm extends Component {
     }
     handleFormSubmit = (e) => {
         e.preventDefault();
-        const { artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, file } = this.state
+        const { artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file } = this.state
+        console.log(file)
+            this.service.new({artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file})
+                    .then(response => { 
+                        console.log(response);
 
-        this.service.addPicture(this.state.file)
-            .then(res => console.log(res))
+                        this.setState({
+                            artistData: "",
+                            email: "",
+                            originCity: "",
+                            musicStyle: "",
+                            artistDescription: "",
+                            instruments: "",
+                            favouritePlayCity: "",
+                            musicTrack: "",
+                            spotifyAccount: "",
+                            youtubeAccount: "",
+                            image: "",
+                            file: null,
+                            redirect: true
+                        }, () =>{
+                            this.props.update()
+                        })
+                    })
             .catch(e => console.log(e))
 
-        this.service.new(artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, file)
-            .then(response => {
-                console.log(response);
-                this.setState({
-                    artistData: "",
-                    email: "",
-                    originCity: "",
-                    musicStyle: "",
-                    artistDescription: "",
-                    instruments: "",
-                    favouritePlayCity: "",
-                    musicTrack: "",
-                    spotifyAccount: "",
-                    youtubeAccount: "",
-                    file: null,
-                    redirect: true
-                })
-            })
     }
     handleChange = (e) => {
         const { name, value } = e.target;
@@ -58,8 +61,7 @@ export default class MusicianForm extends Component {
         this.setState({
             file: e.target.files[0]
         })
-        console.log(e.target.files);
-
+        console.log(e.target.files[0]);
     }
     render() {
         return (
@@ -93,11 +95,10 @@ export default class MusicianForm extends Component {
                             <TextField placeholder='Youtube Account' text='text' name='youtubeAccount' value={this.state.youtubeAccount} onChange={this.handleChange} />
                         </Grid>
                         <Grid item>
-                            <input type="file" name="image" value={this.state.image} onChange={this.handleChangeImage} />
+                            <input type="file" name="image" onChange={this.handleChangeImage} />
                         </Grid>
                         <Button variant="contained" color="primary" type="submit" value="Submit">Save</Button>
                     </Grid>
-                    <Button variant="contained" color="primary" type="submit" value="Submit">Create</Button>
                 </form>
             </div>
         );
