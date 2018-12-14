@@ -22,6 +22,17 @@ export default class MusicianService {
     })
       .then(response => response.data);
   }
+  addPicture(file) {
+    const formData = new FormData();
+    formData.append("image", file)
+    return this.service.post("/new", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then(response => response.data)
+  }
+
   edit = (musicianID, artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image) => {
     return this.service.post(`/${musicianID}/edit`, {
       artistData,

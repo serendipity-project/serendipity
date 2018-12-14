@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import MusicianService from '../../services/musician-service';
-import { Grid } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-
-import FileFileUpload from '@material-ui/core/SvgIcon';
+import { Grid, TextField, Button, } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export default class MusicianForm extends Component {
     constructor() {
@@ -19,16 +17,20 @@ export default class MusicianForm extends Component {
             musicTrack: "",
             spotifyAccount: "",
             youtubeAccount: "",
-            image: "",
+            file: null,
             redirect: false
         }
         this.service = new MusicianService();
     }
     handleFormSubmit = (e) => {
         e.preventDefault();
-        const { artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, } = this.state
+        const { artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, file } = this.state
 
-        this.service.new(artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image)
+        this.service.addPicture(this.state.file)
+            .then(res => console.log(res))
+            .catch(e => console.log(e))
+
+        this.service.new(artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, file)
             .then(response => {
                 console.log(response);
                 this.setState({
@@ -42,15 +44,23 @@ export default class MusicianForm extends Component {
                     musicTrack: "",
                     spotifyAccount: "",
                     youtubeAccount: "",
-                    image: "",
+                    file: null,
                     redirect: true
                 })
             })
-            .catch(e => console.log(e))
     }
     handleChange = (e) => {
         const { name, value } = e.target;
-        this.setState({ [name]: value })
+        this.setState({
+            [name]: value,
+        })
+    }
+    handleChangeImage = (e) => {
+        this.setState({
+            file: e.target.files[0]
+        })
+        console.log(e.target.files);
+
     }
     render() {
         return (
@@ -84,9 +94,10 @@ export default class MusicianForm extends Component {
                             <TextField placeholder='Youtube Account' text='text' name='youtubeAccount' value={this.state.youtubeAccount} onChange={this.handleChange} />
                         </Grid>
                         <Grid item>
-                            <FileFileUpload placeholder='Picture' text='text' name='image' value={this.state.image} onChange={this.handleChange} />
+                            <input type="file" name="image" value={this.state.image} onChange={this.handleChangeImage} />
                         </Grid>
                     </Grid>
+                    <Button variant="contained" color="primary" type="submit" value="Submit">Create</Button>
                 </form>
             </div>
         );

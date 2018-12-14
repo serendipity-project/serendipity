@@ -1,0 +1,16 @@
+.musician-image{
+    width: 200px;
+    height: 200px
+}
+.dropdown-button{
+    font-size: 50px !important;
+    color: rgb(15, 63, 43);
+    /* box-align: center !important;
+        /* box-align: center !important; npm run dev
+ npm install react-mapbox-gl mapbox-gl REACT_APP_API_URL=http://localhost:5000/api npm start
+*/
+}
+
+.musician-cards{
+    width: 500px;
+}

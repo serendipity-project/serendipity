@@ -10,6 +10,7 @@ import AuthService from '../../services/auth-service';
 import HostPlace from '../HostPlace/HostPlace';
 import Mapbox from '../Mapbox/Mapbox';
 import Musician from '../Musician/Musician';
+import EditProfile from "../Profile/EditProfile"
 
 class Navbar extends Component {
     constructor() {
@@ -43,7 +44,7 @@ class Navbar extends Component {
                                 </Link>
                             </>
                             : null
-                        }    
+                        }
                         <Link to='/concerts'>
                             <Button>Concerts</Button>
                         </Link>
@@ -64,9 +65,10 @@ class Navbar extends Component {
                 <Route exact path="/about" render={() => <Profile routename='about' />} />
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
                 <Route exact path="/host-places" render={() => <HostPlace />} />
-                <Route exact path="/concerts" render={() => <Mapbox/>} />
+                <Route exact path="/concerts" render={() => <Mapbox />} />
                 <Route exact path='/musicians' render={() => <Musician routename='musician' />} />
-        </>
+                <Route exact path='/edit-profile' component={EditProfile} />
+            </>
         )
     }
 }
