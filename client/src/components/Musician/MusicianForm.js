@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MusicianService from '../../services/musician-service';
 import { Grid, TextField, Button, } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 export default class MusicianForm extends Component {
     constructor() {
@@ -96,6 +95,7 @@ export default class MusicianForm extends Component {
                         <Grid item>
                             <input type="file" name="image" value={this.state.image} onChange={this.handleChangeImage} />
                         </Grid>
+                        <Button variant="contained" color="primary" type="submit" value="Submit">Save</Button>
                     </Grid>
                     <Button variant="contained" color="primary" type="submit" value="Submit">Create</Button>
                 </form>

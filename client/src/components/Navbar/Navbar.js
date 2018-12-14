@@ -30,7 +30,7 @@ class Navbar extends Component {
         return (
             <>
                 <AppBar position="static">
-                    <Toolbar>
+                    <Toolbar className='navbar-style'>
                         <Typography variant="h6" color="inherit">
                             Serendipity
                         </Typography>
