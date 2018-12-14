@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MusicianService from '../../services/musician-service';
 import { Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import FileFileUpload from '@material-ui/core/SvgIcon';
 
@@ -84,8 +85,9 @@ export default class MusicianForm extends Component {
                             <TextField placeholder='Youtube Account' text='text' name='youtubeAccount' value={this.state.youtubeAccount} onChange={this.handleChange} />
                         </Grid>
                         <Grid item>
-                            <FileFileUpload placeholder='Picture' text='text' name='image' value={this.state.image} onChange={this.handleChange} />
+                            <TextField placeholder='Picture' type="file" text='text' name='image' value={this.state.image} onChange={this.handleChange} />
                         </Grid>
+                        <Button variant="contained" color="primary" type="submit" value="Submit">Save</Button>
                     </Grid>
                 </form>
             </div>
