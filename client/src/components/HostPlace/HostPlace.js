@@ -3,14 +3,19 @@ import HostPlaceCards from './HostPlaceCards';
 import HostPlaceForm from './HostPlaceForm'
 import HostPlaceService from '../../services/host-service';
 class HostPlace extends Component {
-    constructor() {
-        super()
-        this.state = {}
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: null
+        }
         this.service = new HostPlaceService()
     }
 
     componentDidMount() {
         this.update();
+        this.setState({
+            user: this.props.user
+        })
     }
     update = () => {
         this.service.getAll()
@@ -26,8 +31,8 @@ class HostPlace extends Component {
     render() {
         return (
             <div>
-                <HostPlaceCards places={this.state.listOfPlaces}/>
-                <HostPlaceForm update={this.update}/>
+                <HostPlaceCards places={this.state.listOfPlaces} user={this.props.user} />
+                <HostPlaceForm update={this.update} />
             </div>
         );
     }

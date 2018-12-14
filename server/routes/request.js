@@ -7,19 +7,19 @@ const HostPlace = require("../models/HostPlace")
 requestRouter.post("/new/:IDmusician", (req, res, next) => {
     const newRequest = new Request({ musicianID: req.params.IDmusician })
     newRequest.save()
-        .then(() => {
-            HostPlace.findByIdAndUpdate({ _id: req.params.id }, {
-                $push: {
-                    concertRequest: request._id
-                }
-            }, {
-                    new: true
-                })
-                .then((requestCreated) => {
-                    res.status(200).json({ message: "Request created correctly" })
-                    console.log(requestCreated)
-                })
+        .then((requestCreated) => {
+            res.status(200).json({ message: "Request created correctly" })
+            console.log(requestCreated)
+            return requestCreated._id
         })
+        .then((requestCreatedID) => {
+            console.log(req.body.hostID + " host ID dewsde el front", requestCreatedID)
+            HostPlace.findByIdAndUpdate(req.body.hostID, { $push: { concertRequest: requestCreatedID } },
+                { new: true }).then(place => {
+                    console.log(place)
+                }).catch(e => { console.log('error', e) })
+        })
+
         .catch((e) => {
             res.status(500).json({
                 messsage: "Request wasn't created",
@@ -28,6 +28,7 @@ requestRouter.post("/new/:IDmusician", (req, res, next) => {
         });
 
 })
+
 requestRouter.get("/:id", (req, res, next) => {
     Request.findById({ _id: req.params.id })
         .populate("musicianID")

@@ -8,8 +8,8 @@ export default class RequestService {
             withCredentials: true
         });
     }
-    new = (musicianID) => {
-        return this.service.post(`/new/${musicianID}`, {})
+    new = (musicianID, hostID) => {
+        return this.service.post(`/new/${musicianID}`, { hostID })
             .then(response => response.data)
     }
     delete = (requestID) => {
