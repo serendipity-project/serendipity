@@ -5,7 +5,7 @@ const HostPlace = require('../models/HostPlace');
 
 hostPlaceRouter.post('/new', (req, res, next) => {
   const {
-    address, date, price, capacity, initialTime, finishingTime, placeName, location,
+    hostID, address, date, price, capacity, initialTime, finishingTime, placeName, location,
   } = req.body;
   /*   if (address === '' || date === '' || price === '' || capacity === '' || initialTime === '' || finishingTime === '' || placeName === '') {
     res.status(500).json({
@@ -14,7 +14,7 @@ hostPlaceRouter.post('/new', (req, res, next) => {
     return;
   } */
   const newPlace = new HostPlace({
-    address, date, price, capacity, initialTime, finishingTime, placeName, location,
+    hostID, address, date, price, capacity, initialTime, finishingTime, placeName, location,
   });
   newPlace.save()
     .then(() => {

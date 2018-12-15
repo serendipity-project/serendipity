@@ -3,9 +3,10 @@ import MusicianService from '../../services/musician-service';
 import { Grid, TextField, Button, } from '@material-ui/core';
 
 export default class MusicianForm extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
+            user:{},
             artistData: "",
             email: "",
             originCity: "",
@@ -28,8 +29,6 @@ export default class MusicianForm extends Component {
         console.log(file)
             this.service.new({artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file})
                     .then(response => { 
-                        console.log(response);
-
                         this.setState({
                             artistData: "",
                             email: "",

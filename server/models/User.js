@@ -14,6 +14,7 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  musicianID:String,
 }, {
   timestamps: {
     createdAt: 'created_at',

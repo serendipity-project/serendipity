@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const hostPlaceSchema = new Schema({
+  hostID:{ type: Schema.Types.ObjectId, ref: 'User' },
   address: String,
   date: { type: Date, required: true },
   initialTime: String,
