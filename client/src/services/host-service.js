@@ -8,7 +8,7 @@ export default class HostPlaceService {
         });
 
     }
-    new = (hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName) => {
+    new = (hostID,address, date, initialTime, finishingTime, price, capacity, location, placeName) => {
         return this.service.post('/new', {
             hostID,
             address,

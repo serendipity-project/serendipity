@@ -1,10 +1,9 @@
 import axios from 'axios'
 
-
 export default class RequestService {
     constructor(props) {
         this.service = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/request`,
+            baseURL: `${process.env.REACT_APP_API_URL}/requests`,
             withCredentials: true
         });
     }
@@ -21,8 +20,8 @@ export default class RequestService {
         return this.service.get(`/${requestID}`, {})
             .then(response => response.data)
     }
-    getAll = (hostServiceID) => {
-        return this.service.get(`/${hostServiceID}`, {})
+    getAll = (hostID) => {
+        return this.service.get(`/all/${hostID}`, {})
             .then(response => response.data)
     }
 
