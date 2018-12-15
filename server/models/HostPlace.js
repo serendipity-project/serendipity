@@ -17,11 +17,11 @@ const hostPlaceSchema = new Schema({
   availability: { type: Boolean, default: true },
   concertRequest: [{ type: Schema.Types.ObjectId, ref: 'Request' }],
 }, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-  },
-});
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  });
 
 const HostPlace = mongoose.model('HostPlace', hostPlaceSchema);
 module.exports = HostPlace;

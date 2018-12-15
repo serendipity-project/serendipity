@@ -8,9 +8,10 @@ import './HostPlace.css';
 import { DateFormatInput, TimeFormatInput } from 'material-ui-next-pickers'
 
 class HostPlace extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
+            hostID: "",
             address: "",
             date: "",
             initialTime: "",
@@ -26,25 +27,33 @@ class HostPlace extends Component {
         }
         this.service = new HostPlaceService();
     }
+
+    componentDidMount() {
+        this.state.hostID = this.props.user._id
+        console.log(this.state.hostID)
+        // this.setState = ({ hostID: this.props.user._id })
+    }
+
     handleFormSubmit = (event) => {
         console.log(event);
         event.preventDefault();
-        // const location ={};
-        // location.longitude = -3.703790;
-        // location.latitude = 40.416775;
-        // console.log(location);
-        const { address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest } = this.state;
 
-        this.service.new(address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest)
+        const { hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest } = this.state;
+
+        console.log("hostID is", hostID)
+
+        this.service.new(hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest)
             .then(response => {
                 console.log(response);
                 this.setState({
+                    hostID: "",
                     address: "",
                     date: "",
                     initialTime: "",
                     finishingTime: "",
                     price: "",
                     capacity: "",
+                    location: { latitude: 0, longitude: 0 },
                     placeName: "",
                     redirect: true,
                     clean: true
@@ -70,10 +79,10 @@ class HostPlace extends Component {
         // console.log('Date: ', date)
         this.setState({ date })
     }
-    onChangeTime = (time: Date) => {
-        console.log('Time: ', time)
-        this.setState({ time })
-    }
+    // onChangeTime = (time: Date) => {
+    //     console.log('Time: ', time)
+    //     this.setState({ time })
+    // }
 
     render() {
         return (
@@ -102,8 +111,8 @@ class HostPlace extends Component {
                             }} /> */}
                         {/* </Grid>  */}
                         <DateFormatInput type="date" name="date" value={this.state.date} onChange={this.onChangeDate} />
-                        <TimeFormatInput label='Concert starts at' type="text" name="initialTime" value={this.state.initialTime} onChange={this.onChangeTime} />
-                        <TimeFormatInput label='Concert finishes at' type="text" name="finishingTime" value={this.state.finishingTime} onChange={this.onChangeTime} />
+                        {/* <TimeFormatInput label='Concert starts at' type="text" name="initialTime" value={this.state.initialTime} onChange={this.onChangeTime} mode='12h' />
+                        <TimeFormatInput label='Concert finishes at' type="text" name="finishingTime" value={this.state.finishingTime} onChange={this.onChangeTime} /> */}
                         <Grid item>
                             <TextField placeholder='Price €/per person' type="text" name="price" value={this.state.price} onChange={this.handleChange} />
                         </Grid>

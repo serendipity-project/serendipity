@@ -10,7 +10,6 @@ class RequestButton extends Component {
             placeID: null
         }
         this.service = new RequestService()
-        // console.log(this.props.user);
 
     }
     componentDidMount() {

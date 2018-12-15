@@ -6,6 +6,7 @@ const parser = require("../configs/cloudinary");
 
 musicianRouter.post('/new', parser.single('file'), (req, res, next) => {
   const {
+    musicianID,
     artistData,
     originCity,
     musicStyle,
@@ -21,6 +22,7 @@ musicianRouter.post('/new', parser.single('file'), (req, res, next) => {
   }
 
   const newMusician = new Musician({
+    musicianID,
     artistData,
     email: req.user.email, // el email lo traemos del propio usuario
     originCity,

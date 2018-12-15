@@ -20,7 +20,6 @@ class HostPlace extends Component {
     update = () => {
         this.service.getAll()
             .then((response) => {
-                // console.log(response.musician)
                 this.setState({
                     listOfPlaces: response.hostPlace
                 })
@@ -32,7 +31,7 @@ class HostPlace extends Component {
         return (
             <div>
                 <HostPlaceCards places={this.state.listOfPlaces} user={this.props.user} />
-                <HostPlaceForm update={this.update} />
+                <HostPlaceForm update={this.update} user={this.props.user} />
             </div>
         );
     }
