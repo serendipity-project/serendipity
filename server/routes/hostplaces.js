@@ -2,17 +2,26 @@ const express = require('express');
 
 const hostPlaceRouter = express.Router();
 const HostPlace = require('../models/HostPlace');
+const User = require('../models/User')
 
 hostPlaceRouter.post('/new', (req, res, next) => {
   const {
-    hostID, address, date, price, capacity, initialTime, finishingTime, placeName, location,
+    hostPlaceID, hostID, address, date, price, capacity, initialTime, finishingTime, placeName, location,
   } = req.body;
   const newPlace = new HostPlace({
-    hostID, address, date, price, capacity, initialTime, finishingTime, placeName, location,
+    hostPlaceID, hostID, address, date, price, capacity, initialTime, finishingTime, placeName, location,
   });
   newPlace.save()
-    .then(() => {
-      res.status(200).json(newPlace);
+    .then((newPlaceCreated) => {
+      res.status(200).json(newPlaceCreated);
+      return newPlaceCreated._id;
+    })
+    .then((hostPlaceCreatedID) => {
+      console.log('host place id', hostPlaceCreatedID);
+
+      User.findByIdAndUpdate(req.user.id, { $set: { hostPlaceID: hostPlaceCreatedID } }, { new: true })
+        .then(user => console.log('hostPlace ID updated in user Schema', user))
+        .catch(e => console.log('hostPlace ID error updating in user Schema', e));
     })
     .catch((err) => {
       res.status(500).json({

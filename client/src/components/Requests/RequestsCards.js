@@ -3,29 +3,30 @@ import RequestService from '../../services/request-service';
 import ConcertService from '../../services/concerts-service';
 
 class RequestsCards extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state= {
-            user:{}
+        this.state = {
+            user: {}
         }
         this.concertService = new ConcertService();
         this.requestService = new ConcertService();
-        console.log(this.props.request,"DENTRO DE LA CARD");
+        // console.log(this.props.request, "DENTRO DE LA CARD");
     }
 
-    componentDidMount=()=>{
-        this.setState({user : this.props.user})
+    componentDidMount = () => {
+        this.setState({ user: this.props.user })
     }
-    onClickCreateConcert = (hostId,musicianId)=>{
-        this.concertService.new(hostId,musicianId)
-        .then((concertCreated)=>{
-            console.log(concertCreated);
-        })
-        .catch((e)=>{
-            console.log(e);
-        })
+    onClickCreateConcert = (hostId, musicianId) => {
+
+        this.concertService.new(hostId, musicianId)
+            .then((concertCreated) => {
+                console.log(concertCreated);
+            })
+            .catch((e) => {
+                console.log(e);
+            })
     }
-    
+
     render() {
         return (
             <div>
@@ -34,7 +35,7 @@ class RequestsCards extends Component {
                 <p>{this.props.request.favouritePlayCity}</p>
                 <p>{this.props.request.instruments}</p>
                 <p>{this.props.request.musicStyle}</p>
-                <button onClick={()=>this.onClickCreateConcert(this.state.user._id,this.props.request._id)}>Accept Request</button>
+                <button onClick={() => this.onClickCreateConcert(this.state.user.hostPlaceID, this.props.request._id)}>Accept Request</button>
                 <button>Deny Request</button>
             </div>
         );
