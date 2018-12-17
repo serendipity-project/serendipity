@@ -143,15 +143,6 @@ onClickNotGoingConcert = (e)=>{
               </StyledPopup>
             </Popup>
           )}
-
-          {/* <GeoJSONLayer
-        data={geojson}
-        circleLayout={circleLayout}
-        circlePaint={circlePaint}
-        symbolPaint={symbolPaint}
-        symbolLayout={symbolLayout}
-        circleOnClick={(e)=>this.onClickCircle(e,this)}
-        /> */}
         </Map>
       );
     } else {
@@ -159,32 +150,3 @@ onClickNotGoingConcert = (e)=>{
     }
   }
 }
-
-
-/* let geojson = {
-  type: "FeatureCollection",
-  features: [
-    {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-3.70376, 40.416775]
-      },
-      properties: {
-        title: "Fieston en el salon de pepe",
-        icon: "monument"
-      }
-    },
-    {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-3.70376, 42.416772]
-      },
-      properties: {
-        title: "Casa de Loli",
-        icon: "harbor"
-      }
-    }
-  ]
-}; */
