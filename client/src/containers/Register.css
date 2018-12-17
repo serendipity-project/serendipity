@@ -1,0 +1,37 @@
+h1{
+   font-weight: 700;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+   font-size: 26px;
+}
+.register-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.login-box{
+    margin: 10px 100px;
+}
+.signup-box{
+    margin: 10px 100px;
+    
+}
+.login-box h3{
+    font-weight: 400;
+}
+.signup-box h3{
+    font-weight: 400;
+}
+
+.register-container button{
+    background-color: #a56f91!important;
+}
+
+.MuiSwitch-colorPrimary-172.MuiSwitch-checked-171 {
+    color: black!important;
+}
+.MuiTypography-body1-195 {
+    font-family: Montserrat!important;
+}

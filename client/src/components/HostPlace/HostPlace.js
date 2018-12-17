@@ -29,10 +29,10 @@ class HostPlace extends Component {
 
     render() {
         return (
-            <div>
+            <>
                 <HostPlaceCards places={this.state.listOfPlaces} user={this.props.user} />
                 <HostPlaceForm update={this.update} user={this.props.user} />
-            </div>
+            </>
         );
     }
 }

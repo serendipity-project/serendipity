@@ -47,9 +47,9 @@ export default class Signup extends Component {
 
     return (
       <form onSubmit={this.handleFormSubmit}>
-        <Grid direction='column' spacing={16} container alignItems='center'>
+        <Grid direction='column' spacing={16} container alignItems='center'justify-content='center' >
           <Grid item>
-            <TextField placeholder='Name' type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+            <TextField  placeholder='Name' type="text" name="username" value={this.state.username} onChange={this.handleChange} />
           </Grid>
           <Grid item>
             <TextField placeholder='password' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
@@ -57,6 +57,8 @@ export default class Signup extends Component {
           <Grid item>
             <TextField placeholder='email' type="email" name="email" value={this.state.email} onChange={this.handleChange} />
           </Grid>
+          </Grid> 
+          <Grid direction='column' spacing={16} container alignItems='center'justify-content='center' >
           <FormControlLabel
             control={
               <Switch
@@ -82,7 +84,7 @@ export default class Signup extends Component {
             label="Are you musician?"
           />
           <Grid item>
-            <Button variant="contained" color="primary" type="submit" value="Submit">Signup</Button>
+            <Button variant="contained" color="primary" type="submit" value="Submit">SIGNUP</Button>
           </Grid>
         </Grid>
       </form>

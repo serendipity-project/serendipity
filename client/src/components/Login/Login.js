@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import AuthService from '../../services/auth-service';
 import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import Button from '@material-ui/core/Button';
 
-const Button = styled.button`
+/* const Button = styled.button`
     background-color: papayawhip;
     min-height: 32px;
     padding: 8px 16px;
-    border-radius: 8px;
-    cursor: ${({isDisabled}) => isDisabled ? 'not-allowed' : 'pointer'};
-    ${({color}) => color && `background-color: ${color};`}
+    border-radius: 3px;
 `;
-
-
+ */
 export default class Login extends Component {
   constructor(props){
     super(props);
@@ -41,15 +43,19 @@ export default class Login extends Component {
     return(
       <div>
         <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-          <label>Password:</label>
-          <input name="password" type="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-          <Button isDisabled={!this.state.username} type="submit" value="Login">Login</Button>
+        <Grid direction='column' spacing={16} container 
+        alignItems="center" >
+        <Grid  item xs={12}>
+          <TextField placeholder='Name' type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+        </Grid>
+        <Grid item>
+          <TextField placeholder='password' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+        </Grid>
+        <Grid item>
+        <Button variant="contained" color="primary" type="submit" value="Login">LOGIN</Button>
+        </Grid>
+        </Grid>
         </form>
-        <p>Don't have account? 
-            <Link to={"/signup"}> Signup</Link>
-        </p>
       </div>
     )
   }

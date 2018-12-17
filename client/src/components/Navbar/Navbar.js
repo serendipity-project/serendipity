@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Route, Switch } from 'react-router-dom';
@@ -12,6 +11,7 @@ import Mapbox from '../Mapbox/Mapbox';
 import Musician from '../Musician/Musician';
 import EditProfile from '../Profile/EditProfile';
 import Requests from '../Requests/Requests'
+import './Navbar.css'
 
 class Navbar extends Component {
     constructor() {
@@ -31,10 +31,10 @@ class Navbar extends Component {
         return (
             <>
                 <AppBar position="static">
-                    <Toolbar className='navbar-style'>
-                        <Typography variant="h6" color="inherit">
-                            Serendipity
-                        </Typography>
+                    <Toolbar className="nav-bar-guay">
+                        <span color="black">
+                            SERENDIPITY
+                        </span>
                         {(this.props.user.musician || this.props.user.host) ?
                             <>
                                 <Link to='/musicians'>
