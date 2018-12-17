@@ -26,16 +26,21 @@ export default class Mapbox extends Component {
     super(props);
     this.state = {
       allConcerts: null,
-      filteredConcerts:null,
+      filteredConcerts:[],
       concert:null,
     };
     this.service = new ConcertService();
   }
 
-//   filterConcerts = ()=>{
-//     const filteredConcerts = [];
-//     filteredConcerts = [...this.state.allConcerts];
-//   }
+  filterConcerts = (e)=>{
+    console.log(e.target.value,'---------------');
+    const filtered = [...this.state.allConcerts];
+    let newfiltered = filtered.filter((concert)=>{
+       return concert.hostID.address.includes(e.target.value);
+    })
+    this.setState({filteredConcerts:newfiltered});
+
+  }
 
   componentDidMount() {
     this.service
@@ -92,10 +97,10 @@ onClickNotGoingConcert = (e)=>{
   render() {
     const { concert } = this.state;
     // console.log(concert); 
-    if (this.state.allConcerts) {
+    if (this.state.allConcerts || this.state.filteredConcerts) {
       return (
         <>  
-         <SearchMap/>
+         <SearchMap filter={this.filterConcerts}/>
         <Map
           style={styles.dark}
           zoom={Zoom}
@@ -107,7 +112,7 @@ onClickNotGoingConcert = (e)=>{
         id="marker"
         layout={{ "icon-image": "marker-15" }}
         >
-            {this.state.allConcerts.map(concert => {
+            {this.state.filteredConcerts.map(concert => {
               return (
                 <Feature
                   key={concert}
