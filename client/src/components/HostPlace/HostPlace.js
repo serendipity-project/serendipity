@@ -42,48 +42,50 @@ class HostPlace extends Component {
                 })
             })
     }
-    handleInputChange = (date) => {
-        this.service.filter(date)
-        this.setState({
-            queryDate: this.search.value,
-        })
-        let queryDate = this.search.value
-        console.log(queryDate, 'querydata');
 
-    }
-    onChange = (e) => {
+    // onChange = (e) => {
+    //     const { name, value } = e.target;
+    //     this.setState({ [name]: value });
+    // }
+    filterDate = (e) => {
+        e.preventDefault();
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        const filtered = [...this.state.listOfPlaces]
+        // // const filteredList = []
+        const filteredList = filtered.filter(place => { return place.date.includes(e.target.value) || place.address.includes(e.target.value) })
+        this.setState({
+            listCopy: filteredList
+        })
     }
-
-    filter = (e) => {
-        e.preventDefault();
+    filterCity = (e) => {
+        e.preventDefault()
         this.state.listCopy = this.state.listOfPlaces
-        const { listCopy, queryDate } = this.state
+        const { listCopy, queryCity } = this.state
         // const filteredList = []
 
-        const filteredList = listCopy.filter(place => { return place.date.includes(queryDate) })
-        console.log(filteredList, 'filteredList');
+        const filteredList = listCopy.filter(place => { return place.address.includes(queryCity) })
+        // console.log(filteredList, 'filteredList');
 
         this.setState({
             listCopy: filteredList
         })
-
     }
-
     render() {
         return (
             <>
-                <h1>Search by...</h1>
-                <form>
-                    <label>Date</label>
-                    <TextField value={this.state.queryDate} name='queryDate' type='date' onChange={this.onChange} />
+                {this.props.user.musician &&
+                    <>
+                        <h1>Search by...</h1>
+                        <form>
+                            <TextField name='queryDate' value={this.state.queryDate} type='date' onChange={this.filterDate} label='Date' InputLabelProps={{
+                                shrink: true,
+                            }} />
 
-                    <label>City</label>
-                    <TextField value={this.state.queryDate} name='queryDate' type='date' onChange={this.onChange} />
-
-                    <button onClick={this.filter} type='submit'>Filter</button>
-                </form>
+                            <TextField value={this.state.queryCity} name='queryCity' type='text' onChange={this.filterDate} placeholder='City' />
+                            {/* <button onClick={this.filterDate} type='submit'>Filter</button> */}
+                        </form>
+                    </>}
                 {this.props.user.musician && <HostPlaceCards places={this.state.listCopy} user={this.props.user} />}
                 {this.props.user.host && <HostPlaceCards place={this.state.myPlace} user={this.props.user} />}
                 {this.props.user.host && <HostPlaceForm update={this.getAllPlaces} user={this.props.user} />}
