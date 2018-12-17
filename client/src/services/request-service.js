@@ -7,8 +7,8 @@ export default class RequestService {
             withCredentials: true
         });
     }
-    new = (musicianID, hostID) => {
-        return this.service.post(`/new/${musicianID}`, { hostID })
+    new = (musicianID, hostPlaceID) => {
+        return this.service.post(`/new/${musicianID}`, { hostPlaceID })
             .then(response => response.data)
     }
     delete = (requestID) => {

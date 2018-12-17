@@ -13,7 +13,7 @@ requestRouter.post('/new/:IDmusician', (req, res, next) => {
       return requestCreated._id;
     })
     .then((requestCreatedID) => {
-      console.log(`${req.body.hostID} host ID dewsde el front`, requestCreatedID);
+      console.log(`${req.body.hostPlaceID} host ID dewsde el front`, requestCreatedID);
       HostPlace.findByIdAndUpdate(req.body.hostID, { $push: { concertRequest: requestCreatedID } },
         { new: true }).then((place) => {
           console.log(place);
