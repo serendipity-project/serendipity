@@ -12,12 +12,13 @@ class HostPlace extends Component {
     }
 
     componentDidMount() {
-        this.update();
+        this.getAllPlaces();
+        this.getOnePlace(this.props.user._id);
         this.setState({
             user: this.props.user
         })
     }
-    update = () => {
+    getAllPlaces = () => {
         this.service.getAll()
             .then((response) => {
                 this.setState({
@@ -26,12 +27,22 @@ class HostPlace extends Component {
             })
             .catch((e) => console.log(e))
     }
+    getOnePlace = (hostId) =>{
+        this.service.getOne(hostId)
+            .then((response)=>{
+                console.log(response);
+                this.setState({
+                    myPlace: response.hostPlace
+                })
+            })
+    }
 
     render() {
         return (
             <>
-                <HostPlaceCards places={this.state.listOfPlaces} user={this.props.user} />
-                {this.props.user.host && <HostPlaceForm update={this.update} user={this.props.user} />}
+            {this.props.user.musician &&  <HostPlaceCards places={this.state.listOfPlaces} user={this.props.user} />}
+            {this.props.user.host &&  <HostPlaceCards place={this.state.myPlace} user={this.props.user} />}
+            {this.props.user.host && <HostPlaceForm update={this.getAllPlaces} user={this.props.user} />}
             </>
         );
     }

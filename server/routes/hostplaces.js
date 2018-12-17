@@ -2,7 +2,7 @@ const express = require('express');
 
 const hostPlaceRouter = express.Router();
 const HostPlace = require('../models/HostPlace');
-const User = require('../models/User')
+const User = require('../models/User');
 
 hostPlaceRouter.post('/new', (req, res, next) => {
   const {
@@ -41,8 +41,8 @@ hostPlaceRouter.get('/all', (req, res, next) => {
     });
 });
 
-hostPlaceRouter.get('/:id', (req, res, next) => {
-  HostPlace.findById({ _id: req.params.id })
+hostPlaceRouter.get('/:hostId', (req, res, next) => {
+  HostPlace.findOne({ hostID: req.params.hostId })
     .then((hostPlace) => {
       res.status(200).json({ hostPlace });
     })
@@ -63,8 +63,8 @@ hostPlaceRouter.post('/:id/edit', (req, res, next) => {
   HostPlace.findByIdAndUpdate({ _id: req.params.id }, {
     address, date, price, capacity, initialTime, finishingTime, placeName,
   }, {
-      new: true,
-    })
+    new: true,
+  })
     .then((hostPlaceUpdated) => {
       res.status(200).json({ hostPlaceUpdated });
     })
@@ -78,10 +78,10 @@ hostPlaceRouter.post('/:id/availabilty', (req, res, next) => {
   HostPlace.findByIdAndUpdate({
     _id: req.params.id,
   }, {
-      $set: { availability: false },
-    }, {
-      new: true,
-    })
+    $set: { availability: false },
+  }, {
+    new: true,
+  })
     .then(() => {
       res.status(200).json({ message: 'Changed availability to false' });
     })

@@ -14,11 +14,11 @@ const musicianShema = new Schema({
   youtubeAccount: String,
   image: String,
 }, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  });
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+});
 
 const Musician = mongoose.model('Musician', musicianShema);
 module.exports = Musician;
