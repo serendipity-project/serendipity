@@ -18,9 +18,9 @@ class RequestsCards extends Component {
         this.setState({ user: this.props.user })
 
     }
-    onClickCreateConcert = (hostId, musicianId, requestID) => {
+    onClickCreateConcert = (hostplaceId, musicianId, requestID) => {
 
-        this.concertService.new(hostId, musicianId)
+        this.concertService.new(hostplaceId, musicianId)
             .then((concertCreated) => {
                 console.log(concertCreated);
             })
@@ -43,7 +43,7 @@ class RequestsCards extends Component {
         const { user, request } = this.props
         return (
             <div>
-                <p>HOLA SOY UNA PUTA REQUEST JODER! PATRONA</p>
+                <p>{musicianID.artistData} wants to play at yout nice Place!</p>
                 <p>{musicianID.artistData}</p>
                 <p>{musicianID.favouritePlayCity}</p>
                 <p>{musicianID.instruments}</p>

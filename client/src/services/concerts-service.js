@@ -7,8 +7,8 @@ export default class ConcertsService {
             withCredentials: true
         });
     }
-    new = (hostID, musiciainID) => {
-        return this.service.post(`/new/${hostID}/${musiciainID}`)
+    new = (hostplaceID, musiciainID) => {
+        return this.service.post(`/new/${hostplaceID}/${musiciainID}`)
             .then(response => response.data)
     }
     setCapacity = (capacity) => {

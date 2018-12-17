@@ -2,14 +2,38 @@ const express = require('express');
 
 const concertRouter = express.Router();
 const Concert = require('../models/Concert');
+const HostPlace = require('../models/HostPlace');
 
 
-concertRouter.post('/new/:IDhost/:IDmusician', (req, res, next) => {
-  const newConcert = new Concert({ musicianID: req.params.IDmusician, hostID: req.params.IDhost });
+concertRouter.post('/new/:IDhostPlace/:IDmusician', (req, res, next) => {
+  const newConcert = new Concert({ musicianID: req.params.IDmusician, hostID: req.params.IDhostPlace });
   newConcert.save()
     .then((concertCreated) => {
       res.status(200).json({ message: 'Concert created correctly' });
-      // console.log(concertCreated);
+      console.log(concertCreated);
+      return concertCreated._id;
+    })
+    .then((concertID) => {
+      const concertId = concertID;
+      console.log(req.params.IDhostPlace);
+      HostPlace.findById(req.params.IDhostPlace)
+        .then(hostplace => hostplace.capacity)
+        .then((hostPLaceCapacity) => {
+          Concert.findByIdAndUpdate({ _id: concertId }, {
+            $set: {
+              capacity: hostPLaceCapacity,
+            },
+          }, { new: true })
+            .then((capacity) => {
+              res.status(200).json({ message: 'Capacity established' });
+              console.log(capacity);
+            })
+            .catch((err) => {
+              res.status(500).json({ message: 'Something went wrong while establishing the capacitty' });
+              console.log(err);
+            });
+        })
+        .catch(e => console.log(e));
     })
     .catch((e) => {
       res.status(500).json({ message: 'Problem when creating concert' });
