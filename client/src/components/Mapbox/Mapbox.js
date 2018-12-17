@@ -1,6 +1,7 @@
 import ReactMapboxGl, { Layer, Feature, Popup } from "react-mapbox-gl";
 import React, { Component } from "react";
 import ConcertService from "../../services/concerts-service";
+import SearchMap from "../SearchMap/SearchMap"
 import styled from 'styled-components';
 
 const Map = ReactMapboxGl({
@@ -25,11 +26,21 @@ export default class Mapbox extends Component {
     super(props);
     this.state = {
       allConcerts: null,
+      filteredConcerts:[],
       concert:null,
     };
     this.service = new ConcertService();
   }
 
+  filterConcerts = (e)=>{
+    console.log(e.target.value,'---------------');
+    const filtered = [...this.state.allConcerts];
+    let newfiltered = filtered.filter((concert)=>{
+       return concert.hostID.address.includes(e.target.value);
+    })
+    this.setState({filteredConcerts:newfiltered});
+
+  }
 
   componentDidMount() {
     this.service
@@ -86,20 +97,22 @@ onClickNotGoingConcert = (e)=>{
   render() {
     const { concert } = this.state;
     // console.log(concert); 
-    if (this.state.allConcerts) {
+    if (this.state.allConcerts || this.state.filteredConcerts) {
       return (
+        <>  
+         <SearchMap filter={this.filterConcerts}/>
         <Map
           style={styles.dark}
           zoom={Zoom}
           containerStyle={mapStyle}
           center={center}
         >
-          <Layer
-            type="symbol"
-            id="marker"
-            layout={{ "icon-image": "marker-15" }}
-          >
-            {this.state.allConcerts.map(concert => {
+        <Layer
+        type="symbol"
+        id="marker"
+        layout={{ "icon-image": "marker-15" }}
+        >
+            {this.state.filteredConcerts.map(concert => {
               return (
                 <Feature
                   key={concert}
@@ -144,6 +157,7 @@ onClickNotGoingConcert = (e)=>{
             </Popup>
           )}
         </Map>
+        </>
       );
     } else {
       return <p>Loading map...</p>;

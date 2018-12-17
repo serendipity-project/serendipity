@@ -27,11 +27,6 @@ export default class Home extends Component {
           return (
             <>
               <Navbar user={user}></Navbar>
-            {/*   {user.host &&
-              <>
-               renderiza algun componente
-               </>
-              } */}
             </>
           );
         }}

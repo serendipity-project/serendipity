@@ -58,8 +58,8 @@ concertRouter.get('/all', (req, res, next) => {
   Concert.find()
     .populate('musicianID')
     .populate('hostID')
-    .then((concert) => {
-      res.status(200).json(concert);
+    .then((concerts) => {
+      res.status(200).json(concerts);
       res.status(200).json({ message: 'All concerts' });
       // console.log(concert);
     })
@@ -67,6 +67,21 @@ concertRouter.get('/all', (req, res, next) => {
       res.status(500).json({ message: 'Error finding all concerts' });
     });
 });
+/* concertRouter.get('/filtered', (req, res, next) => {
+  const  { address }  = req.body;
+  Concert.find()
+    .populate('musicianID')
+    .populate('hostID')
+    .then((concerts) => {
+      const result = concerts.filter(concert => concert.hostID.address.includes('madrid'));
+      console.log(result);
+      res.status(200).json({ message: 'All concerts Selected', allConcerts });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Error finding Selected concerts' });
+    });
+}); */
 concertRouter.get('/:id', (req, res, next) => {
   Concert.findById({ _id: req.params.id })
     .populate('musicianID')
