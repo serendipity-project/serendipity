@@ -1,6 +1,7 @@
 import ReactMapboxGl, { Layer, Feature, Popup } from "react-mapbox-gl";
 import React, { Component } from "react";
 import ConcertService from "../../services/concerts-service";
+import SearchMap from "../SearchMap/SearchMap"
 import styled from 'styled-components';
 
 const Map = ReactMapboxGl({
@@ -25,11 +26,16 @@ export default class Mapbox extends Component {
     super(props);
     this.state = {
       allConcerts: null,
+      filteredConcerts:null,
       concert:null,
     };
     this.service = new ConcertService();
   }
 
+//   filterConcerts = ()=>{
+//     const filteredConcerts = [];
+//     filteredConcerts = [...this.state.allConcerts];
+//   }
 
   componentDidMount() {
     this.service
@@ -88,17 +94,19 @@ onClickNotGoingConcert = (e)=>{
     // console.log(concert); 
     if (this.state.allConcerts) {
       return (
+        <>  
+         <SearchMap/>
         <Map
           style={styles.dark}
           zoom={Zoom}
           containerStyle={mapStyle}
           center={center}
         >
-          <Layer
-            type="symbol"
-            id="marker"
-            layout={{ "icon-image": "marker-15" }}
-          >
+        <Layer
+        type="symbol"
+        id="marker"
+        layout={{ "icon-image": "marker-15" }}
+        >
             {this.state.allConcerts.map(concert => {
               return (
                 <Feature
@@ -144,6 +152,7 @@ onClickNotGoingConcert = (e)=>{
             </Popup>
           )}
         </Map>
+        </>
       );
     } else {
       return <p>Loading map...</p>;
