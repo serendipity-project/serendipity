@@ -86,6 +86,7 @@ class HostPlace extends Component {
                 <form onSubmit={this.handleFormSubmit} className="form-add-host-place">
                         <MapboxAutocomplete publicKey='pk.eyJ1IjoiZGRpZXpyIiwiYSI6ImNqb3ZuMGZ3cjFqa2YzcWxrYjBtNjJzaG4ifQ.cCFZkl39Hov3D-Ujeq74Cg'
                             inputClass='search-input'
+                            type="search"
                             onSuggestionSelect={this._suggestionSelect}
                             country='es'
                             resetSearch={false} />
