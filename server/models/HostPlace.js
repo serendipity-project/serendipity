@@ -6,7 +6,7 @@ const hostPlaceSchema = new Schema({
   hostID:{ type: Schema.Types.ObjectId, ref: 'User' },
   address: String,
   date: { type: Date, required: true },
-  initialTime: String,
+  initialTime:  String,
   finishingTime: String,
   price: Number,
   capacity: Number,

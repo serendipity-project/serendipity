@@ -6,7 +6,7 @@ export default class MusicianForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user:{},
+            user: {},
             artistData: "",
             email: "",
             originCity: "",
@@ -27,26 +27,26 @@ export default class MusicianForm extends Component {
         e.preventDefault();
         const { artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file } = this.state
         console.log(file)
-            this.service.new({artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file})
-                    .then(response => { 
-                        this.setState({
-                            artistData: "",
-                            email: "",
-                            originCity: "",
-                            musicStyle: "",
-                            artistDescription: "",
-                            instruments: "",
-                            favouritePlayCity: "",
-                            musicTrack: "",
-                            spotifyAccount: "",
-                            youtubeAccount: "",
-                            image: "",
-                            file: null,
-                            redirect: true
-                        }, () =>{
-                            this.props.update()
-                        })
-                    })
+        this.service.new({ artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file })
+            .then(response => {
+                this.setState({
+                    artistData: "",
+                    email: "",
+                    originCity: "",
+                    musicStyle: "",
+                    artistDescription: "",
+                    instruments: "",
+                    favouritePlayCity: "",
+                    musicTrack: "",
+                    spotifyAccount: "",
+                    youtubeAccount: "",
+                    image: "",
+                    file: null,
+                    redirect: true
+                }, () => {
+                    this.props.update()
+                })
+            })
             .catch(e => console.log(e))
 
     }
@@ -76,6 +76,10 @@ export default class MusicianForm extends Component {
                         </Grid>
                         <Grid item>
                             <TextField placeholder='Music Style' text='text' name='musicStyle' value={this.state.musicStyle} onChange={this.handleChange} />
+                        </Grid>
+                        <Grid item>
+                            <TextField placeholder='Tell us About You' text='text' name='artistDescription' value={this.state.artistDescription} onChange={this.handleChange} multiline
+                                rowsMax="6" />
                         </Grid>
                         <Grid item>
                             <TextField placeholder='Instruments' text='text' name='instruments' value={this.state.instruments} onChange={this.handleChange} />

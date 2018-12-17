@@ -85,7 +85,7 @@ onClickNotGoingConcert = (e)=>{
 
   render() {
     const { concert } = this.state;
-    console.log(concert); 
+    // console.log(concert); 
     if (this.state.allConcerts) {
       return (
         <Map

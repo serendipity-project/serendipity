@@ -14,7 +14,7 @@ export default class MusicianCards extends Component {
     }
 
 
-    handleExpandClick = (e) => {
+    handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
     };
     handleDelete = (res) => {
@@ -31,7 +31,7 @@ export default class MusicianCards extends Component {
                 {listOfMusicians.map((musician, i) => {
                     return (
                         <>
-                            <Card className="musician-cards">
+                            <Card className="musician-cards" key={i}>
                                 <CardContent>
                                     <Typography component="h3" variant="h3">
                                         {musician.artistData}
@@ -47,7 +47,6 @@ export default class MusicianCards extends Component {
                                     <IconButton
                                         className="dropdown-button"
                                         onClick={e => this.handleExpandClick(e)}
-                                        // aria-expanded={this.state.expanded}
                                         aria-label="Show more"
                                     >
                                         <ExpandMoreIcon className="dropdown-button" />

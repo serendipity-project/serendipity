@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import './HostPlace.css';
 import { DateFormatInput } from 'material-ui-next-pickers'
-import TimeInput from 'material-ui-time-picker'
 class HostPlace extends Component {
     constructor(props) {
         super(props)
@@ -40,7 +39,7 @@ class HostPlace extends Component {
 
         const { hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest } = this.state;
 
-        console.log("hostID is", hostID)
+        // console.log("hostID is", hostID)
 
         this.service.new(hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest)
             .then(response => {
@@ -79,10 +78,6 @@ class HostPlace extends Component {
         // console.log('Date: ', date)
         this.setState({ date })
     }
-    onChangeTime = (time: Date) => {
-        console.log('Time: ', time)
-        this.setState({ time })
-    }
 
     render() {
         return (
@@ -100,38 +95,27 @@ class HostPlace extends Component {
                         <Grid item>
                             <TextField placeholder='Address' type="text" name="address" value={this.state.address} onChange={this.handleChange} />
                         </Grid>
-                        <DateFormatInput type="date" name="date" value={this.state.date} onChange={this.onChangeDate} />
+                        <DateFormatInput type="date" name="date" value={this.state.date} onChange={this.onChangeDate} autoOk={true} />
                         <Grid item>
-                            <TextField label='Concert starts at' type="time" name="initialTime" value={this.state.initialTime} onChange={this.handleChange} InputLabelProps={{
+                            <TextField label='Starting Time' type="time" name="initialTime" value={this.state.initialTime} onChange={this.handleChange} InputLabelProps={{
                                 shrink: true,
                             }} />
                         </Grid>
                         <Grid item>
-                            <TextField label='Concert finishes at' type="time" name="finishingTime" value={this.state.finishingTime} onChange={this.handleChange} InputLabelProps={{
+                            <TextField label='Finishing Time' type="time" name="finishingTime" value={this.state.finishingTime} onChange={this.handleChange} InputLabelProps={{
                                 shrink: true,
                             }} />
                         </Grid>
                         <TextField placeholder='Price €/per person' type="text" name="price" value={this.state.price} onChange={this.handleChange} />
-                    </Grid>
-                    <Grid item>
-                        <TextField placeholder='Capacity' type="number" name="capacity" value={this.state.capacity} onChange={this.handleChange} />
-                    </Grid>
-                    {/* <TimeInput
-                        mode='12h'
-                        onChange={(time) => this.onChangeTime(time)}
-                    /> */}
-                    <TimeInput
-                        // mode='12h'
-                        label='Concert finishes at'
-                        type="time"
-                        value={this.state.finishingTime}
-                        onChange={this.onChangeTime}
-                    />
-                    {/* <Grid item>
+                        <Grid item>
+                            <TextField placeholder='Capacity' type="number" name="capacity" value={this.state.capacity} onChange={this.handleChange} />
+                        </Grid>
+                        {/* <Grid item>
                             <TextField placeholder='Location' type="text" name="location" value={this.state.location} onChange={this.handleChange} />
                         </Grid> */}
-                    <Grid item>
-                        <TextField placeholder='Name' type="text" name="placeName" value={this.state.placeName} onChange={this.handleChange} />
+                        <Grid item>
+                            <TextField placeholder='Name' type="text" name="placeName" value={this.state.placeName} onChange={this.handleChange} />
+                        </Grid>
                     </Grid>
                     <Button variant="contained" color="primary" type="submit" value="Submit">Create Host Place</Button>
 
@@ -155,9 +139,3 @@ export default HostPlace;
         step: 300, // 5 min
     }}
 /> */}
-
-
-
-{/* <TimeFormatInput label='Concert starts at' type="text" name="initialTime" value={this.state.initialTime} onChange={this.onChangeTime} mode='12h' />*/ }
-{/* <TimeFormatInput label='Concert finishes at' type="text" name="finishingTime" onChange={this.onChangeTime} />
-<Grid item> */}
