@@ -16,8 +16,8 @@ requestRouter.post('/new/:IDmusician', (req, res, next) => {
       console.log(`${req.body.hostID} host ID dewsde el front`, requestCreatedID);
       HostPlace.findByIdAndUpdate(req.body.hostID, { $push: { concertRequest: requestCreatedID } },
         { new: true }).then((place) => {
-        console.log(place);
-      }).catch((e) => { console.log('error', e); });
+          console.log(place);
+        }).catch((e) => { console.log('error', e); });
     })
 
     .catch((e) => {
@@ -32,7 +32,7 @@ requestRouter.get('/:id', (req, res, next) => {
   Request.findById({ _id: req.params.id })
     .populate('musicianID')
     .then((request) => {
-      res.status(200).json({ request,  message: "Request with musician's info populated" });
+      res.status(200).json({ request, message: "Request with musician's info populated" });
       // console.log(request);
     })
     .catch((err) => {
@@ -41,7 +41,7 @@ requestRouter.get('/:id', (req, res, next) => {
 });
 
 requestRouter.get('/all/:hostID', (req, res, next) => {
-  HostPlace.findOne({ hostID:req.params.hostID })
+  HostPlace.findOne({ hostID: req.params.hostID })
     .populate('concertRequest')
     .then((myrequests) => {
       res.status(200).json({ myrequests, message: "Shows requests for this host's place" });

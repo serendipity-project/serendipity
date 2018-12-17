@@ -73,8 +73,8 @@ class Navbar extends Component {
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
                 <Route exact path="/host-places" render={() => <HostPlace user={this.props.user} />} />
                 <Route exact path="/concerts" render={() => <Mapbox />} />
-                <Route exact path="/requests" render={() => <Requests user={this.props.user}/>} />
-                <Route exact path='/musicians' render={() => <Musician routename='musician'/>} />
+                <Route exact path="/requests" render={() => <Requests user={this.props.user} />} />
+                <Route exact path='/musicians' render={() => <Musician user={this.props.user} routename='musician' />} />
                 <Route exact path='/edit-profile' component={EditProfile} />
             </>
         )

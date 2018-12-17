@@ -7,14 +7,19 @@ import MusicianService from '../../services/musician-service';
 
 
 export default class Musician extends Component {
-    constructor() {
-        super()
-        this.state = {}
+    constructor(prop) {
+        super(prop)
+        this.state = {
+            user: null
+        }
         this.service = new MusicianService
     }
 
     componentDidMount() {
         this.update();
+        this.setState({
+            user: this.props.user
+        })
     }
     update = () => {
         this.service.getAll()
@@ -31,7 +36,7 @@ export default class Musician extends Component {
             <div>
                 {/* <HostPlaceCards></HostPlaceCards> */}
                 <MusicianCards musician={this.state.listOfMusicians} />
-                <MusicianForm update={this.update} />
+                {this.props.user.musician && <MusicianForm update={this.update} />}
             </div>
         );
     }

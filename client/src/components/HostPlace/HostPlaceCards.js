@@ -21,9 +21,9 @@ class HostPlaceCards extends Component {
     const listOfPlaces = this.props.places || [];
     return (
       <div className="host-places-cards-container">
-        {listOfPlaces.map(places => {
+        {listOfPlaces.map((places,i) => {
           return (
-            <Card className="card-host-place">
+            <Card key={i} className="card-host-place">
               <h3>{places.placeName}</h3>
               <h4>{places.address}</h4>
               <h4>{places.address}</h4>
@@ -32,7 +32,6 @@ class HostPlaceCards extends Component {
                 <span className="number">{places.capacity} </span><span>CAPACITY</span>
                 <span className="number">{places.price} </span><span>PRICE</span>
               </div>
-
               {this.props.user.musician && (
                 <RequestButton user={this.props.user} placeID={places._id} />
               )}

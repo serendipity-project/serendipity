@@ -18,23 +18,24 @@ class Requests extends Component {
 
   getAll = hostId => {
     this.service.getAll(hostId).then(requests => {
+      // console.log(requests.myrequests.concertRequest,'requests');
+
       if (requests.myrequests) {
         const listOfRequestsIds = requests.myrequests.concertRequest;
-        console.log(listOfRequestsIds); 
+        // console.log(listOfRequestsIds);
         const requestList = [];
-        listOfRequestsIds.forEach((request)=>{
-           console.log(request);
-           this.service.getOne(request._id)
-           .then(request => {
-               console.log()
-               requestList.push(request.request.musicianID);
-               this.setState({listOfRequests:requestList})
+        listOfRequestsIds.forEach((request) => {
+          this.service.getOne(request._id)
+            .then(request => {
+              requestList.push(request.request);
+              this.setState({ listOfRequests: requestList })
+              console.log(requestList);
             })
         })
-        console.log(requestList);
+        // console.log(requestList);
 
-      }else{
-          alert("Este host no tiene requests limpiar codifgo");
+      } else {
+        alert("Este host no tiene requests limpiar codifgo");
       }
 
     });
@@ -42,10 +43,9 @@ class Requests extends Component {
 
   render() {
     const listOfRequests = this.state.listOfRequests;
-    console.log(listOfRequests);
     return (
       <>
-        {listOfRequests.map((request,i)=>{return (<RequestsCards key={i} request={request} user={this.props.user}/>)})}
+        {listOfRequests.map((request, i) => { return (<RequestsCards key={i} request={request} user={this.props.user} />) })}
       </>
     );
   }
