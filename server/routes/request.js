@@ -14,10 +14,12 @@ requestRouter.post('/new/:IDmusician', (req, res, next) => {
     })
     .then((requestCreatedID) => {
       console.log(`${req.body.hostPlaceID} host ID dewsde el front`, requestCreatedID);
-      HostPlace.findByIdAndUpdate(req.body.hostID, { $push: { concertRequest: requestCreatedID } },
-        { new: true }).then((place) => {
-          console.log(place);
-        }).catch((e) => { console.log('error', e); });
+      HostPlace.findByIdAndUpdate(req.body.hostPlaceID, { $push: { concertRequest: requestCreatedID } },
+        { new: true })
+        .then((place) => {
+          console.log(place, 'place');
+        })
+        .catch((e) => { console.log('error', e); });
     })
 
     .catch((e) => {
