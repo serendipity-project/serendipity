@@ -9,7 +9,7 @@ class HostPlace extends Component {
         this.state = {
             user: null,
             listOfPlaces: null,
-            listCopy: null,
+            listCopyPlaces: null,
             queryDate: '',
             queryCity: ""
         }
@@ -28,7 +28,7 @@ class HostPlace extends Component {
             .then((response) => {
                 this.setState({
                     listOfPlaces: response.hostPlace,
-                    listCopy: response.hostPlace
+                    listCopyPlaces: response.hostPlace
                 })
             })
             .catch((e) => console.log(e))
@@ -42,33 +42,35 @@ class HostPlace extends Component {
                 })
             })
     }
-
-    // onChange = (e) => {
-    //     const { name, value } = e.target;
-    //     this.setState({ [name]: value });
-    // }
     filterDate = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
         this.setState({ [name]: value });
         const filtered = [...this.state.listOfPlaces]
         // // const filteredList = []
-        const filteredList = filtered.filter(place => { return place.date.includes(e.target.value) || place.address.includes(e.target.value) })
+        const filteredList = filtered.filter(place => { return place.date.includes(e.target.value) })
         this.setState({
-            listCopy: filteredList
+            listCopyPlaces: filteredList
         })
     }
-    filterCity = (e) => {
-        e.preventDefault()
-        this.state.listCopy = this.state.listOfPlaces
-        const { listCopy, queryCity } = this.state
-        // const filteredList = []
-
-        const filteredList = listCopy.filter(place => { return place.address.includes(queryCity) })
-        // console.log(filteredList, 'filteredList');
-
+    filter = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+        const filtered = [...this.state.listOfPlaces]
+        // // const filteredList = []
+        const filteredList = filtered.filter(place => {
+            if (this.state.queryCity == '') {
+                return place.date.includes(e.target.value)
+            }
+            if (this.state.queryDate == '') {
+                return place.address.includes(e.target.value)
+            } else {
+                return place.date.includes(e.target.value) && place.address.includes(e.target.value)
+            }
+        })
         this.setState({
-            listCopy: filteredList
+            listCopyPlaces: filteredList
         })
     }
     render() {
@@ -78,15 +80,17 @@ class HostPlace extends Component {
                     <>
                         <h1>Search by...</h1>
                         <form>
-                            <TextField name='queryDate' value={this.state.queryDate} type='date' onChange={this.filterDate} label='Date' InputLabelProps={{
+                            <TextField name='queryDate' value={this.state.queryDate} type='date' onChange={this.filter} label='Date' InputLabelProps={{
                                 shrink: true,
                             }} />
 
-                            <TextField value={this.state.queryCity} name='queryCity' type='text' onChange={this.filterDate} placeholder='City' />
-                            {/* <button onClick={this.filterDate} type='submit'>Filter</button> */}
+                            <TextField value={this.state.queryCity} name='queryCity' type='text' onChange={this.filter} label='City' InputLabelProps={{
+                                shrink: true,
+                            }} />
+                            {/* <button onClick={this.filter} type='submit'>Filter</button> */}
                         </form>
                     </>}
-                {this.props.user.musician && <HostPlaceCards places={this.state.listCopy} user={this.props.user} />}
+                {this.props.user.musician && <HostPlaceCards places={this.state.listCopyPlaces} user={this.props.user} />}
                 {this.props.user.host && <HostPlaceCards place={this.state.myPlace} user={this.props.user} />}
                 {this.props.user.host && <HostPlaceForm update={this.getAllPlaces} user={this.props.user} />}
             </>
