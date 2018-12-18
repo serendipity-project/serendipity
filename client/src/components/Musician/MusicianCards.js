@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import MusicianService from '../../services/musician-service';
-import { Card, CardContent, Typography, CardActions, IconButton, Collapse } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import LocationIcon from 'react-icons/lib/fa/map-marker'
 
 export default class MusicianCards extends Component {
     constructor() {
         super()
         this.state = {
-            expanded: false
         }
         this.service = new MusicianService();
     }
-
-
-    handleExpandClick = () => {
-        this.setState(state => ({ expanded: !state.expanded }));
-    };
     handleDelete = (res) => {
         // console.log(response)
         this.service.delete(res)
@@ -28,10 +20,32 @@ export default class MusicianCards extends Component {
         return (
             <>
                 {/* <div style={{ display: "flex", flexDirection: "row", flexFlow: "wrap" }}> */}
-                {listOfMusicians.map((musician, i) => {
-                    return (
-                        <>
-                            <Card className="musician-cards" key={i}>
+                <div className='all-card'>
+                    {listOfMusicians.map((musician, i) => {
+                        return (
+                            <>
+                                <div key={i} className='individual-cards'>
+                                    <img src={musician.image} className='musician-image' alt="Artist's image" />
+                                    <h2 className='musician-name'>{musician.artistData.toUpperCase()}</h2>
+                                    <div>
+                                        <LocationIcon /><span className='city'>{musician.originCity.toUpperCase()}</span>
+                                    </div>
+                                    <span className='titles'>MUSIC STYLE </span> <p>{musician.musicStyle[0].toUpperCase()}</p>
+                                    <span className='titles'>INSTRUMENTS </span> <p>{musician.instruments[0].toUpperCase()}</p>
+                                    <span className='titles'>FAVOURITE PLACE TO PLAY </span> <p>{musician.favouritePlayCity.toUpperCase()}</p>
+                                    <a href={musician.spotifyAccount} target="_blank" className='music-accounts'>SPOTIFY</a>
+                                    <a href={musician.youtubeAccount} target="_blank" className='music-accounts' >YOUTUBE</a>
+                                </div>
+                            </>
+                        )
+                    })}
+                </div>
+            </>
+
+        );
+    }
+}
+{/* <Card className="musician-cards" key={i}>
                                 <CardContent>
                                     <Typography component="h3" variant="h3">
                                         {musician.artistData}
@@ -86,14 +100,5 @@ export default class MusicianCards extends Component {
                                         </Typography>
                                     </CardContent>
                                 </Collapse>
-                            </Card>
-                            {/* < button type="submit" onClick={() => this.handleDelete(musician._id)}>Delete</button> */}
-                        </>
-                    )
-                })}
-                {/* </div> */}
-            </>
-
-        );
-    }
-}
+                            </Card> */}
+{/* < button type="submit" onClick={() => this.handleDelete(musician._id)}>Delete</button> */ }
