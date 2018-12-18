@@ -1,16 +1,48 @@
 .musician-image{
-    width: 200px;
+    width: 250px;
     height: 200px
 }
-.dropdown-button{
-    font-size: 50px !important;
-    color: rgb(15, 63, 43);
-    /* box-align: center !important;
-        /* box-align: center !important; npm run dev
- npm install react-mapbox-gl mapbox-gl REACT_APP_API_URL=http://localhost:5000/api npm start
-*/
+.musician-name{
+    font-weight:700; 
+}
+p{
+    font-size: 10px;
+    text-align: left;
+}
+.city{
+    font-size: 14px;
+    font-weight:500;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+.titles{
+    font-weight: 700;
+
+    font-size: 10px;
+    text-align: left !important;
+}
+.music-accounts{
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 10px;
+    color: black;
+}
+.music-accounts:hover{
+    text-decoration: underline;
+    color: aliceblue;
+}
+.all-card{
+    margin: 10px;
+    display: flex;
+    flex-flow: row nowrap; 
+            /* border: 1px solid black; */
 }
 
-.musician-cards{
-    width: 500px;
+.individual-cards{
+    margin: 30px;
+    width:600px;
+    height: 500px;
+    box-shadow:10px 10px 50px grey;
+    display: flex;
+    flex-direction: column;
 }

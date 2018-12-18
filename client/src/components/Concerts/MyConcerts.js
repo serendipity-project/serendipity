@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ConcertsService from '../../services/concerts-service';
+import { Card } from "@material-ui/core";
 
 export default class MyConcerts extends Component {
     constructor(prosp) {
@@ -31,6 +32,10 @@ export default class MyConcerts extends Component {
         }
     }
 
+    beautifyDate = (date) => {
+        const dateConverted = new Date(date);
+        return dateConverted.toDateString();
+    }
     render() {
 
         const listOfConcerts = this.state.listOfConcerts || [];
@@ -44,8 +49,20 @@ export default class MyConcerts extends Component {
                 {listOfConcerts.map((concert, i) => {
                     return (
                         <>
-                            <h1>{concert.musicianID.artistData}</h1>
-                            <h4>{}</h4>
+                            <Card key={i} className="card-host-place">
+                                <h3>{concert.hostID.placeName}</h3>
+                                <h4>{concert.hostID.address}</h4>
+                                <h4>{concert.hostID.initialTime}h</h4>
+                                <h4>{concert.hostID.finishingTime}h</h4>
+                                <h4>Date: {this.beautifyDate(concert.hostID.date)}</h4>
+                                <div className="numbers-container">
+                                    <span>CAPACITY</span><span className="number">{concert.hostID.capacity} </span>
+                                    <span>PRICE</span><span className="number">{concert.hostID.price} </span>
+                                </div>
+                                <h3>{concert.musicianID.artistData}</h3>
+                                <a href={concert.musicianID.musicTrack}>Music Track</a>
+                                {/* <h4>{concert.musicianID}</h4> */}
+                            </Card>
                         </>
                     )
                 })}
