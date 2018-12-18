@@ -16,12 +16,16 @@ concertRouter.post('/new/:IDhostPlace/:IDmusician', (req, res, next) => {
     .then((concertID) => {
       const concertId = concertID;
       console.log(req.params.IDhostPlace);
-      HostPlace.findById(req.params.IDhostPlace)
+      HostPlace.findByIdAndUpdate(req.params.IDhostPlace, {
+        $set: {
+          availability: false
+        }
+      }, { new: true })
         .then(hostplace => hostplace.capacity)
-        .then((hostPLaceCapacity) => {
+        .then((hostPlaceCapacity) => {
           Concert.findByIdAndUpdate({ _id: concertId }, {
             $set: {
-              capacity: hostPLaceCapacity,
+              capacity: hostPlaceCapacity,
             },
           }, { new: true })
             .then((capacity) => {

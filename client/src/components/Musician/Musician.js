@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import MusicianForm from './MusicianForm';
 import MusicianCards from './MusicianCards';
 import "./Musician.css"
-import HostPlaceCards from '../HostPlace/HostPlaceCards';
 import MusicianService from '../../services/musician-service';
+import { TextField } from '@material-ui/core';
 
 
 export default class Musician extends Component {
     constructor(prop) {
         super(prop)
         this.state = {
-            user: null
+            user: null,
+            listOfMusicians: null,
+            listCopyMusician: null,
+            queryGenre: '',
+            queryInstruments: ''
         }
         this.service = new MusicianService
     }
@@ -26,16 +30,39 @@ export default class Musician extends Component {
             .then((response) => {
                 // console.log(response.musician)
                 this.setState({
-                    listOfMusicians: response.musician
+                    listOfMusicians: response.musician,
+                    listCopyMusician: response.musician
                 })
             })
             .catch((e) => console.log(e))
     }
+
+    filter = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+        const filtered = [...this.state.listOfMusicians]
+        // // const filteredList = []
+        const filteredList = filtered.filter(musician => { return musician.musicStyle.includes(e.target.value) || musician.instruments.includes(e.target.value) })
+        this.setState({
+            listCopyMusician: filteredList
+        })
+    }
+
     render() {
         return (
             <div>
-                {/* <HostPlaceCards></HostPlaceCards> */}
-                <MusicianCards musician={this.state.listOfMusicians} />
+                <h1>Search by...</h1>
+                <form>
+                    <TextField name='queryGenre' value={this.state.queryGenre} type='text' onChange={this.filter} label='Genre' InputLabelProps={{
+                        shrink: true,
+                    }} />
+
+                    <TextField value={this.state.queryInstruments} name='queryInstruments' type='text' onChange={this.filter} label='Instruments' InputLabelProps={{
+                        shrink: true,
+                    }} />
+                </form>
+                <MusicianCards musician={this.state.listCopyMusician} />
                 {this.props.user.musician && <MusicianForm update={this.update} />}
             </div>
         );

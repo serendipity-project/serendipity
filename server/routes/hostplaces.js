@@ -31,22 +31,6 @@ hostPlaceRouter.post('/new', (req, res, next) => {
     });
 });
 
-hostPlaceRouter.get('/filtered', (req, res, next) => {
-  const { date } = req.body
-  console.log(date);
-
-  HostPlace.find({ date })
-    // console.log(req.body.date)
-    .then(placesFilteredByDate => {
-      res.status(200).json({ placesFilteredByDate })
-      console.log(placesFilteredByDate)
-    })
-    .catch(e => {
-      res.status(500).json({ e })
-      console.log(e)
-    })
-})
-
 hostPlaceRouter.get('/all', (req, res, next) => {
   HostPlace.find()
     .then((hostPlace) => {
