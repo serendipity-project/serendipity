@@ -33,7 +33,8 @@ export default class Mapbox extends Component {
   }
 
   filterConcerts = (e)=>{
-    console.log(e.target.value,'---------------');
+    //console.log(e.target.value,'---------------');
+    
     const filtered = [...this.state.allConcerts];
     let newfiltered = filtered.filter((concert)=>{
        return concert.hostID.address.includes(e.target.value);
@@ -49,7 +50,8 @@ export default class Mapbox extends Component {
         console.log(response);
         this.setState(
           {
-            allConcerts: [...response]
+            allConcerts: [...response],
+            filteredConcerts:[...response]
           }
         );
       })
