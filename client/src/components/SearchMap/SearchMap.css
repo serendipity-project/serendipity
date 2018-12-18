@@ -1,0 +1,11 @@
+.form-search-concert{
+    padding: 20px;
+    text-align: center;
+    width: 15vw;
+}
+.form-search-concert input{
+    margin: 10% auto;
+}
+.form-search-concert label{
+    margin: 10% auto;
+}

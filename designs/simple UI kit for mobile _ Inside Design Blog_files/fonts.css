@@ -1,0 +1,121 @@
+@font-face {
+  font-family: 'GT America';
+  font-display: swap;
+  src: url('../fonts/GTAmerica/GT-America-Standard-Medium.woff2') format('woff2'),
+      url('../fonts/GTAmerica/GT-America-Standard-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT America Compressed';
+  font-display: swap;
+  src: url('../fonts/GTAmerica/GT-America-Compressed-Bold.woff2') format('woff2'),
+      url('../fonts/GTAmerica/GT-America-Compressed-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT America Compressed';
+  font-display: swap;
+  src: url('../fonts/GTAmerica/GT-America-Compressed-Black.woff2') format('woff2'),
+      url('../fonts/GTAmerica/GT-America-Compressed-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT America Compressed';
+  font-display: swap;
+  src: url('../fonts/GTAmerica/GT-America-Compressed-Light.woff2') format('woff2'),
+      url('../fonts/GTAmerica/GT-America-Compressed-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Maison Neue';
+  font-display: swap;
+  src: url('../fonts/MaisonNeue/MaisonNeue-Light.woff2') format('woff2'),
+    url('../fonts/MaisonNeue/MaisonNeue-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Maison Neue';
+  font-display: swap;
+  src: url('../fonts/MaisonNeue/MaisonNeue-Book.woff2') format('woff2'),
+    url('../fonts/MaisonNeue/MaisonNeue-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Maison Neue';
+  font-display: swap;
+  src: url('../fonts/MaisonNeue/MaisonNeue-Medium.woff2') format('woff2'),
+    url('../fonts/MaisonNeue/MaisonNeue-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Maison Neue';
+  font-display: swap;
+  src: url('../fonts/MaisonNeue/MaisonNeue-Demi.woff2') format('woff2'),
+    url('../fonts/MaisonNeue/MaisonNeue-Demi.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Maison Neue';
+  font-display: swap;
+  src: url('../fonts/MaisonNeue/MaisonNeue-Bold.woff2') format('woff2'),
+    url('../fonts/MaisonNeue/MaisonNeue-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eina03';
+  src: url('../fonts/Eina/34D4F3_3_0.eot');
+  src: url('../fonts/Eina/34D4F3_3_0.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Eina/34D4F3_3_0.woff') format('woff'),
+    url('../fonts/Eina/34D4F3_3_0.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eina03';
+  src: url('../fonts/Eina/34D4F3_0_0.eot');
+  src: url('../fonts/Eina/34D4F3_0_0.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Eina/34D4F3_0_0.woff') format('woff'),
+    url('../fonts/Eina/34D4F3_0_0.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eina03';
+  src: url('../fonts/Eina/34D4F3_1_0.eot');
+  src: url('../fonts/Eina/34D4F3_1_0.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Eina/34D4F3_1_0.woff') format('woff'),
+    url('../fonts/Eina/34D4F3_1_0.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eina03';
+  src: url('../fonts/Eina/34D4F3_2_0.eot');
+  src: url('../fonts/Eina/34D4F3_2_0.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Eina/34D4F3_2_0.woff') format('woff'),
+    url('../fonts/Eina/34D4F3_2_0.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  
+}

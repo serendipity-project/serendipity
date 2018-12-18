@@ -38,25 +38,25 @@ body{
     height: 100vh;
 }
 
-/* NAVBAR */
+
 
 .MuiAppBar-colorPrimary-8{
-    background-image: linear-gradient(to right,#51f0ed,#a1cae4,#d4a0c8,#9b5b83);
+    background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83);
     color: rgb(0, 0, 0);
 }
 .MuiAppBar-colorPrimary-235{
-    background-image: linear-gradient(to right,#51f0ed,#a1cae4,#d4a0c8,#9b5b83);
+    background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83);
     color: rgb(0, 0, 0);
 }
 .MuiAppBar-colorPrimary-282{
-    background-image: linear-gradient(to right,#51f0ed,#a1cae4,#d4a0c8,#9b5b83);
+    background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83);
     color: rgb(0, 0, 0); 
 }
 .MuiAppBar-colorPrimary-302{
-    background-image: linear-gradient(to right,#51f0ed,#a1cae4,#d4a0c8,#9b5b83);
+    background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83);
     color: rgb(0, 0, 0);        
 }
 .MuiAppBar-colorPrimary-556{
-    background-image: linear-gradient(to right,#51f0ed,#a1cae4,#d4a0c8,#9b5b83);
+    background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83);
     color: rgb(0, 0, 0);        
 }
