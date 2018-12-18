@@ -17,7 +17,10 @@ export default class AuthService {
                 host,
                 musician
             })
-            .then(response => response.data)
+            .then(response => {
+                console.log(response)
+                return response.data
+            })
     }
 
     login = (username, password) => {
