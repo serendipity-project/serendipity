@@ -4,7 +4,8 @@ import HostPlaceService from '../../services/host-service';
 import TextField from '@material-ui/core/TextField';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import './HostPlaceForm.css';
-import { DateFormatInput} from 'material-ui-next-pickers'
+import { DateFormatInput} from 'material-ui-next-pickers';
+import TimeInput from 'material-ui-time-picker'
 
 
 class HostPlace extends Component {
@@ -79,6 +80,11 @@ class HostPlace extends Component {
         // console.log('Date: ', date)
         this.setState({ date })
     }
+    onChangeTime = (e) => {
+         console.log(e)
+       // this.setState({ time })
+    }
+
 
     render() {
         return (
@@ -99,12 +105,10 @@ class HostPlace extends Component {
                         <TextField label='Finishing Time' type="time" name="finishingTime" value={this.state.finishingTime} onChange={this.handleChange} InputLabelProps={{
                             shrink: true,
                         }} />
-                        <TextField placeholder='Price €/per person' type="text" name="price" value={this.state.price} onChange={this.handleChange} />
+                        <TextField placeholder='Price €/per person' type="number" name="price" value={this.state.price} onChange={this.handleChange} />
                         <TextField placeholder='Capacity' type="number" name="capacity" value={this.state.capacity} onChange={this.handleChange} />                      
                         <TextField  fullWidth placeholder='Name' type="text" name="placeName" value={this.state.placeName} onChange={this.handleChange} />
                         <Button variant="contained" color="primary" type="submit" value="Submit">Create Host Place</Button>
-
-
                 </form>
             </div >
         );

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Route } from 'react-router-dom';
 import Profile from '../Profile/Profile';
@@ -31,18 +29,17 @@ class Navbar extends Component {
         // console.log(this.props.user);
         return (
             <>
-                <AppBar position="static">
-                    <Toolbar className="nav-bar-guay">
-                        <span color="black">
+                <nav className="nav-bar-guay"> 
+                        <span className="nav-title">
                             SERENDIPITY
                         </span>
                         {(this.props.user.musician || this.props.user.host) ?
                             <>
                                 <Link to='/musicians'>
-                                    <Button>Musicians</Button>
+                                    <Button>Musician</Button>
                                 </Link>
                                 <Link to="/host-places">
-                                    <Button>Hosts</Button>
+                                    <Button>Host</Button>
                                 </Link>
                             </>
                             : null
@@ -50,11 +47,11 @@ class Navbar extends Component {
                         {(this.props.user.host) ?
                             <>
                                 <Link to='/requests'>
-                                    <Button>Requests</Button>
+                                    <Button>Request</Button>
                                 </Link>
                             </> : null}
                         <Link to='/concerts'>
-                            <Button>Concerts</Button>
+                            <Button>Concert</Button>
                         </Link>
                         <Link to="/your-concerts">
                             <Button>Your Concerts</Button>
@@ -68,8 +65,7 @@ class Navbar extends Component {
                         <Link to='/register'>
                             <Button onClick={this.logout}>Logout</Button>
                         </Link>
-                    </Toolbar>
-                </AppBar>
+                </nav>
                 <Route exact path="/about" render={() => <Profile routename='about' />} />
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
                 <Route exact path="/host-places" render={() => <HostPlace user={this.props.user} />} />
