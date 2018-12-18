@@ -6,6 +6,7 @@ import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import './HostPlaceForm.css';
 import { DateFormatInput} from 'material-ui-next-pickers'
 
+
 class HostPlace extends Component {
     constructor(props) {
         super(props)

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import AuthService from '../../services/auth-service'
 import { Redirect } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import {ButtonRegister} from '../Styles/Buttons'
 
 
 
@@ -84,7 +84,7 @@ export default class Signup extends Component {
             label="Are you musician?"
           />
           <Grid item>
-            <Button variant="contained" color="primary" type="submit" value="Submit">SIGNUP</Button>
+            <ButtonRegister variant="contained" color="primary" type="submit" value="Submit">SIGNUP</ButtonRegister>
           </Grid>
         </Grid>
       </form>

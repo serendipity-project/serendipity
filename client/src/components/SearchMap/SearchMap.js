@@ -12,6 +12,7 @@ export default class SearchMap extends Component {
       <form>
         <label>Ciudad</label>
         <input onChange={(e)=>this.props.filter(e)}/>
+        {/* <input type="date" onChange={(e)=>this.props.filter(e)}/> */}
       </form>
     )
   }

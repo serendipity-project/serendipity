@@ -7,14 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
+import {ButtonLogin, ButtonRegister} from '../Styles/Buttons'
 
-/* const Button = styled.button`
-    background-color: papayawhip;
-    min-height: 32px;
-    padding: 8px 16px;
-    border-radius: 3px;
-`;
- */
+
 export default class Login extends Component {
   constructor(props){
     super(props);
@@ -52,7 +47,7 @@ export default class Login extends Component {
           <TextField placeholder='password' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
         </Grid>
         <Grid item>
-        <Button variant="contained" color="primary" type="submit" value="Login">LOGIN</Button>
+        <ButtonRegister type="submit" value="Login">LOGIN</ButtonRegister>
         </Grid>
         </Grid>
         </form>
