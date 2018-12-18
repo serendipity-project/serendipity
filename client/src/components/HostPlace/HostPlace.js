@@ -42,36 +42,29 @@ class HostPlace extends Component {
                 })
             })
     }
-    filterDate = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-        const filtered = [...this.state.listOfPlaces]
-        // // const filteredList = []
-        const filteredList = filtered.filter(place => { return place.date.includes(e.target.value) })
-        this.setState({
-            listCopyPlaces: filteredList
-        })
-    }
     filter = (e) => {
         e.preventDefault();
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-        const filtered = [...this.state.listOfPlaces]
-        // // const filteredList = []
-        const filteredList = filtered.filter(place => {
-            if (this.state.queryCity === '') {
-                return place.date.includes(e.target.value)
-            }
-            if (this.state.queryDate === '') {
-                return place.address.includes(e.target.value)
-            } else {
-                return place.date.includes(e.target.value) && place.address.includes(e.target.value)
-            }
+        const { name, value } = e.target
+        this.setState({ [name]: value }, () => {
+            const filtered = [...this.state.listOfPlaces]
+            const filteredList = filtered.filter(place => {
+                if (this.state.queryCity === '') {
+                    // console.log('solo fecha')
+                    return place.date.includes(this.state.queryDate)
+                }
+                else if (this.state.queryDate === '') {
+                    // console.log('solo ciudad')
+                    return place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
+                } else {
+                    return place.date.includes(this.state.queryDate) && place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
+                }
+            })
+            this.setState({
+                listCopyPlaces: filteredList
+            })
         })
-        this.setState({
-            listCopyPlaces: filteredList
-        })
+
+
     }
     render() {
         return (
@@ -87,7 +80,6 @@ class HostPlace extends Component {
                             <TextField value={this.state.queryCity} name='queryCity' type='text' onChange={this.filter} label='City' InputLabelProps={{
                                 shrink: true,
                             }} />
-                            {/* <button onClick={this.filter} type='submit'>Filter</button> */}
                         </form>
                     </>}
                 {this.props.user.musician && <HostPlaceCards places={this.state.listCopyPlaces} user={this.props.user} />}

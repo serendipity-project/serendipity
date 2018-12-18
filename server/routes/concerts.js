@@ -3,14 +3,15 @@ const express = require('express');
 const concertRouter = express.Router();
 const Concert = require('../models/Concert');
 const HostPlace = require('../models/HostPlace');
+const User = require('../models/User')
 
 
 concertRouter.post('/new/:IDhostPlace/:IDmusician', (req, res, next) => {
   const newConcert = new Concert({ musicianID: req.params.IDmusician, hostID: req.params.IDhostPlace });
   newConcert.save()
     .then((concertCreated) => {
-      res.status(200).json({ message: 'Concert created correctly' });
       console.log(concertCreated);
+      res.status(200).json({ message: 'Concert created correctly' });
       return concertCreated._id;
     })
     .then((concertID) => {
@@ -71,34 +72,28 @@ concertRouter.get('/all', (req, res, next) => {
       res.status(500).json({ message: 'Error finding all concerts' });
     });
 });
-/* concertRouter.get('/filtered', (req, res, next) => {
-  const  { address }  = req.body;
-  Concert.find()
-    .populate('musicianID')
-    .populate('hostID')
-    .then((concerts) => {
-      const result = concerts.filter(concert => concert.hostID.address.includes('madrid'));
-      console.log(result);
-      res.status(200).json({ message: 'All concerts Selected', allConcerts });
+
+
+concertRouter.get('/:userID/:concertID', (req, res, next) => {
+  User.findById(req.user.userID)
+    .then(() => {
+      Concert.findById({ _id: req.params.concertID })
+        .populate('musicianID')
+        .populate('hostID')
+        .then((concert) => {
+          res.status(200).json(concert);
+          res.status(200).json({ message: "Concert with musician's and host's info populated" });
+          // console.log(concert);
+        })
+        .catch((err) => {
+          res.status(500).json({ message: 'Error finding one particular concert' });
+        });
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ message: 'Error finding Selected concerts' });
-    });
-}); */
-concertRouter.get('/:id', (req, res, next) => {
-  Concert.findById({ _id: req.params.id })
-    .populate('musicianID')
-    .populate('hostID')
-    .then((concert) => {
-      res.status(200).json(concert);
-      res.status(200).json({ message: "Concert with musician's and host's info populated" });
-      // console.log(concert);
+    .catch(e => {
+      res.status(500).json({ message: 'Error finding concerts for users' })
     })
-    .catch((err) => {
-      res.status(500).json({ message: 'Error finding one particular concert' });
-    });
 });
+
 concertRouter.get('/:id/delete', (req, res, next) => {
   Concert.findByIdAndRemove(req.params.id)
     .then((concert) => {
@@ -116,13 +111,29 @@ concertRouter.post('/:id/going', (req, res, next) => {
     .populate('musicianID')
     .populate('hostID')
     .then((concert) => {
-      res.status(200).json({ message: 'User going to concert', concert });
-      // console.log(capacity);
+      // console.log(concert);
+
+      res.status(200).json({ message: 'User going to concert', concert })
+      return concert._id;
+    })
+    .then((concertID) => {
+      // console.log(req.user)
+      User.findByIdAndUpdate({ _id: req.user.id }, {
+        $push: {
+          concerts: concertID
+        }
+      }, { new: true })
+        .then((concertSaved) => {
+          res.status(200).json({ message: concertSaved })
+        })
+        .catch((e) => {
+          res.status(500).json({ message: e });
+        });
     })
     .catch((err) => {
       res.status(500).json(err);
       // console.log(err);
-    });
+    })
 });
 
 concertRouter.post('/:id/not-going', (req, res, next) => {

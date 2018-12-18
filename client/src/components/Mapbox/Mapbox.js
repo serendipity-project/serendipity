@@ -25,21 +25,22 @@ export default class Mapbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
       allConcerts: null,
-      filteredConcerts:[],
-      concert:null,
+      filteredConcerts: [],
+      concert: null,
     };
     this.service = new ConcertService();
   }
 
-  filterConcerts = (e)=>{
+  filterConcerts = (e) => {
     //console.log(e.target.value,'---------------');
-    
+
     const filtered = [...this.state.allConcerts];
-    let newfiltered = filtered.filter((concert)=>{
-       return concert.hostID.address.includes(e.target.value);
+    let newfiltered = filtered.filter((concert) => {
+      return concert.hostID.address.includes(e.target.value);
     })
-    this.setState({filteredConcerts:newfiltered});
+    this.setState({ filteredConcerts: newfiltered });
 
   }
 
@@ -51,114 +52,115 @@ export default class Mapbox extends Component {
         this.setState(
           {
             allConcerts: [...response],
-            filteredConcerts:[...response]
+            filteredConcerts: [...response]
           }
         );
       })
       .catch(e => console.log(e));
+    this.setState({ user: this.props.user })
   }
 
- 
- markerClick = (concert, feature) => {
-     console.log(concert,"DENTRO DE MARKER CLICK")
-  this.setState({
-    // center: feature.geometry.coordinates,
-    // zoom: [14],
-    concert
-  });
-};
-onClickGoingConcert = (e)=>{
+
+  markerClick = (concert, feature) => {
+    console.log(concert, "DENTRO DE MARKER CLICK")
+    this.setState({
+      // center: feature.geometry.coordinates,
+      // zoom: [14],
+      concert
+    });
+  };
+  onClickGoingConcert = (e) => {
     this.service
-    .going(this.state.concert._id)
-    .then(response => {
-      console.log(response.concert);
-      this.setState(
-        {
-          concert: response.concert
-        }
-      );
-    })
-    .catch(e => console.log(e));
-    
-}
-onClickNotGoingConcert = (e)=>{
+      .going(this.state.concert._id)
+      .then(response => {
+        console.log(response.concert);
+        this.setState(
+          {
+            concert: response.concert
+          }
+        );
+      })
+      .catch(e => console.log(e));
+
+  }
+  onClickNotGoingConcert = (e) => {
     this.service
-    .notGoing(this.state.concert._id)
-    .then(response => {
-      console.log(response.concert);
-      this.setState(
-        {
-          concert: response.concert
-        }
-      );
-    })
-    .catch(e => console.log(e));
-    
-}
+      .notGoing(this.state.concert._id)
+      .then(response => {
+        console.log(response.concert);
+        this.setState(
+          {
+            concert: response.concert
+          }
+        );
+      })
+      .catch(e => console.log(e));
+
+  }
 
   render() {
     const { concert } = this.state;
     // console.log(concert); 
     if (this.state.allConcerts || this.state.filteredConcerts) {
       return (
-        <>  
-         <SearchMap filter={this.filterConcerts}/>
-        <Map
-          style={styles.dark}
-          zoom={Zoom}
-          containerStyle={mapStyle}
-          center={center}
-        >
-        <Layer
-        type="symbol"
-        id="marker"
-        layout={{ "icon-image": "marker-15" }}
-        >
-            {this.state.filteredConcerts.map(concert => {
-              return (
-                <Feature
-                  key={concert}
-                  coordinates={[
-                    concert.hostID.location.longitude,
-                    concert.hostID.location.latitude
-                  ]}
-                //   onClick={e => this.onClickCircle(e, concert)}
-                onClick={this.markerClick.bind(this, concert)}
-                />
-              );
-            })}
-          </Layer>
-          {concert!==null && (
-            <Popup key={concert.availability} coordinates={[
-              concert.hostID.location.longitude,
-              concert.hostID.location.latitude
-              
-            ]}>
-              <StyledPopup>
-                <div>
-                <h1>Concert Place in {concert.hostID.placeName}</h1>
-                <p>Capacidad:{concert.capacity}</p>
-                <p>{concert.hostID.price}</p>
-                <p>{concert.hostID.address}</p>
-                <p>{concert.hostID.date}</p>
-                <p>{concert.hostID.finishingTime}</p>
-                <p>{concert.hostID.initialTime}</p>
-                </div>
-                <div>
-                <h1>{concert.musicianID.artistData}</h1>
-                <a href={concert.musicianID.musicTrack}>Music Track</a>
-                <img src={concert.musicianID.image}/>
-                <p>{concert.musicianID.artistData}</p>
-                <p>{concert.musicianID.instruments[0]}</p>
-                </div>
-                <div>
+        <>
+          <SearchMap filter={this.filterConcerts} />
+          <Map
+            style={styles.dark}
+            zoom={Zoom}
+            containerStyle={mapStyle}
+            center={center}
+          >
+            <Layer
+              type="symbol"
+              id="marker"
+              layout={{ "icon-image": "marker-15" }}
+            >
+              {this.state.filteredConcerts.map(concert => {
+                return (
+                  <Feature
+                    key={concert}
+                    coordinates={[
+                      concert.hostID.location.longitude,
+                      concert.hostID.location.latitude
+                    ]}
+                    //   onClick={e => this.onClickCircle(e, concert)}
+                    onClick={this.markerClick.bind(this, concert)}
+                  />
+                );
+              })}
+            </Layer>
+            {concert !== null && (
+              <Popup key={concert.availability} coordinates={[
+                concert.hostID.location.longitude,
+                concert.hostID.location.latitude
+
+              ]}>
+                <StyledPopup>
+                  <div>
+                    <h1>Concert Place in {concert.hostID.placeName}</h1>
+                    <p>Capacidad:{concert.capacity}</p>
+                    <p>{concert.hostID.price}</p>
+                    <p>{concert.hostID.address}</p>
+                    <p>{concert.hostID.date}</p>
+                    <p>{concert.hostID.finishingTime}</p>
+                    <p>{concert.hostID.initialTime}</p>
+                  </div>
+                  <div>
+                    <h1>{concert.musicianID.artistData}</h1>
+                    <a href={concert.musicianID.musicTrack}>Music Track</a>
+                    <img src={concert.musicianID.image} />
+                    <p>{concert.musicianID.artistData}</p>
+                    <p>{concert.musicianID.instruments[0]}</p>
+                  </div>
+                  <div>
                     <button className="btn-go-concert" onClick={this.onClickGoingConcert} >+</button>
                     <button className="btn-go-concert" onClick={this.onClickNotGoingConcert} >-</button>
-                </div>
-              </StyledPopup>
-            </Popup>
-          )}
-        </Map>
+                  </div>
+                </StyledPopup>
+              </Popup>
+            )}
+          </Map>
         </>
       );
     } else {

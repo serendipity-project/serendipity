@@ -32,7 +32,8 @@ export default class Musician extends Component {
                 this.setState({
                     listOfMusicians: response.musician,
                     listCopyMusician: response.musician
-                })
+                }, () => { console.log(this.state) }
+                )
             })
             .catch((e) => console.log(e))
     }
@@ -40,13 +41,30 @@ export default class Musician extends Component {
     filter = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
-        this.setState({ [name]: value });
-        const filtered = [...this.state.listOfMusicians]
-        // // const filteredList = []
-        const filteredList = filtered.filter(musician => { return musician.musicStyle.includes(e.target.value) || musician.instruments.includes(e.target.value) })
-        this.setState({
-            listCopyMusician: filteredList
-        })
+        this.setState({ [name]: value }, () => {
+            const filtered = [...this.state.listOfMusicians]
+            const filteredList = filtered.filter(musician => {
+
+                const instruments = musician.instruments.toString().toLowerCase()
+                const genres = musician.musicStyle.toString().toLowerCase()
+                const queryInstruments = this.state.queryInstruments.toLowerCase()
+                const queryGenre = this.state.queryGenre.toLowerCase()
+
+                if (this.state.queryGenre === '') {
+                    return instruments.includes(queryInstruments)
+                }
+                else if (this.state.queryInstruments === '') {
+                    return genres.includes(queryGenre)
+                } else {
+                    return instruments.includes(queryInstruments) && genres.includes(queryGenre)
+                }
+            })
+            this.setState({
+                listCopyMusician: filteredList
+            })
+        });
+
+
     }
 
     render() {

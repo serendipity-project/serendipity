@@ -25,8 +25,8 @@ export default class ConcertsService {
         return this.service.post(`/${concertID}/not-going`)
             .then(response => response.data)
     }
-    getOne = (concertID) => {
-        return this.service.get(`/${concertID}`, {})
+    getOne = (userID, concertID) => {
+        return this.service.get(`/${userID}/${concertID}`, {})
             .then(response => response.data)
     }
     getAll = () => {
