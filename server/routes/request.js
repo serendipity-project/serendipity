@@ -13,15 +13,14 @@ requestRouter.post('/new/:IDmusician', (req, res, next) => {
       return requestCreated._id;
     })
     .then((requestCreatedID) => {
-      console.log(`${req.body.hostPlaceID} host ID dewsde el front`, requestCreatedID);
-      HostPlace.findByIdAndUpdate(req.body.hostPlaceID, { $push: { concertRequest: requestCreatedID } },
+      HostPlace.findByIdAndUpdate(req.body.hostPlaceID,
+        { $push: { concertRequest: requestCreatedID } },
         { new: true })
         .then((place) => {
           console.log(place, 'place');
         })
         .catch((e) => { console.log('error', e); });
     })
-
     .catch((e) => {
       res.status(500).json({
         messsage: "Request wasn't created",

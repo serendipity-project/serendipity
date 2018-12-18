@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import AuthService from '../../services/auth-service';
 import HostPlace from '../HostPlace/HostPlace';
@@ -12,6 +12,7 @@ import Musician from '../Musician/Musician';
 import EditProfile from '../Profile/EditProfile';
 import Requests from '../Requests/Requests'
 import './Navbar.css'
+import MyConcerts from '../Concerts/MyConcerts';
 
 class Navbar extends Component {
     constructor() {
@@ -72,10 +73,11 @@ class Navbar extends Component {
                 <Route exact path="/about" render={() => <Profile routename='about' />} />
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
                 <Route exact path="/host-places" render={() => <HostPlace user={this.props.user} />} />
-                <Route exact path="/concerts" render={() => <Mapbox />} />
+                <Route exact path="/concerts" render={() => <Mapbox user={this.props.user} />} />
                 <Route exact path="/requests" render={() => <Requests user={this.props.user} />} />
                 <Route exact path='/musicians' render={() => <Musician user={this.props.user} routename='musician' />} />
                 <Route exact path='/edit-profile' component={EditProfile} />
+                <Route exact path='/your-concerts' render={() => <MyConcerts user={this.props.user} />} />
             </>
         )
     }

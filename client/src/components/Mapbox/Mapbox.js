@@ -28,6 +28,7 @@ export default class Mapbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
       allConcerts: null,
       filteredConcerts: [],
       concert: null,
@@ -88,6 +89,7 @@ export default class Mapbox extends Component {
         });
       })
       .catch(e => console.log(e));
+    this.setState({ user: this.props.user })
   }
 
   markerClick = (concert, feature) => {

@@ -16,6 +16,7 @@ const userSchema = new Schema({
   },
   musicianID: String,
   hostPlaceID: String,
+  concerts: [{ type: Schema.Types.ObjectId, ref: 'Concert' }]
 }, {
     timestamps: {
       createdAt: 'created_at',

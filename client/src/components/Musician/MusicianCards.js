@@ -57,11 +57,15 @@ export default class MusicianCards extends Component {
                                         <Typography component="h5" variant="h5" align="center">About {musician.artistData}</Typography>
                                         <Typography variant="subtitle1" align="center">
                                             <span>Music styles: </span>
-                                            {musician.musicStyle}
+                                            {musician.musicStyle.map((oneGenre) => {
+                                                return (<p>{oneGenre}</p>)
+                                            })}
                                         </Typography>
                                         <Typography variant="subtitle1" align="center">
                                             <span>Instruments: </span>
-                                            {musician.instruments}
+                                            {musician.instruments.map((oneInstrument) => {
+                                                return (<p>{oneInstrument}</p>)
+                                            })}
                                         </Typography>
                                         <Typography variant="subtitle1" align="center">
                                             <span>Home city: </span>
