@@ -34,6 +34,7 @@ app.use(bodyParser.urlencoded({
   extended: false,
 }));
 app.use(cookieParser());
+app.use(express.static(`${__dirname}/public`));
 
 
 // Enable authentication using session + passport
@@ -61,4 +62,5 @@ app.use((req, res, next) => {
   // If no routes match, send them the React HTML.
   res.sendFile(`${__dirname}/public/index.html`);
 });
+
 module.exports = app;
