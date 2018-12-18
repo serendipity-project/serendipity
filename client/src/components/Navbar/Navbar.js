@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import AuthService from '../../services/auth-service';
 import HostPlace from '../HostPlace/HostPlace';

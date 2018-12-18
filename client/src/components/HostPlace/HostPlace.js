@@ -60,10 +60,10 @@ class HostPlace extends Component {
         const filtered = [...this.state.listOfPlaces]
         // // const filteredList = []
         const filteredList = filtered.filter(place => {
-            if (this.state.queryCity == '') {
+            if (this.state.queryCity === '') {
                 return place.date.includes(e.target.value)
             }
-            if (this.state.queryDate == '') {
+            if (this.state.queryDate === '') {
                 return place.address.includes(e.target.value)
             } else {
                 return place.date.includes(e.target.value) && place.address.includes(e.target.value)
