@@ -45,6 +45,7 @@ export default class MyConcerts extends Component {
                     return (
                         <>
                             <h1>{concert.musicianID.artistData}</h1>
+                            <h4>{}</h4>
                         </>
                     )
                 })}
