@@ -50,11 +50,11 @@ class HostPlace extends Component {
             const filtered = [...this.state.listOfPlaces]
             const filteredList = filtered.filter(place => {
                 if (this.state.queryCity === '') {
-                    // console.log('solo fecha')
+                 console.log('solo fecha')
                     return place.date.includes(this.state.queryDate)
                 }
                 else if (this.state.queryDate === '') {
-                    // console.log('solo ciudad')
+                     console.log('solo ciudad')
                     return place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
                 } else {
                     return place.date.includes(this.state.queryDate) && place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())

@@ -1,35 +1,50 @@
 .card-host-place{
-    width: 150px;
-    height: 60vh;
     text-align: left;
-    padding: 20px;  
-    margin-left: auto;
-    margin-right: auto;
+    padding: 20px;
     background-color: #fff;
+    margin:15px;
+    box-shadow: 10px 10px 50px grey;
+    /* overflow: auto; */
 }
-.card-host-place h3{
-    font-weight: 500;
-}
-.card-host-place h4{
-    font-weight: 200;
-}
+
 .numbers-container{
-    display: flex;  
-    justify-content: space-around;
-    align-items: center;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ text-align: center;
+ margin: 0px 30px;
+ font-size: 0.9em;
 }
+.date-container{
+    font-size:0.8em;
+    margin:10px;
+}
+
 .number{
     font-weight: bold;
 }
 .card-host-place button{
-    background-image: linear-gradient(to right,#51f0ed,#a1cae4)!important;
+    background-color: #95efed;
+    /* background-image: linear-gradient(to right,#51f0ed,#a1cae4)!important; */
     font-family: Montserrat!important;;   
 }
-
+.top-card{
+    display: flex;
+    flex-direction: row;
+}
+.carousel > div {
+    /* width: 130vw; */
+    /* left: 10vw; */
+}
+.address{
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
 
 .host-places-cards-container{
-display: flex;
-flex-direction: row;
+/* display: flex;
+flex-direction: row; */
     /* justify-content:space-around; */
     /* align-items: center; */ 
 }

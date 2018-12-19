@@ -16,13 +16,13 @@ const userSchema = new Schema({
   },
   musicianID: String,
   hostPlaceID: String,
-  concerts: [{ type: Schema.Types.ObjectId, ref: 'Concert' }]
+  concerts: [{ type: Schema.Types.ObjectId, ref: 'Concert' }],
 }, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  });
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+});
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

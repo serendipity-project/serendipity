@@ -63,8 +63,8 @@ hostPlaceRouter.post('/:id/edit', (req, res, next) => {
   HostPlace.findByIdAndUpdate({ _id: req.params.id }, {
     address, date, price, capacity, initialTime, finishingTime, placeName,
   }, {
-      new: true,
-    })
+    new: true,
+  })
     .then((hostPlaceUpdated) => {
       res.status(200).json({ hostPlaceUpdated });
     })
@@ -78,10 +78,10 @@ hostPlaceRouter.post('/:id/availabilty', (req, res, next) => {
   HostPlace.findByIdAndUpdate({
     _id: req.params.id,
   }, {
-      $set: { availability: false },
-    }, {
-      new: true,
-    })
+    $set: { availability: false },
+  }, {
+    new: true,
+  })
     .then(() => {
       res.status(200).json({ message: 'Changed availability to false' });
     })

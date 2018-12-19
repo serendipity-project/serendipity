@@ -41,8 +41,6 @@ class HostPlace extends Component {
 
         const { hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest } = this.state;
 
-        // console.log("hostID is", hostID)
-
         this.service.new(hostID, address, date, initialTime, finishingTime, price, capacity, location, placeName, availability, concertRequest)
             .then(response => {
                 console.log(response);
@@ -77,7 +75,7 @@ class HostPlace extends Component {
         this.state.address = result;
     }
     onChangeDate = (date: Date) => {
-        // console.log('Date: ', date)
+         console.log('Date: ', date)
         this.setState({ date })
     }
     onChangeTime = (e) => {
@@ -98,7 +96,7 @@ class HostPlace extends Component {
                             country='es'
                             resetSearch={false} />
                         <TextField placeholder='Address' type="text" name="address" value={this.state.address} onChange={this.handleChange} />
-                        <DateFormatInput type="date" name="date" value={this.state.date} onChange={this.onChangeDate} autoOk={true} />
+                        <TextField type="date" name="date" value={this.state.date} onChange={this.handleChange} />
                         <TextField label='Starting Time' type="time" name="initialTime" value={this.state.initialTime} onChange={this.handleChange} InputLabelProps={{
                             shrink: true,
                         }} /> 

@@ -3,7 +3,7 @@ const express = require('express');
 const concertRouter = express.Router();
 const Concert = require('../models/Concert');
 const HostPlace = require('../models/HostPlace');
-const User = require('../models/User')
+const User = require('../models/User');
 
 
 concertRouter.post('/new/:IDhostPlace/:IDmusician', (req, res, next) => {
@@ -19,8 +19,8 @@ concertRouter.post('/new/:IDhostPlace/:IDmusician', (req, res, next) => {
       console.log(req.params.IDhostPlace);
       HostPlace.findByIdAndUpdate(req.params.IDhostPlace, {
         $set: {
-          availability: false
-        }
+          availability: false,
+        },
       }, { new: true })
         .then(hostplace => hostplace.capacity)
         .then((hostPlaceCapacity) => {
@@ -65,7 +65,7 @@ concertRouter.get('/all', (req, res, next) => {
     .populate('hostID')
     .then((concerts) => {
       res.status(200).json(concerts);
-      res.status(200).json({ message: 'All concerts' });
+    //  res.status(200).json({ message: 'All concerts' });
       // console.log(concert);
     })
     .catch((err) => {
@@ -89,9 +89,9 @@ concertRouter.get('/:userID/:concertID', (req, res, next) => {
           res.status(500).json({ message: 'Error finding one particular concert' });
         });
     })
-    .catch(e => {
-      res.status(500).json({ message: 'Error finding concerts for users' })
-    })
+    .catch((e) => {
+      res.status(500).json({ message: 'Error finding concerts for users' });
+    });
 });
 
 concertRouter.get('/:id/delete', (req, res, next) => {
@@ -115,25 +115,25 @@ concertRouter.post('/:id/going', (req, res, next) => {
       if (concert.capacity <= 0) {
         Concert.findByIdAndUpdate({ _id: req.params.id }, {
           $set: {
-            availability: false
-          }
+            availability: false,
+          },
         }, { new: true })
           .populate('musicianID')
           .populate('hostID')
           .then((concert) => {
-            console.log(concert)
-            res.status(200).json({ message: 'User going to concert', concert })
+            console.log(concert);
+            res.status(200).json({ message: 'User going to concert', concert });
           })
-          .catch(e => console.log(e))
+          .catch(e => console.log(e));
       } else {
         // if () {
         User.findByIdAndUpdate({ _id: req.user.id }, {
           $push: {
-            concerts: concert._id
-          }
+            concerts: concert._id,
+          },
         }, { new: true })
           .then((concertSaved) => {
-            res.status(200).json({ message: concertSaved, concert })
+            res.status(200).json({ message: concertSaved, concert });
           })
           .catch((e) => {
             res.status(500).json({ message: e });
@@ -144,7 +144,7 @@ concertRouter.post('/:id/going', (req, res, next) => {
     .catch((err) => {
       res.status(500).json(err);
       // console.log(err);
-    })
+    });
 });
 
 concertRouter.post('/:id/not-going', (req, res, next) => {
@@ -157,8 +157,8 @@ concertRouter.post('/:id/not-going', (req, res, next) => {
       if (concert.capacity > 0) {
         Concert.findByIdAndUpdate(req.params.id, {
           $set: {
-            availability: true
-          }
+            availability: true,
+          },
         }, { new: true })
           .populate('musicianID')
           .populate('hostID')
@@ -178,21 +178,20 @@ concertRouter.post('/:id/not-going', (req, res, next) => {
                 res.status(500).json({ message: e });
               });
           })
-          .catch(e => console.log(e))
+          .catch(e => console.log(e));
+      } else {
+        User.findByIdAndUpdate({ _id: req.user.id }, {
+          $pop: {
+            concerts: concert._id,
+          },
+        }, { new: true })
+          .then((concertSaved) => {
+            res.status(200).json({ message: concertSaved, concert });
+          })
+          .catch((e) => {
+            res.status(500).json({ message: e });
+          });
       }
-      // else {
-      // User.findByIdAndUpdate({ _id: req.user.id }, {
-      //   $pull: {
-      //     concerts: concert._id
-      //   }
-      // }, { new: true })
-      //   .then((concertSaved) => {
-      //     res.status(200).json({ message: concertSaved, concert })
-      //   })
-      //   .catch((e) => {
-      //     res.status(500).json({ message: e });
-      //   });
-      // }
     })
     .catch((err) => {
       res.status(500).json(err);
