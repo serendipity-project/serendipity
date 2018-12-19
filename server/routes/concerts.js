@@ -163,23 +163,36 @@ concertRouter.post('/:id/not-going', (req, res, next) => {
           .populate('musicianID')
           .populate('hostID')
           .then((concert) => {
-            res.status(200).json({ message: 'User not going to concert', concert });
+            // res.status(200).json(concert)
+            // console.log(req.user.id);
+
+            User.findByIdAndUpdate({ _id: req.user.id }, {
+              $pull: {
+                concerts: concert._id
+              }
+            }, { new: true })
+              .then((concertSaved) => {
+                res.status(200).json({ message: concertSaved, concert })
+              })
+              .catch((e) => {
+                res.status(500).json({ message: e });
+              });
           })
           .catch(e => console.log(e))
       }
-      else {
-        User.findByIdAndUpdate({ _id: req.user.id }, {
-          $pop: {
-            concerts: -1
-          }
-        }, { new: true })
-          .then((concertSaved) => {
-            res.status(200).json({ message: concertSaved, concert })
-          })
-          .catch((e) => {
-            res.status(500).json({ message: e });
-          });
-      }
+      // else {
+      // User.findByIdAndUpdate({ _id: req.user.id }, {
+      //   $pull: {
+      //     concerts: concert._id
+      //   }
+      // }, { new: true })
+      //   .then((concertSaved) => {
+      //     res.status(200).json({ message: concertSaved, concert })
+      //   })
+      //   .catch((e) => {
+      //     res.status(500).json({ message: e });
+      //   });
+      // }
     })
     .catch((err) => {
       res.status(500).json(err);

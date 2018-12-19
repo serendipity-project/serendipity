@@ -34,9 +34,10 @@ class HostPlace extends Component {
             .catch((e) => console.log(e))
     }
     getOnePlace = (hostId) => {
+        console.log(hostId)
         this.service.getOne(hostId)
             .then((response) => {
-                console.log(response);
+                console.log(response,'response')
                 this.setState({
                     myPlace: response.hostPlace
                 })
@@ -65,7 +66,10 @@ class HostPlace extends Component {
         })
     }
     render() {
+        console.log(this.props);
+        
         return (
+            
             <>
                 {this.props.user.musician &&
                     <>
