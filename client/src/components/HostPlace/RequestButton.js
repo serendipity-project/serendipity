@@ -20,7 +20,7 @@ class RequestButton extends Component {
         })
     }
     sendRequest = () => {
-        console.log( this.state.placeID)
+        console.log( this.state)
         this.service.new(this.props.user.musicianID, this.props.placeID)
             .then(res => console.log(res))
             .catch(err => console.log(err))

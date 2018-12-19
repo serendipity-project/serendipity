@@ -17,12 +17,17 @@ class HostPlaceCards extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      myPlaces: null
     };
+    // console.log(this.props.place);
+
   }
+
   componentDidMount() {
     this.setState({
-      user: this.props.user
+      user: this.props.user,
+      myPlaces: this.props.place
     });
   }
   beautifyDate = date => {
@@ -64,11 +69,11 @@ class HostPlaceCards extends Component {
                     <hr />
                     <div className="numbers-container">
                       <div>
-                        <span className="number">{places.capacity}$ </span>
+                        <span className="number">{places.capacity} </span>
                         <span>CAPACITY</span>
                       </div>
                       <div>
-                        <span className="number">{places.price} </span>
+                        <span className="number">{places.price}$ </span>
                         <span>PRICE</span>
                       </div>
                       <div>

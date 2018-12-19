@@ -22,7 +22,7 @@ export default class MyConcerts extends Component {
         for (var i = 0; i < concertID.length; i++) {
             this.service.getOne(userID, concertID[i])
                 .then((concert) => {
-                    console.log(concert)
+                    // console.log(concert)
                     concertsArr.push(concert)
 
                     this.setState({

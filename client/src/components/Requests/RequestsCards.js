@@ -11,7 +11,7 @@ class RequestsCards extends Component {
         }
         this.concertService = new ConcertService();
         this.requestService = new RequestService();
-        // console.log(this.props.request, "DENTRO DE LA CARD");
+        console.log(this.props.request, "DENTRO DE LA CARD");
     }
 
     componentDidMount = () => {
@@ -41,6 +41,8 @@ class RequestsCards extends Component {
 
         const musicianID = this.props.request.musicianID
         const { user, request } = this.props
+        console.log(this.props.request.musicianID, this.props);
+        
         return (
             <div>
                 <p>{musicianID.artistData} wants to play at yout nice Place!</p>

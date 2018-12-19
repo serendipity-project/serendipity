@@ -3,6 +3,8 @@ import AuthService from '../../services/auth-service';
 import Typography from '@material-ui/core/Typography';
 
 import { Link } from 'react-router-dom';
+import MusicianCards from "../Musician/MusicianCards";
+import HostPlaceCards from '../HostPlace/HostPlaceCards'
 class Profile extends Component {
 
   constructor(props) {
