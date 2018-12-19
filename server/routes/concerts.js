@@ -111,24 +111,35 @@ concertRouter.post('/:id/going', (req, res, next) => {
     .populate('musicianID')
     .populate('hostID')
     .then((concert) => {
-      // console.log(concert);
-
-      res.status(200).json({ message: 'User going to concert', concert })
-      return concert._id;
-    })
-    .then((concertID) => {
-      // console.log(req.user)
-      User.findByIdAndUpdate({ _id: req.user.id }, {
-        $push: {
-          concerts: concertID
-        }
-      }, { new: true })
-        .then((concertSaved) => {
-          res.status(200).json({ message: concertSaved })
-        })
-        .catch((e) => {
-          res.status(500).json({ message: e });
-        });
+      // console.log(concert.capacity)
+      if (concert.capacity <= 0) {
+        Concert.findByIdAndUpdate({ _id: req.params.id }, {
+          $set: {
+            availability: false
+          }
+        }, { new: true })
+          .populate('musicianID')
+          .populate('hostID')
+          .then((concert) => {
+            console.log(concert)
+            res.status(200).json({ message: 'User going to concert', concert })
+          })
+          .catch(e => console.log(e))
+      } else {
+        // if () {
+        User.findByIdAndUpdate({ _id: req.user.id }, {
+          $push: {
+            concerts: concert._id
+          }
+        }, { new: true })
+          .then((concertSaved) => {
+            res.status(200).json({ message: concertSaved, concert })
+          })
+          .catch((e) => {
+            res.status(500).json({ message: e });
+          });
+      }
+      // }
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -143,7 +154,32 @@ concertRouter.post('/:id/not-going', (req, res, next) => {
     .populate('musicianID')
     .populate('hostID')
     .then((concert) => {
-      res.status(200).json({ message: 'User not going to concert', concert });
+      if (concert.capacity > 0) {
+        Concert.findByIdAndUpdate(req.params.id, {
+          $set: {
+            availability: true
+          }
+        }, { new: true })
+          .populate('musicianID')
+          .populate('hostID')
+          .then((concert) => {
+            res.status(200).json({ message: 'User not going to concert', concert });
+          })
+          .catch(e => console.log(e))
+      }
+      else {
+        User.findByIdAndUpdate({ _id: req.user.id }, {
+          $pop: {
+            concerts: -1
+          }
+        }, { new: true })
+          .then((concertSaved) => {
+            res.status(200).json({ message: concertSaved, concert })
+          })
+          .catch((e) => {
+            res.status(500).json({ message: e });
+          });
+      }
     })
     .catch((err) => {
       res.status(500).json(err);

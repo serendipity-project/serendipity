@@ -63,8 +63,6 @@ class HostPlace extends Component {
                 listCopyPlaces: filteredList
             })
         })
-
-
     }
     render() {
         return (

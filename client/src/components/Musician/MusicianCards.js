@@ -8,12 +8,8 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 export default class MusicianCards extends Component {
     constructor() {
         super()
-        this.state = {
-        }
-
         this.service = new MusicianService();
     }
-
     handleDelete = (res) => {
         // console.log(response)
         this.service.delete(res)
@@ -25,38 +21,39 @@ export default class MusicianCards extends Component {
 
         return (
             <CarouselProvider
-                naturalSlideWidth={100}
-                naturalSlideHeight={130}
+                naturalSlideWidth={60}
+                naturalSlideHeight={80}
                 visibleSlides={3}
                 totalSlides={listOfMusicians.length}>
+                <ButtonBack className='arrows'>
+                    <LeftArrow className='arrow-icon' />
+                </ButtonBack>
+                <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
                 <Slider>
                     <div className='all-card'>
                         {listOfMusicians.map((musician, i) => {
                             return (
                                 <Slide>
-
                                     <div key={i} className='individual-cards'>
                                         <img src={musician.image} className='musician-image' alt="Artist's image" />
-                                        <h2 className='musician-name'>{musician.artistData.toUpperCase()}</h2>
-                                        <div>
-                                            <LocationIcon /><span className='city'>{musician.originCity.toUpperCase()}</span>
+                                        <div className='info-container'>
+                                            <h2 className='musician-name'>{musician.artistData.toUpperCase()}</h2>
+                                            <div>
+                                                <LocationIcon /><span className='city'>{musician.originCity.toUpperCase()}</span>
+                                            </div>
+                                            <span className='titles'>MUSIC STYLE </span> <p>    {musician.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                                            <span className='titles'>INSTRUMENTS </span>  <p>    {musician.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                                            <span className='titles'>FAVOURITE PLACE TO PLAY </span> <p>{musician.favouritePlayCity.toUpperCase()}</p>
+                                            <a href={musician.spotifyAccount} target="_blank" className='music-accounts'>SPOTIFY</a>
+                                            <a href={musician.youtubeAccount} target="_blank" className='music-accounts' >YOUTUBE</a>
                                         </div>
-                                        <span className='titles'>MUSIC STYLE </span> <p>{musician.musicStyle[0].toUpperCase()}</p>
-                                        <span className='titles'>INSTRUMENTS </span> <p>{musician.instruments[0].toUpperCase()}</p>
-                                        <span className='titles'>FAVOURITE PLACE TO PLAY </span> <p>{musician.favouritePlayCity.toUpperCase()}</p>
-                                        <a href={musician.spotifyAccount} target="_blank" className='music-accounts'>SPOTIFY</a>
-                                        <a href={musician.youtubeAccount} target="_blank" className='music-accounts' >YOUTUBE</a>
                                     </div>
                                 </Slide>
                             )
                         })}
-
                     </div>
                 </Slider>
-                <ButtonBack>Back</ButtonBack>
-                <ButtonNext>Next</ButtonNext>
             </CarouselProvider >
-            // </>
 
         );
     }

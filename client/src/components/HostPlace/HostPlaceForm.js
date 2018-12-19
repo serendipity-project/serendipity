@@ -101,7 +101,7 @@ class HostPlace extends Component {
                         <DateFormatInput type="date" name="date" value={this.state.date} onChange={this.onChangeDate} autoOk={true} />
                         <TextField label='Starting Time' type="time" name="initialTime" value={this.state.initialTime} onChange={this.handleChange} InputLabelProps={{
                             shrink: true,
-                        }} />
+                        }} /> 
                         <TextField label='Finishing Time' type="time" name="finishingTime" value={this.state.finishingTime} onChange={this.handleChange} InputLabelProps={{
                             shrink: true,
                         }} />
@@ -116,16 +116,3 @@ class HostPlace extends Component {
 }
 
 export default HostPlace;
-{/* <TextField
-    id="time"
-    label="Alarm clock"
-    type="time"
-    defaultValue="07:30"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    inputProps={{
-        step: 300, // 5 min
-    }}
-/> */}
