@@ -5,5 +5,8 @@
 .pop-up-container img {
     object-fit: cover;
     width: 100%;
+}
+
+.pop-up-container{
     overflow-y: scroll;
 }

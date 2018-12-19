@@ -42,7 +42,7 @@ musicianRouter.post('/new', parser.single('file'), (req, res, next) => {
       return musicianCreated._id;
     })
     .then((musicianCreatedID) => {
-      User.findByIdAndUpdate(req.user.id, { $push:{ musicianID:musicianCreatedID } }, { new:true })
+      User.findByIdAndUpdate(req.user.id, { $set:{ musicianID:musicianCreatedID } }, { new:true })
         .then(user => console.log('Musician ID updated in user Schema', user))
         .catch(e => console.log('Musician ID error updating in user Schema', e));
     })
