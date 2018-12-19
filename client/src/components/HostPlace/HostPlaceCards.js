@@ -28,20 +28,20 @@ class HostPlaceCards extends Component {
         {listOfPlaces.map((places, i) => {
           if (places.availability) {
             return (
-              <Card key={i} className="card-host-place">
-                <h3>{places.placeName}</h3>
-                <h4>{places.address}</h4>
-                <h4>{places.initialTime}h</h4>
-                <h4>{places.finishingTime}h</h4>
-                <h4>Date: {this.beautifyDate(places.date)}</h4>
-                <div className="numbers-container">
-                  <span className="number">{places.capacity} </span><span>CAPACITY</span>
-                  <span className="number">{places.price} </span><span>PRICE</span>
-                </div>
-                {this.props.user.musician && (
-                  <RequestButton user={this.props.user} placeID={places._id} />
-                )}
-              </Card>
+                <div className="card-host-place">
+                    <h3>{places.placeName}</h3>
+                    <h4>{places.address}</h4>
+                    <h4>{places.initialTime}h</h4>
+                    <h4>{places.finishingTime}h</h4>
+                    <h4>Date: {this.beautifyDate(places.date)}</h4>
+                    <div className="numbers-container">
+                    <span className="number">{places.capacity} </span><span>CAPACITY</span>
+                    <span className="number">{places.price} </span><span>PRICE</span>
+                    </div>
+                    {this.props.user.musician && (
+                    <RequestButton user={this.props.user} placeID={places._id} />
+                    )}
+              </div>
             );
           }
         })}
