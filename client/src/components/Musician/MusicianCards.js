@@ -25,8 +25,8 @@ export default class MusicianCards extends Component {
 
         return (
             <CarouselProvider
-                naturalSlideWidth={100}
-                naturalSlideHeight={130}
+                naturalSlideWidth={60}
+                naturalSlideHeight={80}
                 visibleSlides={3}
                 totalSlides={listOfMusicians.length}>
                 <Slider>
@@ -34,7 +34,6 @@ export default class MusicianCards extends Component {
                         {listOfMusicians.map((musician, i) => {
                             return (
                                 <Slide>
-
                                     <div key={i} className='individual-cards'>
                                         <img src={musician.image} className='musician-image' alt="Artist's image" />
                                         <h2 className='musician-name'>{musician.artistData.toUpperCase()}</h2>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RequestService from '../../services/request-service';
 import { Button } from '@material-ui/core';
+import FaCheck from "react-icons/lib/fa/check";
 
 class RequestButton extends Component {
     constructor(props) {
@@ -26,8 +27,8 @@ class RequestButton extends Component {
     }
     render() {
         return (
-            <div>
-                <Button onClick={this.sendRequest} variant="contained" color="primary" type="submit" value="Submit">Request</Button>
+            <div> 
+                <Button  onClick={this.sendRequest}  type="submit" value="Submit"> <FaCheck/></Button>
             </div>
         );
     }
