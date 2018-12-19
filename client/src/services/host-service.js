@@ -45,7 +45,11 @@ export default class HostPlaceService {
         return this.service.get(`/${hostServiceID}/delete`, {})
             .then(response => response.data)
     }
+<<<<<<< HEAD
     getOne = (hostPlaceID) => {
+=======
+    getOne = ( hostPlaceID) => {
+>>>>>>> 7de1f8fd1765fb000c8c9463cbda7203fc400f52
         return this.service.get(`/${hostPlaceID}`, {})
             .then(response => response.data)
     }
