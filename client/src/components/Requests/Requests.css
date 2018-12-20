@@ -1,8 +1,8 @@
 .individual-card{
     box-shadow:10px 10px 50px grey;
     margin: 10px;
-    width: 600px;
-    height: 330px;
+    width: 70vw;
+    height: 58vh;
     padding: 5px;
 }
 .location-icon{

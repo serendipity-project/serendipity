@@ -13,8 +13,8 @@
 .musician-photo{
     padding: 0;
     margin: 0;
-    object-fit: cover;
-    width: 340px;
+    object-fit: cover !important;
+    width: 340px !important;
 
 }
 hr{

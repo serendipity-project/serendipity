@@ -38,7 +38,7 @@ class HostPlace extends Component {
         console.log(hostId)
         this.service.getOne(hostId)
             .then((response) => {
-                console.log(response,'response')
+                console.log(response, 'response')
                 this.setState({
                     myPlace: response.hostPlace
                 })
@@ -51,11 +51,11 @@ class HostPlace extends Component {
             const filtered = [...this.state.listOfPlaces]
             const filteredList = filtered.filter(place => {
                 if (this.state.queryCity === '') {
-                 console.log('solo fecha')
+                    console.log('solo fecha')
                     return place.date.includes(this.state.queryDate)
                 }
                 else if (this.state.queryDate === '') {
-                     console.log('solo ciudad')
+                    console.log('solo ciudad')
                     return place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
                 } else {
                     return place.date.includes(this.state.queryDate) && place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
@@ -68,9 +68,9 @@ class HostPlace extends Component {
     }
     render() {
         console.log(this.props);
-        
+
         return (
-            
+
             <>
                 {this.props.user.musician &&
                     <>
@@ -87,7 +87,7 @@ class HostPlace extends Component {
                     </>}
                 {this.props.user.musician && <HostPlaceCards places={this.state.listCopyPlaces} user={this.props.user} />}
                 {this.props.user.host && <HostPlaceCards place={this.state.myPlace} user={this.props.user} />}
-                {this.props.user.host && <HostPlaceForm update={this.getAllPlaces} user={this.props.user} />}
+                {this.props.user.host && <HostPlaceForm update={this.getOnePlace} user={this.props.user} />}
             </>
         );
     }

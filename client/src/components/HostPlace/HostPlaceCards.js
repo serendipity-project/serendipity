@@ -47,15 +47,15 @@ class HostPlaceCards extends Component {
         visibleSlides={3}
         totalSlides={listOfPlaces.length}
       >
-      <ButtonBack className='arrows'>
+        <ButtonBack className='arrows'>
           <LeftArrow className='arrow-icon' />
-      </ButtonBack>
-      <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
+        </ButtonBack>
+        <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
         <Slider>
           {listOfPlaces.map((places, i) => {
             if (places.availability) {
               return (
-                <Slide>
+                <Slide key={i}>
                   <div className="card-host-place">
                     <div className="top-card">
                       <div>

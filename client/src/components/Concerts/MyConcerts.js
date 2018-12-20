@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ConcertsService from '../../services/concerts-service';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import LeftArrow from 'react-icons/lib/fa/angle-left'
+import RightArrow from 'react-icons/lib/fa/angle-right'
 import LocationIcon from 'react-icons/lib/fa/map-marker'
 import FaClockO from "react-icons/lib/fa/clock-o";
 import './MyConcerts.css'
@@ -55,6 +58,7 @@ export default class MyConcerts extends Component {
                                 <img src={concert.musicianID.image} className='musician-photo' alt="Musician's image" />
                                 <div className='padding-for-body'>
                                     <h1 className='artist-name'>{concert.musicianID.artistData.toUpperCase()}</h1>
+                                    <h3>{concert.hostID.placeName}</h3>
                                     <h6 className='grey-titles'><LocationIcon className='icons' />{concert.hostID.address}</h6>
                                     <div className='middle-info'>
                                         <div className='time-and-date-info'>
@@ -82,7 +86,7 @@ export default class MyConcerts extends Component {
                         </>
                     )
                 })}
-                <footer className='footer'/>
+                <footer className='footer' />
             </div>
         );
     }
