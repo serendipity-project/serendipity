@@ -57,7 +57,7 @@ class HostPlace extends Component {
                     redirect: true,
                     clean: true
                 }, () => {
-                    this.props.update()
+                    this.props.update(response.hostID);
                 });
             })
             .catch(error => console.log(error))
@@ -85,7 +85,7 @@ class HostPlace extends Component {
 
 
     render() {
-        return (
+        return (        
             <div className="form-host-place-box">
                 <h1>Add your nice Place for a concert</h1>
                 <form onSubmit={this.handleFormSubmit} className="form-add-host-place">
@@ -106,7 +106,11 @@ class HostPlace extends Component {
                         <TextField placeholder='Price €/per person' type="number" name="price" value={this.state.price} onChange={this.handleChange} />
                         <TextField placeholder='Capacity' type="number" name="capacity" value={this.state.capacity} onChange={this.handleChange} />                      
                         <TextField  fullWidth placeholder='Name' type="text" name="placeName" value={this.state.placeName} onChange={this.handleChange} />
-                        <Button variant="contained" color="primary" type="submit" value="Submit">Create Host Place</Button>
+                        {this.props.user.hostPlaceID ? (
+                              <Button disabled variant="contained" color="primary" type="submit" value="Submit">Create Host Place</Button>
+                            ) : (
+                                <Button variant="contained" color="primary" type="submit" value="Submit">Create Host Place</Button>
+                        )}
                 </form>
             </div >
         );

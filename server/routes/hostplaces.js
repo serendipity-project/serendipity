@@ -42,8 +42,10 @@ hostPlaceRouter.get('/all', (req, res, next) => {
 });
 
 hostPlaceRouter.get('/:hostId', (req, res, next) => {
+  console.log(req.params.hostId);
   HostPlace.findOne({ hostID: req.params.hostId })
     .then((hostPlace) => {
+      console.log(hostPlace, 'paosghfpoashgpashfgpdiegoBACK');
       res.status(200).json({ hostPlace });
     })
     .catch((err) => {

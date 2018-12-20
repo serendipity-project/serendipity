@@ -38,6 +38,7 @@ class HostPlaceCards extends Component {
   render() {
     const listOfPlaces = this.props.places || [];
     if (this.props.place) {
+        console.log(this.props.place);
       listOfPlaces.push(this.props.place);
     }
     return (
@@ -53,7 +54,8 @@ class HostPlaceCards extends Component {
       <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
         <Slider>
           {listOfPlaces.map((places, i) => {
-            if (places.availability) {
+              console.log(places.hostID, this.props.user._id,"aaalksjdfosahfgdpadhspfg");
+            if (places.availability || places.hostID === this.props.user._id) {
               return (
                 <Slide>
                   <div className="card-host-place">

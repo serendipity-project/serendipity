@@ -20,9 +20,9 @@ class HostPlace extends Component {
     componentDidMount() {
         this.getAllPlaces();
         this.getOnePlace(this.props.user._id);
-        this.setState({
+       /*  this.setState({
             user: this.props.user
-        })
+        }) */
     }
     getAllPlaces = () => {
         this.service.getAll()
@@ -40,7 +40,8 @@ class HostPlace extends Component {
             .then((response) => {
                 console.log(response,'response')
                 this.setState({
-                    myPlace: response.hostPlace
+                    myPlace: response.hostPlace,
+                    user: this.props.user
                 })
             })
     }
@@ -67,7 +68,6 @@ class HostPlace extends Component {
         })
     }
     render() {
-        console.log(this.props);
         
         return (
             
@@ -85,9 +85,10 @@ class HostPlace extends Component {
                             }} />
                         </form>
                     </>}
+
                 {this.props.user.musician && <HostPlaceCards places={this.state.listCopyPlaces} user={this.props.user} />}
                 {this.props.user.host && <HostPlaceCards place={this.state.myPlace} user={this.props.user} />}
-                {this.props.user.host && <HostPlaceForm update={this.getAllPlaces} user={this.props.user} />}
+                {this.props.user.host && <HostPlaceForm update={(e)=>this.getOnePlace(e)} user={this.props.user} />}
             </>
         );
     }

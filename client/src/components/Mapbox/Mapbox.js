@@ -10,6 +10,7 @@ import FaMinus from "react-icons/lib/fa/minus";
 import FaClose from "react-icons/lib/fa/close";
 import LocationIcon from "react-icons/lib/fa/map-marker";
 import FaClockO from "react-icons/lib/fa/clock-o";
+// import iconImage from "./images/icon.png";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -186,7 +187,7 @@ export default class Mapbox extends Component {
                 key={concert._id}
                 offset={{
                   "bottom-left": [12, -38],
-                  bottom: [0, -38],
+                  "bottom": [0, -38],
                   "bottom-right": [-12, -38]
                 }}
                 coordinates={[
@@ -211,6 +212,7 @@ export default class Mapbox extends Component {
                       <LocationIcon />
                       {concert.hostID.address}
                     </h3>
+                    <h3 className="adress">{concert.hostID.placeName}</h3>
                     <div className="time-style-container">
                       <div className="style-container">
                         <h4>Music Style</h4>
