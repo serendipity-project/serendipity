@@ -1,14 +1,33 @@
 .map-container {
     display: flex;
 }
+
 .mapboxgl-popup-content {
-        padding: 0px!important;
+    padding: 0px !important;
 }
 
-.pop-up-container{
+.pop-up-container {
     font-weight: 400;
     border-radius: 2px;
     width: 30vw;
+    overflow-y: scroll;
+    font-family: Montserrat;
+
+}
+.name-close-container{
+    display: flex;
+    justify-content: space-between;
+}
+.artist-name{
+    text-transform: uppercase;
+}
+.adress{
+    color:rgb(151,151,151);;
+    text-align: left;
+}
+
+.sub-pop-up {
+    padding:0.5rem 1.2rem;
 }
 
 .pop-up-container img {
@@ -16,29 +35,48 @@
     width: 100%;
 }
 
-.pop-up-container{
-    overflow-y: scroll;
+.time-style-container {
+    display: flex;
 }
 
-.numbers-container{
- display: flex;
- align-items: center;
- justify-content: space-between;
- text-align: center;
- margin: 0px 30px;
- font-size: 0.9em;
+.style-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20vw;
 }
-.number{
+
+.time-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-end;
+   width: 10vw;
+}
+
+.numbers-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: 0px 30px;
+    font-size: 0.9em;
+}
+.music-styles-container{
+    text-align: left;
+}
+
+.number {
     font-weight: bold;
 }
 
-.btn-concert{
+.numbers-container button {
     background-color: #95efed;
+    margin: 2px;
     /* background-image: linear-gradient(to right,#51f0ed,#a1cae4)!important; */
 }
-.btn-go{
-
+.numbers-container .letter{
+    color:rgb(151,151,151);
+    font-weight: bold;
 }
-.btn-not-go{
 
-}
