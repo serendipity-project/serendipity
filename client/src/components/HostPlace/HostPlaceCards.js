@@ -37,7 +37,7 @@ class HostPlaceCards extends Component {
   };
   render() {
     const listOfPlaces = this.props.places || [];
-    if (this.props.place) {   
+    if (this.props.place) {
       listOfPlaces.push(this.props.place);
     }
     return (
@@ -70,22 +70,22 @@ class HostPlaceCards extends Component {
                     <div className="numbers-container">
                       <div>
                         <span className="number">{places.capacity} </span>
-                        <span>CAPACITY</span>
+                        <span className='grey-titles'>CAPACITY</span>
                       </div>
                       <div>
                         <span className="number">{places.price}$ </span>
-                        <span>PRICE</span>
+                        <span className='grey-titles'>PRICE</span>
                       </div>
                       <div>
-                      {this.props.user.musician && (
-                            <RequestButton
-                              user={this.props.user}
-                              placeID={places._id}
-                            />
-                          )}
+                        {this.props.user.musician && (
+                          <RequestButton
+                            user={this.props.user}
+                            placeID={places._id}
+                          />
+                        )}
                       </div>
                     </div>
-                  
+
                   </div>
                 </Slide>
               );

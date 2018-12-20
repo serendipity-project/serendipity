@@ -39,7 +39,7 @@ export default class MusicianCards extends Component {
                                         <div className='info-container'>
                                             <h2 className='musician-name'>{musician.artistData.toUpperCase()}</h2>
                                             <div>
-                                                <LocationIcon /><span className='city'>{musician.originCity.toUpperCase()}</span>
+                                                <LocationIcon /><span className='city'>{musician.originCity.toUpperCase()} CITY</span>
                                             </div>
                                             <span className='titles'>MUSIC STYLE </span> <p>    {musician.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
                                             <span className='titles'>INSTRUMENTS </span>  <p>    {musician.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>

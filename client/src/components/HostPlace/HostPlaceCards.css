@@ -19,7 +19,10 @@
     font-size:0.8em;
     margin:10px;
 }
-
+.grey-titles{
+    color: rgb(151, 151, 151);
+    font-weight: 600;
+}
 .number{
     font-weight: bold;
 }
@@ -40,6 +43,9 @@
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 1px;
+    color: rgb(151, 151, 151);
+    font-weight: bold;
+
 }
 
 .host-places-cards-container{

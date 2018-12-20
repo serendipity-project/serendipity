@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ConcertsService from '../../services/concerts-service';
 import { Card } from "@material-ui/core";
+import LocationIcon from 'react-icons/lib/fa/map-marker'
+import FaClockO from "react-icons/lib/fa/clock-o";
+import './MyConcerts.css'
 
 export default class MyConcerts extends Component {
     constructor(prosp) {
@@ -49,23 +52,38 @@ export default class MyConcerts extends Component {
                 {listOfConcerts.map((concert, i) => {
                     return (
                         <>
-                            <Card key={i} className="card-host-place">
-                                <h3>{concert.hostID.placeName}</h3>
-                                <h4>{concert.hostID.address}</h4>
-                                <h4>{concert.hostID.initialTime}h</h4>
-                                <h4>{concert.hostID.finishingTime}h</h4>
-                                <h4>Date: {this.beautifyDate(concert.hostID.date)}</h4>
-                                <div className="numbers-container">
-                                    <span>CAPACITY</span><span className="number">{concert.hostID.capacity} </span>
-                                    <span>PRICE</span><span className="number">{concert.hostID.price} </span>
+                            <div key={i} className='concert-card'>
+                                <img src={concert.musicianID.image} className='musician-photo' alt="Musician's image" />
+                                <div className='padding-for-body'>
+                                    <h1 className='artist-name'>{concert.musicianID.artistData.toUpperCase()}</h1>
+                                    <h6 className='grey-titles'><LocationIcon className='icons' />{concert.hostID.address}</h6>
+                                    <div className='middle-info'>
+                                        <div className='time-and-date-info'>
+                                            <h6 className='time-and-date'>{this.beautifyDate(concert.hostID.date)}</h6>
+                                            <h6 className='time-and-date'> <FaClockO className='icons' /> {concert.hostID.initialTime} -{concert.hostID.finishingTime}</h6>
+                                        </div>
+                                        <div className='musician-info'>
+                                            <span className='titles'>MUSIC STYLE </span> <p>    {concert.musicianID.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                                            <span className='titles'>INSTRUMENTS </span>  <p>    {concert.musicianID.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <hr />
+                                    </div>
+                                    <div className="numbers-container">
+                                        <div>
+                                            <span className="number">{concert.hostID.price}$ </span><span className='grey-titles'>PRICE</span>
+                                        </div>
+                                        <div>
+                                            <span className="number">{concert.hostID.capacity} </span><span className='grey-titles'>CAPACITY</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3>{concert.musicianID.artistData}</h3>
-                                <a href={concert.musicianID.musicTrack}>Music Track</a>
-                                {/* <h4>{concert.musicianID}</h4> */}
-                            </Card>
+                            </div>
                         </>
                     )
                 })}
+                <footer className='footer'/>
             </div>
         );
     }
