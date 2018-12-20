@@ -10,7 +10,7 @@ import FaMinus from "react-icons/lib/fa/minus";
 import FaClose from "react-icons/lib/fa/close";
 import LocationIcon from "react-icons/lib/fa/map-marker";
 import FaClockO from "react-icons/lib/fa/clock-o";
-// import iconImage from "./images/icon.png";
+import iconLocation from "./images/location1.png";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -154,6 +154,9 @@ export default class Mapbox extends Component {
     const { concert } = this.state;
     // console.log(concert);
     if (this.state.filteredConcerts) {
+        const image = new Image(17, 17);
+        image.src = iconLocation;
+        const images = ["myLocation", image];
       return (
         <div className="map-container">
           <SearchMap filter={this.filterConcerts} />
@@ -166,7 +169,8 @@ export default class Mapbox extends Component {
             <Layer
               type="symbol"
               id="marker"
-              layout={{ "icon-image": "marker-15" }}
+              layout={{ "icon-image": "myLocation" }}
+              images={images}
             >
               {this.state.filteredConcerts.map(concert => {
                 return (

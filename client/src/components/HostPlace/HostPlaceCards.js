@@ -12,6 +12,7 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import "./HostPlaceCards.css";
 import LeftArrow from "react-icons/lib/fa/angle-left";
 import RightArrow from "react-icons/lib/fa/angle-right";
+import LocationIcon from "react-icons/lib/fa/map-marker";
 
 class HostPlaceCards extends Component {
   constructor(props) {
@@ -62,11 +63,13 @@ class HostPlaceCards extends Component {
                     <div className="top-card">
                       <div>
                         <h2>{places.placeName}</h2>
-                        <h1 className="address">{places.address}</h1>
+                        <div>
+                            <h1 className="address"><LocationIcon/>{places.address}</h1>
+                        </div>  
                       </div>
                       <div className="date-container">
-                        <h3>
-                          <FaClockO />
+                        <h3 className="times">
+                          <FaClockO/>
                           {places.initialTime}-{places.finishingTime}
                         </h3>
                         <h3>{this.beautifyDate(places.date)}</h3>

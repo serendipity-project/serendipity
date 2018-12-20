@@ -1,49 +1,73 @@
-.form-add-host-place{
-    display:flex;
+.form-out-box {
+    /* background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83); */
+    padding: 3rem;
+}
+
+.form-host-place-box {
+    background-color: #dedede;
+}
+
+.form-add-host-place {
+    display: flex;
+    align-items: center;
+}
+
+.box {
+    width: 25rem;
+    display: flex;
     flex-direction: column;
-    margin:50px 450px;  
+    margin: 2rem;
 }
-.form-host-place-box h1{
-    margin:50px 450px;  
+
+.box button {
+    background-color: #95efed;
 }
+
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 1.3rem 0rem;
+    padding: 1.2rem;
+}
+
 .react-mapbox-ac-menu {
-  width: auto;
-  position: absolute;
-  z-index: 9999;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: -1.3rem;
+    width: auto;
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: -1.3rem;
 }
 
 .react-mapbox-ac-input {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .react-mapbox-ac-suggestion {
-  font-size: 18px;
-  margin-bottom: .5rem;
-  cursor: pointer;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+    font-size: 18px;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .react-mapbox-ac-suggestion:hover {
-  background-color: #58a;
-}
-.search-input{
-   font: inherit;
-   color: currentColor;
-   width: 100%;
-   border: 0;
-   margin: 0;
-   padding: 6px 0 7px;
-   display: block;
-   min-width: 0;
-   box-sizing: content-box;
-   background: none;
-   -webkit-tap-highlight-color: transparent;
+    background-color: #58a;
 }
 
-  
+.search-input {
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 6px 0 7px;
+    display: block;
+    min-width: 0;
+    box-sizing: content-box;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
+}

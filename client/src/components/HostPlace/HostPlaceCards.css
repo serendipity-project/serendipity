@@ -18,6 +18,7 @@
 .date-container{
     font-size:0.8em;
     margin:10px;
+    width: 17rem;
 }
 .grey-titles{
     color: rgb(151, 151, 151);
@@ -37,6 +38,9 @@
 .carousel > div {
     /* width: 130vw; */
     /* left: 10vw; */
+}
+.times{
+    display: flex;
 }
 .address{
     font-size: 14px;
