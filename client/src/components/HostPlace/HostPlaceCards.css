@@ -28,8 +28,7 @@
 }
 .card-host-place button{
     background-color: #95efed;
-    
-    font-family: Montserrat!important;;   
+    /* background-image: linear-gradient(to right,#51f0ed,#a1cae4)!important; */ 
 }
 .top-card{
     display: flex;

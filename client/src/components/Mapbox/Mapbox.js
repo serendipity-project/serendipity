@@ -8,6 +8,8 @@ import { Button } from "@material-ui/core";
 import FaPlus from "react-icons/lib/fa/plus";
 import FaMinus from "react-icons/lib/fa/minus";
 import FaClose from "react-icons/lib/fa/close";
+import LocationIcon from "react-icons/lib/fa/map-marker";
+import FaClockO from "react-icons/lib/fa/clock-o";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -142,6 +144,10 @@ export default class Mapbox extends Component {
     console.log(e);
     document.querySelector(".mapboxgl-popup").style.display = "none";
   };
+  beautifyDate = date => {
+    const dateConverted = new Date(date);
+    return dateConverted.toDateString();
+  };
 
   render() {
     const { concert } = this.state;
@@ -177,7 +183,7 @@ export default class Mapbox extends Component {
             </Layer>
             {concert !== null && (
               <Popup
-                // key={concert.availability}
+                key={concert._id}
                 offset={{
                   "bottom-left": [12, -38],
                   bottom: [0, -38],
@@ -192,59 +198,83 @@ export default class Mapbox extends Component {
                   <div>
                     <img src={concert.musicianID.image} />
                   </div>
-                  <div>
-                    <button onClick={this.closePopup}>X</button>
-                    <h1>{concert.musicianID.artistData}</h1>
-                    <h1>{concert.hostID.placeName}</h1>
-                    <p>{concert.capacity}</p>
-                    <p>{concert.hostID.price}</p>
-                    <p>{concert.hostID.address}</p>
-                    <p>{concert.hostID.date}</p>
-                    <p>{concert.hostID.finishingTime}</p>
-                    <p>{concert.hostID.initialTime}</p>
-                  </div>
-                  <div>
-                    <div>
-                      {concert.musicianID.musicStyle.map(s => (
-                        <span>{s}</span>
-                      ))}
-                    </div>
-                    <a href={concert.musicianID.musicTrack}>Music Track</a>
-                    <p>{concert.musicianID.artistData}</p>
-                    <p>{concert.musicianID.instruments[0]}</p>
-                  </div>
-                  <div className="numbers-container">
-                    <div>
-                      <span className="number">{concert.capacity} </span>
-                      <span>CAPACITY</span>
-                    </div>
-                    <div>
-                      <span className="number">{concert.price}$ </span>
-                      <span>PRICE</span>
-                    </div>
-                    <div>
-                      {concert.availability ? (
-                        <Button
-                          className="btn-concert btn-go"
-                          onClick={this.onClickGoingConcert}
-                        >
-                          <FaPlus />
-                        </Button>
-                      ) : (
-                        <Button
-                          disabled="true"
-                          className="btn-concert btn-go"
-                          onClick={this.onClickGoingConcert}
-                        >
-                          <FaPlus />
-                        </Button>
-                      )}
-                      <Button
-                        className="btn-concert btn-not-go"
-                        onClick={this.onClickNotGoingConcert}
-                      >
-                        <FaMinus />
+                  <div className="sub-pop-up">
+                    <div className="name-close-container">
+                      <h1 className="artist-name">
+                        {concert.musicianID.artistData}
+                      </h1>
+                      <Button onClick={this.closePopup}>
+                        <FaClose />
                       </Button>
+                    </div>
+                    <h3 className="adress">
+                      <LocationIcon />
+                      {concert.hostID.address}
+                    </h3>
+                    <div className="time-style-container">
+                      <div className="style-container">
+                        <h4>Music Style</h4>
+                        <p>
+                          {concert.musicianID.musicStyle
+                            .toString()
+                            .replace(/,/g, " / ")
+                            .toUpperCase()}
+                        </p>
+                      </div>
+                      <div className="time-container">
+                        <div>
+                          <FaClockO />
+                          <span>{concert.hostID.initialTime + `-`}</span>
+                          <span>{concert.hostID.finishingTime}</span>
+                        </div>
+                        <div>
+                          <span>{this.beautifyDate(concert.hostID.date)}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="music-styles-container">
+                      <h4>Instruments</h4>
+                      <p>
+                        {concert.musicianID.instruments
+                          .toString()
+                          .replace(/,/g, " / ")
+                          .toUpperCase()}
+                      </p>
+                    </div>
+                    <hr />
+                    <div className="numbers-container">
+                      <div>
+                        <span className="number">{concert.capacity} </span>
+                        <span className="letter">CAPACITY</span>
+                      </div>
+                      <div>
+                        <span className="number">{concert.hostID.price}$ </span>
+                        <span className="letter">PRICE</span>
+                      </div>
+                      <div>
+                        {concert.availability ? (
+                          <Button
+                            className="btn-go"
+                            onClick={this.onClickGoingConcert}
+                          >
+                            <FaPlus />
+                          </Button>
+                        ) : (
+                          <Button
+                            disabled="true"
+                            className="btn-go"
+                            onClick={this.onClickGoingConcert}
+                          >
+                            <FaPlus />
+                          </Button>
+                        )}
+                        <Button
+                          className="btn-not-go"
+                          onClick={this.onClickNotGoingConcert}
+                        >
+                          <FaMinus />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </StyledPopup>
