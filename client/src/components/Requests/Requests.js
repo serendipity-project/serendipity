@@ -36,10 +36,7 @@ class Requests extends Component {
         })
         // console.log(requestList);
 
-      } else {
-        alert("Este host no tiene requests limpiar codifgo");
-      }
-
+      } 
     });
   };
 
@@ -47,7 +44,11 @@ class Requests extends Component {
     const listOfRequests = this.state.listOfRequests;
     return (
       <>
-        {listOfRequests.map((request, i) => { return (<RequestsCards key={i} request={request} user={this.props.user} />) })}
+        {listOfRequests.length>0 ? (
+            listOfRequests.map((request, i) => { return (<RequestsCards key={i} request={request} user={this.props.user} />) })
+        ) : (
+            <h3 style={{margin:"4%"}}>You don't  have any requests for the moment! </h3>
+        )}
       </>
     );
   }
