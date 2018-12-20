@@ -1,6 +1,15 @@
 .map-container {
     display: flex;
 }
+.mapboxgl-popup-content {
+        padding: 0px!important;
+}
+
+.pop-up-container{
+    font-weight: 400;
+    border-radius: 2px;
+    width: 30vw;
+}
 
 .pop-up-container img {
     object-fit: cover;
@@ -9,4 +18,27 @@
 
 .pop-up-container{
     overflow-y: scroll;
+}
+
+.numbers-container{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ text-align: center;
+ margin: 0px 30px;
+ font-size: 0.9em;
+}
+.number{
+    font-weight: bold;
+}
+
+.btn-concert{
+    background-color: #95efed;
+    /* background-image: linear-gradient(to right,#51f0ed,#a1cae4)!important; */
+}
+.btn-go{
+
+}
+.btn-not-go{
+
 }

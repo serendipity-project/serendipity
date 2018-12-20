@@ -47,6 +47,10 @@ class HostPlaceCards extends Component {
         visibleSlides={3}
         totalSlides={listOfPlaces.length}
       >
+      <ButtonBack className='arrows'>
+          <LeftArrow className='arrow-icon' />
+      </ButtonBack>
+      <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
         <Slider>
           {listOfPlaces.map((places, i) => {
             if (places.availability) {
@@ -92,12 +96,6 @@ class HostPlaceCards extends Component {
             }
           })}
         </Slider>
-        <ButtonBack>
-          <LeftArrow />
-        </ButtonBack>
-        <ButtonNext>
-          <RightArrow />
-        </ButtonNext>
       </CarouselProvider>
     );
   }

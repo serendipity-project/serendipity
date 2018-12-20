@@ -7,6 +7,7 @@
 .musician-name{
     font-weight:700; 
 }
+
 p{
     font-size: 10px;
     text-align: left;
@@ -62,4 +63,8 @@ p{
     padding: 20px;
     display: flex;
     flex-direction: column; 
+}
+.musician-title{
+    letter-spacing: 4px;
+    margin:2%;
 }

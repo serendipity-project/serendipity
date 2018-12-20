@@ -4,6 +4,10 @@ import ConcertService from "../../services/concerts-service";
 import SearchMap from "../SearchMap/SearchMap";
 import styled from "styled-components";
 import "./Mapbox.css";
+import { Button } from "@material-ui/core";
+import FaPlus from "react-icons/lib/fa/plus";
+import FaMinus from "react-icons/lib/fa/minus";
+import FaClose from "react-icons/lib/fa/close";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -16,11 +20,6 @@ const center = [-3.70379, 40.416775];
 
 const StyledPopup = styled.div`
   background: white;
-  color: #3f618c;
-  font-weight: 400;
-  padding: 5px;
-  border-radius: 2px;
-  width: 30vw;
 `;
 
 export default class Mapbox extends Component {
@@ -189,52 +188,65 @@ export default class Mapbox extends Component {
                   concert.hostID.location.latitude
                 ]}
               >
-                <StyledPopup>
-                    <div className="pop-up-container">
-                      <div>
-                        <button onClick={this.closePopup}>X</button>
-                        <h1>Concert Place in {concert.hostID.placeName}</h1>
-                        <p>Capacidad:{concert.capacity}</p>
-                        <p>{concert.hostID.price}</p>
-                        <p>{concert.hostID.address}</p>
-                        <p>{concert.hostID.date}</p>
-                        <p>{concert.hostID.finishingTime}</p>
-                        <p>{concert.hostID.initialTime}</p>
-                      </div>
-                      <div>
-                        <h1>{concert.musicianID.artistData}</h1>
-                        <div>
-                          {concert.musicianID.musicStyle.map(s => (
-                            <span>{s}</span>
-                          ))}
-                        </div>
-                        <a href={concert.musicianID.musicTrack}>Music Track</a>
-                        <img src={concert.musicianID.image} />
-                        <p>{concert.musicianID.artistData}</p>
-                        <p>{concert.musicianID.instruments[0]}</p>
-                      </div>
-                      <div>
-                      {concert.availability ? (
-                        <button
-                          className="btn-go-concert"
-                          onClick={this.onClickGoingConcert}
-                        >+</button>
-                        ) : (
-                         <button
-                           disabled="true"
-                           className="btn-go-concert"
-                           onClick={this.onClickGoingConcert}
-                         >+</button>
-                        )}
-                        <button
-                          className="btn-go-concert"
-                          onClick={this.onClickNotGoingConcert}
-                        >
-                          -
-                        </button>
-                      </div>
+                <StyledPopup className="pop-up-container">
+                  <div>
+                    <img src={concert.musicianID.image} />
+                  </div>
+                  <div>
+                    <button onClick={this.closePopup}>X</button>
+                    <h1>{concert.musicianID.artistData}</h1>
+                    <h1>{concert.hostID.placeName}</h1>
+                    <p>{concert.capacity}</p>
+                    <p>{concert.hostID.price}</p>
+                    <p>{concert.hostID.address}</p>
+                    <p>{concert.hostID.date}</p>
+                    <p>{concert.hostID.finishingTime}</p>
+                    <p>{concert.hostID.initialTime}</p>
+                  </div>
+                  <div>
+                    <div>
+                      {concert.musicianID.musicStyle.map(s => (
+                        <span>{s}</span>
+                      ))}
                     </div>
-                
+                    <a href={concert.musicianID.musicTrack}>Music Track</a>
+                    <p>{concert.musicianID.artistData}</p>
+                    <p>{concert.musicianID.instruments[0]}</p>
+                  </div>
+                  <div className="numbers-container">
+                    <div>
+                      <span className="number">{concert.capacity} </span>
+                      <span>CAPACITY</span>
+                    </div>
+                    <div>
+                      <span className="number">{concert.price}$ </span>
+                      <span>PRICE</span>
+                    </div>
+                    <div>
+                      {concert.availability ? (
+                        <Button
+                          className="btn-concert btn-go"
+                          onClick={this.onClickGoingConcert}
+                        >
+                          <FaPlus />
+                        </Button>
+                      ) : (
+                        <Button
+                          disabled="true"
+                          className="btn-concert btn-go"
+                          onClick={this.onClickGoingConcert}
+                        >
+                          <FaPlus />
+                        </Button>
+                      )}
+                      <Button
+                        className="btn-concert btn-not-go"
+                        onClick={this.onClickNotGoingConcert}
+                      >
+                        <FaMinus />
+                      </Button>
+                    </div>
+                  </div>
                 </StyledPopup>
               </Popup>
             )}

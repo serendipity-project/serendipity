@@ -3,6 +3,7 @@ import HostPlaceCards from './HostPlaceCards';
 import HostPlaceForm from './HostPlaceForm'
 import HostPlaceService from '../../services/host-service';
 import { TextField } from '@material-ui/core';
+import './HostPlace.css';
 class HostPlace extends Component {
     constructor(props) {
         super(props)
@@ -73,7 +74,7 @@ class HostPlace extends Component {
             <>
                 {this.props.user.musician &&
                     <>
-                        <h1>Search by...</h1>
+                        <h1 className="title-host">HOSTS</h1>
                         <form>
                             <TextField name='queryDate' value={this.state.queryDate} type='date' onChange={this.filter} label='Date' InputLabelProps={{
                                 shrink: true,
