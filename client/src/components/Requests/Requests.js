@@ -20,35 +20,28 @@ class Requests extends Component {
 
   getAll = hostId => {
     this.service.getAll(hostId).then(requests => {
-      // console.log(requests.myrequests.concertRequest,'requests');
-
       if (requests.myrequests) {
         const listOfRequestsIds = requests.myrequests.concertRequest;
-        // console.log(listOfRequestsIds);
         const requestList = [];
         listOfRequestsIds.forEach((request) => {
           this.service.getOne(request._id)
             .then(request => {
               requestList.push(request.request);
               this.setState({ listOfRequests: requestList })
-              // console.log(requestList);
             })
         })
-        // console.log(requestList);
-
-      } 
+      }
     });
   };
-
   render() {
     const listOfRequests = this.state.listOfRequests;
     return (
       <>
-        {listOfRequests.length>0 ? (
-            listOfRequests.map((request, i) => { return (<RequestsCards key={i} request={request} user={this.props.user} />) })
+        {listOfRequests.length > 0 ? (
+          listOfRequests.map((request, i) => { return (<RequestsCards key={i} update={(e) => this.getAll(e)} request={request} user={this.props.user} />) })
         ) : (
-            <h3 style={{margin:"4%"}}>You don't  have any requests for the moment! </h3>
-        )}
+            <h3 style={{ margin: "4%" }}>You don't have any requests for the moment! </h3>
+          )}
       </>
     );
   }

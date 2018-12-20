@@ -44,48 +44,60 @@ export default class MyConcerts extends Component {
     render() {
 
         const listOfConcerts = this.state.listOfConcerts || [];
-        console.log(listOfConcerts)
-
-
+        // console.log(listOfConcerts)
         return (
-
             <div>
                 <h1>Your Concerts</h1>
-                {listOfConcerts.map((concert, i) => {
-                    return (
-                        <>
-                            <div key={i} className='concert-card'>
-                                <img src={concert.musicianID.image} className='musician-photo' alt="Musician's image" />
-                                <div className='padding-for-body'>
-                                    <h1 className='artist-name'>{concert.musicianID.artistData.toUpperCase()}</h1>
-                                    <h3>{concert.hostID.placeName}</h3>
-                                    <h6 className='grey-titles'><LocationIcon className='icons' />{concert.hostID.address}</h6>
-                                    <div className='middle-info'>
-                                        <div className='time-and-date-info'>
-                                            <h6 className='time-and-date'>{this.beautifyDate(concert.hostID.date)}</h6>
-                                            <h6 className='time-and-date'> <FaClockO className='icons' /> {concert.hostID.initialTime} -{concert.hostID.finishingTime}</h6>
+                <CarouselProvider
+                    naturalSlideWidth={90}
+                    naturalSlideHeight={160}
+                    visibleSlides={3}
+                    totalSlides={listOfConcerts.length}
+                >
+                    <ButtonBack className='arrows'>
+                        <LeftArrow className='arrow-icon' />
+                    </ButtonBack>
+                    <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
+                    <Slider>
+                        {listOfConcerts.map((concert, i) => {
+                            return (
+                                <>
+                                    <Slide key={i}>
+                                        <div className='concert-card'>
+                                            <img src={concert.musicianID.image} className='musician-photo' alt="Musician's image" />
+                                            <div className='padding-for-body'>
+                                                <h1 className='artist-name'>{concert.musicianID.artistData.toUpperCase()}</h1>
+                                                <h3>{concert.hostID.placeName}</h3>
+                                                <h6 className='grey-titles'><LocationIcon className='icons' />{concert.hostID.address}</h6>
+                                                <div className='middle-info'>
+                                                    <div className='time-and-date-info'>
+                                                        <h6 className='time-and-date'>{this.beautifyDate(concert.hostID.date)}</h6>
+                                                        <h6 className='time-and-date'> <FaClockO className='icons' /> {concert.hostID.initialTime} -{concert.hostID.finishingTime}</h6>
+                                                    </div>
+                                                    <div className='musician-info'>
+                                                        <span className='titles'>MUSIC STYLE </span> <p>    {concert.musicianID.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                                                        <span className='titles'>INSTRUMENTS </span>  <p>    {concert.musicianID.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <hr />
+                                                </div>
+                                                <div className="numbers-container">
+                                                    <div>
+                                                        <span className="number">{concert.hostID.price}$ </span><span className='grey-titles'>PRICE</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="number">{concert.hostID.capacity} </span><span className='grey-titles'>CAPACITY</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='musician-info'>
-                                            <span className='titles'>MUSIC STYLE </span> <p>    {concert.musicianID.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
-                                            <span className='titles'>INSTRUMENTS </span>  <p>    {concert.musicianID.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <hr />
-                                    </div>
-                                    <div className="numbers-container">
-                                        <div>
-                                            <span className="number">{concert.hostID.price}$ </span><span className='grey-titles'>PRICE</span>
-                                        </div>
-                                        <div>
-                                            <span className="number">{concert.hostID.capacity} </span><span className='grey-titles'>CAPACITY</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </>
-                    )
-                })}
+                                    </Slide>
+                                </>
+                            )
+                        })}
+                    </Slider>
+                </CarouselProvider>
                 <footer className='footer' />
             </div>
         );
