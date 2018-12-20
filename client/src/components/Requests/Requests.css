@@ -1,0 +1,96 @@
+.individual-card{
+    box-shadow:10px 10px 50px grey;
+    margin: 10px;
+    width: 600px;
+    height: 330px;
+    padding: 5px;
+}
+.location-icon{
+    margin-bottom: 4px;
+    color: black;
+}
+.city-name{
+    color: rgb(151, 151, 151);
+    font-weight: 400;
+    font-size: 16px;
+    margin: 10px;
+
+}
+.extra-name, .description{
+    font-weight: 500;
+    margin: 0;
+}
+.artist-name{
+font-weight: 600;
+}
+.titles{
+    font-weight: 700;
+    font-size: 10px;
+    text-align: left !important;
+}
+.musician-photo{
+    padding: 0;
+    margin: 0;
+    object-fit: contain !important;
+    width: 215px !important;
+}
+.musicians-information{
+    display: flex ;
+    flex-direction: row-reverse ;
+    justify-content: space-around;
+}
+.musician-data{
+    padding: 5px 10px;
+    text-align: justify;
+}
+
+.button {
+    background-color: #95efed;
+    border: none;
+    margin: 5px 10px;
+    padding: 0 20px;
+    border-radius: 10px;
+}
+.icon{
+    color: black;
+    font-size: 25px;
+}
+.music-info{
+    padding: 5px 10px;
+    text-align: justify;
+    margin: 0;
+    font-size: 12px;
+}
+.music-info p {
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
+    font-weight: 700;
+}
+.music-info div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.music-info a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+.music-info a:hover{
+    text-decoration: underline black;
+}
+.arrow-icon{
+    color: black;
+    margin: 5px;
+
+}
+.arrows{
+    border: none;
+    font-size: 30px;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: transparent;
+}

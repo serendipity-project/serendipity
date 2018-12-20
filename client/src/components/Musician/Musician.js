@@ -16,7 +16,7 @@ export default class Musician extends Component {
             queryGenre: '',
             queryInstruments: ''
         }
-        this.service = new MusicianService
+        this.service = new MusicianService();
     }
 
     componentDidMount() {

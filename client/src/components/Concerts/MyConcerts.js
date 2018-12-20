@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ConcertsService from '../../services/concerts-service';
-import { Card } from "@material-ui/core";
 import LocationIcon from 'react-icons/lib/fa/map-marker'
 import FaClockO from "react-icons/lib/fa/clock-o";
 import './MyConcerts.css'

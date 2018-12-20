@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import RequestsCards from "./RequestsCards";
 import RequestService from "../../services/request-service";
+import "./Requests.css"
+
 
 class Requests extends Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class Requests extends Component {
             .then(request => {
               requestList.push(request.request);
               this.setState({ listOfRequests: requestList })
-              console.log(requestList);
+              // console.log(requestList);
             })
         })
         // console.log(requestList);
