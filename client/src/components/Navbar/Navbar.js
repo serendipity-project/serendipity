@@ -11,6 +11,7 @@ import EditProfile from '../Profile/EditProfile';
 import Requests from '../Requests/Requests'
 import './Navbar.css'
 import MyConcerts from '../Concerts/MyConcerts';
+import AboutUs from '../AboutUs/AboutUs';
 
 class Navbar extends Component {
     constructor() {
@@ -56,7 +57,7 @@ class Navbar extends Component {
                         <Link to="/your-concerts">
                             <Button>Your Concerts</Button>
                         </Link>
-                        <Link to='/about'>
+                        <Link to='/'>
                             <Button>About</Button>
                         </Link>
                         <Link to='/profile'>
@@ -66,7 +67,7 @@ class Navbar extends Component {
                             <Button onClick={this.logout}>Logout</Button>
                         </Link>
                 </nav>
-                <Route exact path="/about" render={() => <Profile routename='about' />} />
+                <Route exact path="/" render={() => <AboutUs />} />
                 <Route exact path="/profile" render={() => <Profile user={this.props.user} routename='profile' />} />
                 <Route exact path="/host-places" render={() => <HostPlace user={this.props.user} />} />
                 <Route exact path="/concerts" render={() => <Mapbox user={this.props.user} />} />

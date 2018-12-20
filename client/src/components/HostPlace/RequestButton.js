@@ -22,11 +22,6 @@ class RequestButton extends Component {
     onCloseModal = () => {
         this.setState({ open: false });
     };
-
-    sendMessage = () => {
-        this.onOpenModal()
-        this.sendRequest()
-    }
     componentDidMount() {
         this.setState({
             user: this.props.user,

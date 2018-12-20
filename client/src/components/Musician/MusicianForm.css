@@ -1,0 +1,42 @@
+.musician-form{
+    /* background-image: linear-gradient(to right,#95efed,#a1cae4,#d4a0c8,#9b5b83); */
+    padding: 1rem 0;
+}
+.artist-info{
+    display: flex;
+    flex-direction: column;
+}
+.info{
+    padding: 0 7rem !important ;
+    margin: 0 !important;
+}
+.box button{
+    background-color: #95cfed;
+    margin: -2.5rem;
+}
+.music-infos{
+    display: flex !important;
+    justify-content:space-around; 
+}
+.image-input{
+    padding: 0.5rem 0rem;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+}
+.btn{
+    justify-content: center;
+}
+.titles-form{
+   font-weight: 500;
+   font-size: 1.5rem;
+   margin: 1.3rem 0rem;
+   padding: 0.5rem;
+}
+.big-title{
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 1.3rem 0rem;
+    padding: 0.5rem;
+}
