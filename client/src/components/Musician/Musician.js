@@ -70,7 +70,7 @@ export default class Musician extends Component {
     render() {
         return (
             <div>
-                <h1>Search by...</h1>
+                <h1 className="musician-title">MUSICIANS</h1>
                 <form>
                     <TextField name='queryGenre' value={this.state.queryGenre} type='text' onChange={this.filter} label='Genre' InputLabelProps={{
                         shrink: true,
