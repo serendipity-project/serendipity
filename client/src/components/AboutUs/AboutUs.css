@@ -1,7 +1,25 @@
 .about-us{
-    background-image: url('./aboutus1.jpg');
+    background-image: url('./home2-bn.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 92vh;
+    color: #dedede;
+    display: flex;
+    flex-direction:column;
+    /* justify-content: center; */
+}
 
+.about-us  h1{
+    font-weight: 600;   
+    letter-spacing: 1rem;
+
+}
+.about-us  h2{
+    font-weight: 500;  
+    font-size: 2rem; 
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+}
+.title {
+margin-top: 1.5rem;
 }

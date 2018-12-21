@@ -71,10 +71,11 @@ class HostPlace extends Component {
         
         return (
 
-            <>
+            <>   
+            <h1 className="title-host">HOSTS</h1>
                 {this.props.user.musician &&
                     <>
-                        <h1 className="title-host">HOSTS</h1>
+                     
                         <form>
                             <TextField name='queryDate' value={this.state.queryDate} type='date' onChange={this.filter} label='Date' InputLabelProps={{
                                 shrink: true,

@@ -11,10 +11,11 @@ export default class AboutUs extends Component {
     render() {
         return (
             <div className='about-us'>
-                <h1>Serendipity</h1>
-                <h2>Finding something beautiful without looking for it</h2>
-                <h2>Music is wherever you are</h2>
-                {/* <img src={ba} /> */}
+                <div className='title'>
+                    <h1 className="title1">SERENDIPITY</h1>
+                    <h2>Finding something beautiful without looking for it</h2>
+                    <h2>Music is wherever you are</h2>
+                </div>
             </div>
         );
     }
