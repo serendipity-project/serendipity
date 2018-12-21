@@ -2,7 +2,7 @@
     box-shadow:10px 10px 50px grey;
     margin: 10px;
     width: 48vw;
-    height: 50vh;
+    height: 60vh;
     padding: 5px;
 }
 .location-icon{
@@ -36,12 +36,13 @@ font-weight: 600;
 }
 .musicians-information{
     display: flex ;
-    flex-direction: row-reverse ;
+    flex-direction: row-reverse;
     justify-content: space-between;
 }
 .musician-data{
     padding: 5px 10px;
     text-align: justify;
+    width: 60%;
 }
 
 .button {

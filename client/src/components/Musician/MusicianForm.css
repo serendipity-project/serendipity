@@ -12,7 +12,7 @@
 }
 .box button{
     background-color: #95cfed;
-    margin: -2.5rem;
+    /* margin: 1rem; */
 }
 .music-infos{
     display: flex !important;

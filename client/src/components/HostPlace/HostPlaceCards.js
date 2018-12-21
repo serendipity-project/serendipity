@@ -64,12 +64,12 @@ class HostPlaceCards extends Component {
                       <div>
                         <h2>{places.placeName}</h2>
                         <div>
-                            <h1 className="address"><LocationIcon/>{places.address}</h1>
+                            <h1 className="address"><LocationIcon className='location-icon'/>{places.address}</h1>
                         </div>  
                       </div>
                       <div className="date-container">
                         <h3 className="times">
-                          <FaClockO/>
+                          <FaClockO />
                           {places.initialTime}-{places.finishingTime}
                         </h3>
                         <h3>{this.beautifyDate(places.date)}</h3>
