@@ -28,6 +28,12 @@ font-weight: 600;
     font-size: 10px;
     text-align: left !important;
 }
+.request-cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .musicians-photo{
     padding: 0;
     margin: 0;

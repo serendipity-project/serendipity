@@ -37,12 +37,14 @@ class Requests extends Component {
     const listOfRequests = this.state.listOfRequests;
     return (
       <>
-      <h1 className="request-title">REQUESTS</h1>
-        {listOfRequests.length > 0 ? (
-          listOfRequests.map((request, i) => { return (<RequestsCards key={i} update={(e) => this.getAll(e)} request={request} user={this.props.user} />) })
-        ) : (
-            <h3 style={{ margin: "4%" }}>You don't have any requests for the moment! </h3>
-          )}
+        <h1 className="request-title">REQUESTS</h1>
+        <div className='request-cards'>
+          {listOfRequests.length > 0 ? (
+            listOfRequests.map((request, i) => { return (<RequestsCards key={i} update={(e) => this.getAll(e)} request={request} user={this.props.user} />) })
+          ) : (
+              <h3 style={{ margin: "4%" }}>You don't have any requests for the moment! </h3>
+            )}
+        </div>
       </>
     );
   }
