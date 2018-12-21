@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './AboutUs.css'
-import ba from './aboutus1.jpg'
 export default class AboutUs extends Component {
     constructor() {
         super()
