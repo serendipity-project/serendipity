@@ -16,11 +16,12 @@ export default class MyConcerts extends Component {
         }
         this.service = new ConcertsService()
     }
-    componentDidMount = () => {
+    componentWillMount = () => {
         this.setState({
             user: this.props.user
+        }, () => {
+            this.getOne(this.props.user._id, this.props.user.concerts)
         })
-        this.getOne(this.props.user._id, this.props.user.concerts)
     }
     getOne = (userID, concertID) => {
         const concertsArr = []

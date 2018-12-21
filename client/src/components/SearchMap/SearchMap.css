@@ -1,5 +1,5 @@
 .form-search-concert{
-    padding: 20px;
+    padding: 1.3rem;;
     text-align: center;
     width: 15vw;
 }
@@ -8,4 +8,7 @@
 }
 .form-search-concert label{
     margin: 10% auto;
+}
+.box{
+    width: 11rem;
 }

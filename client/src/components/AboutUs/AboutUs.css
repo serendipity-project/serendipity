@@ -1,7 +1,9 @@
 .about-us{
-    background-image: url('./aboutus1.jpg');
+    opacity: 0.7;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

@@ -11,6 +11,7 @@ import FaClose from "react-icons/lib/fa/close";
 import LocationIcon from "react-icons/lib/fa/map-marker";
 import FaClockO from "react-icons/lib/fa/clock-o";
 import iconLocation from "./images/location1.png";
+import Modal from 'react-responsive-modal';
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -35,10 +36,19 @@ export default class Mapbox extends Component {
       concert: null,
       searchCity: "",
       searchDate: "",
-      searchGenre: ""
+      searchGenre: "",
+      open: false
     };
     this.service = new ConcertService();
   }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
 
   filterConcerts = e => {
     e.preventDefault();
@@ -123,7 +133,8 @@ export default class Mapbox extends Component {
     this.service
       .going(this.state.concert._id)
       .then(response => {
-        console.log(response.concert);
+        this.onOpenModal()
+        // console.log(response.concert);
         this.setState({
           concert: response.concert
         });
@@ -134,7 +145,8 @@ export default class Mapbox extends Component {
     this.service
       .notGoing(this.state.concert._id)
       .then(response => {
-        console.log(response.concert);
+        // console.log(response.concert);
+
         this.setState({
           concert: response.concert
         });
@@ -142,7 +154,7 @@ export default class Mapbox extends Component {
       .catch(e => console.log(e));
   };
   closePopup = e => {
-    console.log(e);
+    // console.log(e);
     document.querySelector(".mapboxgl-popup").style.display = "none";
   };
   beautifyDate = date => {
@@ -154,9 +166,9 @@ export default class Mapbox extends Component {
     const { concert } = this.state;
     // console.log(concert);
     if (this.state.filteredConcerts) {
-        const image = new Image(17, 17);
-        image.src = iconLocation;
-        const images = ["myLocation", image];
+      const image = new Image(17, 17);
+      image.src = iconLocation;
+      const images = ["myLocation", image];
       return (
         <div className="map-container">
           <SearchMap filter={this.filterConcerts} />
@@ -213,7 +225,7 @@ export default class Mapbox extends Component {
                       </Button>
                     </div>
                     <h3 className="adress">
-                      <LocationIcon />
+                      <LocationIcon className='location-icon' />
                       {concert.hostID.address}
                     </h3>
                     <h3 className="adress">{concert.hostID.placeName}</h3>
@@ -266,14 +278,14 @@ export default class Mapbox extends Component {
                             <FaPlus />
                           </Button>
                         ) : (
-                          <Button
-                            disabled="true"
-                            className="btn-go"
-                            onClick={this.onClickGoingConcert}
-                          >
-                            <FaPlus />
-                          </Button>
-                        )}
+                            <Button
+                              disabled="true"
+                              className="btn-go"
+                              onClick={this.onClickGoingConcert}
+                            >
+                              <FaPlus />
+                            </Button>
+                          )}
                         <Button
                           className="btn-not-go"
                           onClick={this.onClickNotGoingConcert}
@@ -284,6 +296,9 @@ export default class Mapbox extends Component {
                     </div>
                   </div>
                 </StyledPopup>
+                <Modal open={this.state.open} onClose={this.onCloseModal} center>
+                  <h2>Great {this.state.user.username}, you are going to {concert.musicianID.artistData} on the {this.beautifyDate(concert.hostID.date)}</h2>
+                </Modal>
               </Popup>
             )}
           </Map>

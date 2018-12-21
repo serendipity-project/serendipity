@@ -66,9 +66,9 @@ class RequestsCards extends Component {
         return (
             <>
                 <CarouselProvider
-                    naturalSlideWidth={70}
-                    naturalSlideHeight={80}
-                    visibleSlides={2}
+                    naturalSlideWidth={100}
+                    naturalSlideHeight={140}
+                    visibleSlides={1}
                     totalSlides={10000}>
                     <ButtonBack className='arrows'>
                         <LeftArrow className='arrow-icon' />
@@ -91,18 +91,18 @@ class RequestsCards extends Component {
                                         <span className='titles'>INSTRUMENTS </span>  <p>    {musicianID.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
                                     </div>
                                 </div>
-                                <div className='music-info'>
-                                    <p>LISTEN TO MY MUSIC</p>
+                                    <div className='music-info'>
+                                        <p>LISTEN TO MY MUSIC</p>
+                                        <div>
+                                            <a href={musicianID.spotifyAccount}>SPOTIFY ACCOUNT</a>
+                                            <a href={musicianID.youtubeAccount}>YOUTUBE ACCOUNT</a>
+                                        </div>
+                                    </div>
                                     <div>
-                                        <a href={musicianID.spotifyAccount}>SPOTIFY ACCOUNT</a>
-                                        <a href={musicianID.youtubeAccount}>YOUTUBE ACCOUNT</a>
+                                        <button type="submit" onClick={() => this.onClickCreateConcert(user.hostPlaceID, musicianID._id, request._id)} className='button'><Check className='icon' /></button>
+                                        <button type="submit" onClick={() => this.handleDeleteRequests(request._id)} className='button'><Close className='icon' /></button>
                                     </div>
                                 </div>
-                                <div>
-                                    <button type="submit" onClick={() => this.onClickCreateConcert(user.hostPlaceID, musicianID._id, request._id)} className='button'><Check className='icon' /></button>
-                                    <button type="submit" onClick={() => this.handleDeleteRequests(request._id)} className='button'><Close className='icon' /></button>
-                                </div>
-                            </div>
                         </Slide>
                     </Slider>
                 </CarouselProvider>

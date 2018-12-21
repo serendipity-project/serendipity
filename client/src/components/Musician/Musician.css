@@ -1,7 +1,7 @@
 .musician-image{
     width: 350px;
     height: 300px;
-    object-fit: fill;
+    object-fit: cover;
     align-self: center
 }
 .musician-name{

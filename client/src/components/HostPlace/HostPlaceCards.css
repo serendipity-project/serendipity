@@ -48,7 +48,9 @@
     letter-spacing: 1px;
     color: rgb(151, 151, 151);
     font-weight: bold;
-
+}
+.location-icon{
+    color: black;
 }
 .arrow-icon{
     color: black;

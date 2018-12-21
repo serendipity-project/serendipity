@@ -10,7 +10,6 @@
     font-weight: 400;
     border-radius: 2px;
     width: 30vw;
-    overflow-y: scroll;
     font-family: Montserrat;
 
 }
@@ -38,7 +37,9 @@
 .time-style-container {
     display: flex;
 }
-
+.location-icon{
+    color: black;
+}
 .style-container {
     display: flex;
     flex-direction: column;
