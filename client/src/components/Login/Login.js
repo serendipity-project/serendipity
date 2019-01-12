@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import AuthService from '../../services/auth-service';
 import { Redirect } from 'react-router-dom';
-import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import { ButtonLogin, ButtonRegister } from '../Styles/Buttons'
+import { ButtonRegister } from '../Styles/Buttons'
 
 
 export default class Login extends Component {

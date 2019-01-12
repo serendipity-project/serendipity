@@ -4,8 +4,6 @@ import HostPlaceService from "../../services/host-service";
 import TextField from "@material-ui/core/TextField";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
 import "./HostPlaceForm.css";
-import { DateFormatInput } from "material-ui-next-pickers";
-import TimeInput from "material-ui-time-picker";
 
 class HostPlace extends Component {
   constructor(props) {
@@ -30,12 +28,10 @@ class HostPlace extends Component {
 
   componentDidMount() {
     this.state.hostID = this.props.user._id;
-    console.log(this.state.hostID);
-    // this.setState = ({ hostID: this.props.user._id })
+    this.setState = ({ hostID: this.props.user._id })
   }
 
   handleFormSubmit = event => {
-    console.log(event);
     event.preventDefault();
 
     const {
@@ -67,7 +63,6 @@ class HostPlace extends Component {
         concertRequest
       )
       .then(response => {
-        console.log(response);
         this.setState(
           {
             hostID: "",
@@ -95,14 +90,11 @@ class HostPlace extends Component {
     this.setState({ [name]: value });
   };
   _suggestionSelect = (result, lat, lng, text) => {
-    console.log(this.state, "dentro del geocoder");
-    console.log(result, lat, lng, text);
     this.state.location.latitude = parseFloat(lat);
     this.state.location.longitude = parseFloat(lng);
     this.state.address = result;
   };
   onChangeDate = (date: Date) => {
-    console.log("Date: ", date);
     this.setState({ date });
   };
   onChangeTime = e => {
@@ -201,13 +193,13 @@ class HostPlace extends Component {
                   Create Host Place
                 </Button>
               ) : (
-                <Button
-                  type="submit"
-                  value="Submit"
-                >
-                  Create Host Place
+                  <Button
+                    type="submit"
+                    value="Submit"
+                  >
+                    Create Host Place
                 </Button>
-              )}
+                )}
             </div>
           </form>
         </div>
