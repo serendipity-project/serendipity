@@ -213,7 +213,7 @@ export default class Mapbox extends Component {
               >
                 <StyledPopup className="pop-up-container">
                   <div>
-                    <img src={concert.musicianID.image} />
+                    <img src={concert.musicianID.image} alt=''/>
                   </div>
                   <div className="sub-pop-up">
                     <div className="name-close-container">

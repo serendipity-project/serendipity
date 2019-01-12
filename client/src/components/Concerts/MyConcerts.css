@@ -13,9 +13,16 @@
 .musician-photo{
     padding: 0;
     margin: 0;
-    object-fit: cover !important;
-    width: 340px !important;
+    height: 290px;
+    width: 21.25rem !important;
 
+}
+.musician-info-concert{
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+    height: 8rem;
+    justify-content: center;
 }
 hr{
     color: black;
@@ -29,12 +36,13 @@ hr{
 }
 
 .grey-titles{
-    color: rgb(151, 151, 151)
+    color: rgb(151, 151, 151);
 }
 .icons{
-    font-size: 20px;
+    font-size: 22px;
     margin: 5px 0;
     color: black;
+    margin-top: 6px;
 }
 .numbers-container{
     display: flex;
@@ -54,9 +62,10 @@ hr{
        font-weight: bold;
 }
 .time-and-date-info{
-display: block;
-padding-top: 25px;
-margin: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .time-and-date{
     margin: 0;
