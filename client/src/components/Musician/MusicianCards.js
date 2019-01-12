@@ -35,7 +35,7 @@ export default class MusicianCards extends Component {
                             return (
                                 <Slide>
                                     <div key={i} className='individual-cards'>
-                                        <img src={musician.image} className='musician-image' />
+                                        <img src={musician.image} className='musician-image' alt='' />
                                         <div className='info-container'>
                                             <h2 className='musician-name'>{musician.artistData.toUpperCase()}</h2>
                                             <div>

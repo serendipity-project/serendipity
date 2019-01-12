@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import AuthService from '../../services/auth-service';
-import Typography from '@material-ui/core/Typography';
-
-import { Link } from 'react-router-dom';
-import MusicianCards from "../Musician/MusicianCards";
-import HostPlaceCards from '../HostPlace/HostPlaceCards'
+import AuthService from '../../services/auth-service'
+import { Link } from 'react-router-dom'
+import './Info.css'
+import HostPlaceInfo from './HostPlaceInfo'
+import MusicianInfo from './MusicianInfo'
+import { Button } from "@material-ui/core";
 class Profile extends Component {
 
   constructor(props) {
-    super(props);
-    console.log(this.props);
-    this.authService = new AuthService();
+    super(props)
+    this.authService = new AuthService()
     this.state = {
       user: null
     }
   }
+
   componentDidMount() {
     this.authService
       .loggedin()
@@ -23,24 +23,19 @@ class Profile extends Component {
   }
 
   render() {
-    // console.log(this.props.user);
-    const { routename } = this.props;
+    // const { routename } = this.props;
     return this.state.user ? (
       <>
-        <Typography variant="h6" color="inherit">
-          {`this is the ${routename}`}
-        </Typography>
+        <h1> Profile Details </h1>
         <div>
-          <h1> Profile Details </h1>
-          <p><span>Username: </span>{this.state.user.username}</p>
-          <p><span>Email: </span>{this.state.user.email}</p>
-          <Link to="/edit-profile"><button>Edit Profile</button></Link>
+          {this.state.user.host && <HostPlaceInfo user={this.props.user} />}
+          {this.state.user.musician && <MusicianInfo user={this.props.user} />}
         </div>
+        <Link to="/edit-profile"><Button className='edit-btn'>Edit Profile</Button></Link>
       </>
-    ) : (
-        <h1>No logedin</h1>
-      );
+    ) : (<h1>No logedin</h1>)
   }
+
 }
 
 export default Profile;

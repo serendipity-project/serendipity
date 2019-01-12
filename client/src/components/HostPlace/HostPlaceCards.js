@@ -20,9 +20,7 @@ class HostPlaceCards extends Component {
     this.state = {
       user: null,
       myPlaces: null
-    };
-    // console.log(this.props.place);
-
+    }
   }
 
   componentDidMount() {
@@ -32,14 +30,12 @@ class HostPlaceCards extends Component {
     });
   }
   beautifyDate = date => {
-    console.log(date);
     const dateConverted = new Date(date);
     return dateConverted.toDateString();
   };
   render() {
     const listOfPlaces = this.props.places || [];
     if (this.props.place) {
-      console.log(this.props.place);
       listOfPlaces.push(this.props.place);
     }
     return (
@@ -55,7 +51,6 @@ class HostPlaceCards extends Component {
         <ButtonNext className='arrows'><RightArrow className='arrow-icon' /></ButtonNext>
         <Slider>
           {listOfPlaces.map((places, i) => {
-            console.log(places.hostID, this.props.user._id, "aaalksjdfosahfgdpadhspfg");
             if (places.availability || places.hostID === this.props.user._id) {
               return (
                 <Slide key={i}>
@@ -64,8 +59,8 @@ class HostPlaceCards extends Component {
                       <div>
                         <h2>{places.placeName}</h2>
                         <div>
-                            <h1 className="address"><LocationIcon className='location-icon'/>{places.address}</h1>
-                        </div>  
+                          <h1 className="address"><LocationIcon className='location-icon' />{places.address}</h1>
+                        </div>
                       </div>
                       <div className="date-container">
                         <h3 className="times">

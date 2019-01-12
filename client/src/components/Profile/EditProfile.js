@@ -68,7 +68,7 @@ export default class EditProfile extends Component {
                             label="Are you musician?"
                         />
                     </Grid>
-                    <Button variant="contained" color="primary" type="submit" value="Submit">Edit</Button>
+                    <Button className='btn-form' type="submit" value="Submit">Edit</Button>
                 </form>
             </div>
         );

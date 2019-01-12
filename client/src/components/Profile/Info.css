@@ -1,0 +1,26 @@
+.musician-card{
+    display: flex;
+    margin: 0 1rem;
+}
+.profile-title{
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-align: left !important;
+}
+.edit-btn{
+    background-color: #6acac9 !important;
+    text-decoration: none !important;
+}
+.hostplace-card{
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+    background-color: #fff;
+    box-shadow: 10px 10px 50px grey;
+    margin: 1rem auto;
+    width: 50%;
+}
+.info-1{
+    text-align: center;
+    font-size: 0.75rem;
+}

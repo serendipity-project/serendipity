@@ -6,7 +6,6 @@
     box-shadow: 10px 10px 50px grey;
     /* overflow: auto; */
 }
-
 .numbers-container{
  display: flex;
  align-items: center;

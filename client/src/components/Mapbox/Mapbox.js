@@ -297,7 +297,7 @@ export default class Mapbox extends Component {
                   </div>
                 </StyledPopup>
                 <Modal open={this.state.open} onClose={this.onCloseModal} center>
-                  <h2>Great {this.state.user.username}, you are going to {concert.musicianID.artistData} on the {this.beautifyDate(concert.hostID.date)}</h2>
+                  <h2>Great {this.state.user.username}, you are going to {concert.musicianID.artistData}'s concert on the {this.beautifyDate(concert.hostID.date)}</h2>
                 </Modal>
               </Popup>
             )}

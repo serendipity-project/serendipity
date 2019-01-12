@@ -67,7 +67,7 @@ class RequestsCards extends Component {
                         <LocationIcon className='location-icon' />{musicianID.originCity.toUpperCase()} CITY</h4>
                     <div className='musicians-information'>
                         <div >
-                            <img src={musicianID.image} className='musicians-photo' />
+                            <img src={musicianID.image} className='musicians-photo' alt='' />
                         </div>
                         <div className='musician-data'>
                             <span className='titles'>DESCRIPTION</span>
