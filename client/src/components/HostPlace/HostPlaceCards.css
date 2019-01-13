@@ -19,6 +19,20 @@
     margin:10px;
     width: 17rem;
 }
+.card-display{
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.placename-display{
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+.address-display{
+    text-align: center;
+    margin-top: 0.25rem;
+}
 .grey-titles{
     color: rgb(151, 151, 151);
     font-weight: 600;
