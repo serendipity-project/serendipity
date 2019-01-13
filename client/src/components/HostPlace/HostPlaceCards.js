@@ -57,9 +57,11 @@ class HostPlaceCards extends Component {
                   <div className="card-host-place">
                     <div className="top-card">
                       <div>
-                        <h2>{places.placeName}</h2>
+                        <div className='card-display'>
+                        <h2 className='placename-display'>{places.placeName}</h2>
                         <div>
-                          <h1 className="address"><LocationIcon className='location-icon' />{places.address}</h1>
+                          <h1 className="address address-display"><LocationIcon className='location-icon' />{places.address}</h1>
+                          </div>
                         </div>
                       </div>
                       <div className="date-container">
