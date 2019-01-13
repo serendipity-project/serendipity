@@ -1,35 +1,35 @@
-import React, { Component } from "react";
-import { Button } from "@material-ui/core";
-import HostPlaceService from "../../services/host-service";
-import TextField from "@material-ui/core/TextField";
-import MapboxAutocomplete from "react-mapbox-autocomplete";
-import "./HostPlaceForm.css";
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import HostPlaceService from '../../services/host-service';
+import TextField from '@material-ui/core/TextField';
+import MapboxAutocomplete from 'react-mapbox-autocomplete';
+import './HostPlaceForm.css'
 
 class HostPlace extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      hostID: "",
-      address: "",
-      date: "",
-      initialTime: "",
-      finishingTime: "",
-      price: "",
-      capacity: "",
-      location: { latitude: 0, longitude: 0 },
-      placeName: "",
-      availability: "",
-      concertRequest: "",
-      redirect: false,
-      clean: false
-    };
-    this.service = new HostPlaceService();
+      super(props)
+      this.state = {
+          hostID: "",
+          address: "",
+          date: "",
+          initialTime: "",
+          finishingTime: "",
+          price: "",
+          capacity: "",
+          location: { latitude: 0, longitude: 0 },
+          placeName: "",
+          availability: "",
+          concertRequest: "",
+          redirect: false,
+          clean: false
+      }
+      this.service = new HostPlaceService();
+  }
+  componentDidMount() {
+      this.state.hostID = this.props.user._id
+      // this.setState = ({ hostID: this.props.user._id })
   }
 
-  componentDidMount() {
-    this.state.hostID = this.props.user._id;
-    this.setState = ({ hostID: this.props.user._id })
-  }
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -103,6 +103,7 @@ class HostPlace extends Component {
   };
 
   render() {
+    // console.
     return (
       <div className="form-out-box">
         <div className="form-host-place-box">
@@ -184,7 +185,7 @@ class HostPlace extends Component {
               />
             </div>
             <div className="box">
-              {this.props.user.hostPlaceID ? (
+              {/* {this.props.user.hostPlaceID ? (
                 <Button
                   disabled
                   type="submit"
@@ -192,14 +193,14 @@ class HostPlace extends Component {
                 >
                   Create Host Place
                 </Button>
-              ) : (
+              ) : ( */}
                   <Button
                     type="submit"
                     value="Submit"
                   >
                     Create Host Place
                 </Button>
-                )}
+                {/* )} */}
             </div>
           </form>
         </div>
