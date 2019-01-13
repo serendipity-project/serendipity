@@ -28,7 +28,7 @@ export default class MusicianForm extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         const { artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file } = this.state
-        console.log(file)
+        // console.log(file)
         this.service.new({ artistData, email, originCity, musicStyle, artistDescription, instruments, favouritePlayCity, musicTrack, spotifyAccount, youtubeAccount, image, file })
             .then(response => {
                 this.setState({
@@ -62,7 +62,6 @@ export default class MusicianForm extends Component {
         this.setState({
             file: e.target.files[0]
         })
-        console.log(e.target.files[0]);
     }
     render() {
         return (

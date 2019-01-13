@@ -18,7 +18,7 @@ class Profile extends Component {
   componentDidMount() {
     this.authService
       .loggedin()
-      .then(res => { this.setState({ ...this.state, user: res }); console.log(res) })
+      .then(res => { this.setState({ ...this.state, user: res })})
       .catch(err => console.log(err));
   }
 

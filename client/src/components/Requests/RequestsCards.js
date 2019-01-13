@@ -62,7 +62,7 @@ class RequestsCards extends Component {
         return (
             <>
                 <div className='individual-card'>
-                    <h2 className="extra-name"><span className='artist-name'>{musicianID.artistData.toUpperCase()}</span> WANTS TO PLAY AT YOUR PLACE!</h2>
+                    <h3 className="extra-name"><span className='artist-name'>{musicianID.artistData.toUpperCase()}</span> WANTS TO PLAY AT YOUR PLACE!</h3>
                     <h4 className='city-name'>
                         <LocationIcon className='location-icon' />{musicianID.originCity.toUpperCase()} CITY</h4>
                     <div className='musicians-information'>
@@ -70,10 +70,10 @@ class RequestsCards extends Component {
                             <img src={musicianID.image} className='musicians-photo' alt='' />
                         </div>
                         <div className='musician-data'>
-                            <span className='titles'>DESCRIPTION</span>
-                            <p>{musicianID.artistDescription.toUpperCase()}</p>
-                            <span className='titles'>MUSIC STYLE </span> <p style={{ textAlign: 'justify' }}>    {musicianID.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
-                            <span className='titles'>INSTRUMENTS </span>  <p>    {musicianID.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                            <span className='titles font'>DESCRIPTION</span>
+                            <p className='font'> {musicianID.artistDescription.toUpperCase()}</p>
+                            <span className='titles font'>MUSIC STYLE </span> <p className='font' style={{ textAlign: 'justify' }}>    {musicianID.musicStyle.toString().replace(/,/g, ' / ').toUpperCase()}</p>
+                            <span className='titles font'>INSTRUMENTS </span>  <p className='font'>     {musicianID.instruments.toString().replace(/,/g, ' / ').toUpperCase()}</p>
                         </div>
                     </div>
                     <div className='music-info'>

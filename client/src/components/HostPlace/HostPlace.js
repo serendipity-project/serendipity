@@ -35,10 +35,10 @@ class HostPlace extends Component {
             .catch((e) => console.log(e))
     }
     getOnePlace = (hostId) => {
-        console.log(hostId)
+        // console.log(hostId)
         this.service.getOne(hostId)
             .then((response) => {
-                console.log(response, 'response')
+                // console.log(response, 'response')
                 this.setState({
                     myPlace: response.hostPlace,
                     user: this.props.user
@@ -52,11 +52,11 @@ class HostPlace extends Component {
             const filtered = [...this.state.listOfPlaces]
             const filteredList = filtered.filter(place => {
                 if (this.state.queryCity === '') {
-                    console.log('solo fecha')
+                    // console.log('solo fecha')
                     return place.date.includes(this.state.queryDate)
                 }
                 else if (this.state.queryDate === '') {
-                    console.log('solo ciudad')
+                    // console.log('solo ciudad')
                     return place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
                 } else {
                     return place.date.includes(this.state.queryDate) && place.address.toLowerCase().includes(this.state.queryCity.toLowerCase())
