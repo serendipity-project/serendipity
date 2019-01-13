@@ -44,21 +44,7 @@ concertRouter.post('/new/:IDhostPlace/:IDmusician', (req, res, next) => {
       res.status(500).json({ message: 'Problem when creating concert' });
     });
 });
-concertRouter.post('/set-capacity', (req, res, next) => {
-  Concert.findByIdAndUpdate({ _id: req.body.idConcert }, {
-    $set: {
-      capacity: req.body.capacity,
-    },
-  }, { new: true })
-    .then((capacity) => {
-      res.status(200).json({ message: 'Capacity established' });
-      console.log(capacity);
-    })
-    .catch((err) => {
-      res.status(500).json({ message: 'Something went wrong while establishing the capacitty' });
-      console.log(err);
-    });
-});
+
 concertRouter.get('/all', (req, res, next) => {
   Concert.find()
     .populate('musicianID')

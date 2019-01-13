@@ -42,10 +42,10 @@ hostPlaceRouter.get('/all', (req, res, next) => {
 });
 
 hostPlaceRouter.get('/:hostId', (req, res, next) => {
-  console.log(req.params.hostId);
+  // console.log(req.params.hostId);
   HostPlace.findOne({ hostID: req.params.hostId })
     .then((hostPlace) => {
-      console.log(hostPlace, 'paosghfpoashgpashfgpdiegoBACK');
+      // console.log(hostPlace, 'paosghfpoashgpashfgpdiegoBACK');
       res.status(200).json({ hostPlace });
     })
     .catch((err) => {
@@ -65,8 +65,8 @@ hostPlaceRouter.post('/:id/edit', (req, res, next) => {
   HostPlace.findByIdAndUpdate({ _id: req.params.id }, {
     address, date, price, capacity, initialTime, finishingTime, placeName,
   }, {
-    new: true,
-  })
+      new: true,
+    })
     .then((hostPlaceUpdated) => {
       res.status(200).json({ hostPlaceUpdated });
     })
@@ -80,10 +80,10 @@ hostPlaceRouter.post('/:id/availabilty', (req, res, next) => {
   HostPlace.findByIdAndUpdate({
     _id: req.params.id,
   }, {
-    $set: { availability: false },
-  }, {
-    new: true,
-  })
+      $set: { availability: false },
+    }, {
+      new: true,
+    })
     .then(() => {
       res.status(200).json({ message: 'Changed availability to false' });
     })
